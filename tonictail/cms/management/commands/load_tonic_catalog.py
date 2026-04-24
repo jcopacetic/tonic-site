@@ -965,20 +965,14 @@ class Command(BaseCommand):
         # ── Home ──────────────────────────────────────────────────────────
         
 
-        home = HomePage.objects.filter(slug="home").first()
+        home = HomePage.objects.filter(slug="tonic-home").first()
         if not home:
-            existing = root.get_children().filter(slug="home").first()
-            if existing:
-                existing.delete()
-            
-            root = Page.objects.filter(depth=1).first()  # re-fetch after delete
-
             home = HomePage(
                 title="Tonic — A HubSpot CMS Theme by Khaotic Digital",
-                slug="home",
+                slug="tonic-home",
                 body=json.loads(home_page_content()),
             )
-            root.add_child(instance=home, pos="first-child")  # ← explicit position
+            root.add_child(instance=home)
             home.save_revision().publish()
             self.stdout.write(self.style.SUCCESS("  ✓ Home page"))
 
