@@ -1,4 +1,5 @@
 {% load static i18n wagtailcore_tags wagtailimages_tags %}
+{% load nav_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 <!doctype html>
 <html lang="{{ LANGUAGE_CODE }}" class="no-js">
@@ -63,7 +64,7 @@
 
     {# ── GLOBAL HEADER ──────────────────────────────────────────────────── #}
     {% block site_header %}
-      {% with settings=settings.cms.SiteSettings %}
+      {% with site_settings=settings.cms.SiteSettings %}
       <header role="banner" class="site-header">
 
         {# Sentinel — IntersectionObserver target for sticky detection #}
@@ -82,18 +83,18 @@
 
               {# ── Brand ──────────────────────────────────────────────── #}
               <div class="header__brand">
-                <a href="/" aria-label="{{ settings.site_name|default:"Tonictail" }} — Go to homepage">
-                  {% if settings.site_logo %}
-                    {% image settings.site_logo original as logo %}
+                <a href="/" aria-label="{{ site_settings.site_name|default:"Tonictail" }} — Go to homepage">
+                  {% if site_settings.site_logo %}
+                    {% image site_settings.site_logo original as logo %}
                     <img
                       class="header__logo header__logo--default"
                       src="{{ logo.url }}"
-                      alt="{{ settings.site_name|default:"Tonictail" }}"
+                      alt="{{ site_settings.site_name|default:"Tonictail" }}"
                       height="40"
                       width="auto"
                     >
                   {% else %}
-                    <span class="header__site-name">{{ settings.site_name|default:"Tonictail" }}</span>
+                    <span class="header__site-name">{{ site_settings.site_name|default:"Tonictail" }}</span>
                   {% endif %}
                 </a>
               </div>
@@ -101,10 +102,18 @@
               {# ── Desktop nav ─────────────────────────────────────────── #}
               <nav class="header__nav" aria-label="Main navigation">
                 <ul class="nav__list" role="list">
-                  <li class="nav__item">
-                    <a class="nav__link {% if request.path == '/' %}is-active{% endif %}" href="/">Home</a>
-                  </li>
-                  {% block nav_items %}{% endblock %}
+                  {% get_nav "Header Navigation" as main_nav %}
+                  {% if main_nav %}
+                    {% for item in main_nav.items.all %}
+                      <li class="nav__item">
+                        <a class="nav__link {% if request.path == item.url %}is-active{% endif %}"
+                          href="{{ item.url }}"
+                          {% if item.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                          {{ item.label }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  {% endif %}
                   {% if request.user.is_authenticated %}
                     <li class="nav__item">
                       <a class="nav__link" href="{% url 'users:detail' request.user.pk %}">{% trans "My Profile" %}</a>
@@ -157,10 +166,18 @@
           {# ── Mobile nav panel ──────────────────────────────────────────── #}
           <div class="header__mobile-nav" id="site-header-mobile-nav" aria-label="Mobile navigation" role="navigation">
             <ul class="mobile-nav__list" role="list">
-              <li class="mobile-nav__item">
-                <a class="mobile-nav__link {% if request.path == '/' %}is-active{% endif %}" href="/">Home</a>
-              </li>
-              {% block mobile_nav_items %}{% endblock %}
+              {% get_nav "main" as main_nav %}
+              {% if main_nav %}
+                {% for item in main_nav.items.all %}
+                  <li class="mobile-nav__item">
+                    <a class="mobile-nav__link {% if request.path == item.url %}is-active{% endif %}"
+                      href="{{ item.url }}"
+                      {% if item.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                      {{ item.label }}
+                    </a>
+                  </li>
+                {% endfor %}
+              {% endif %}
               {% if request.user.is_authenticated %}
                 <li class="mobile-nav__item">
                   <a class="mobile-nav__link" href="{% url 'users:detail' request.user.pk %}">{% trans "My Profile" %}</a>
@@ -215,45 +232,46 @@
 
     {# ── GLOBAL FOOTER ──────────────────────────────────────────────────── #}
     {% block site_footer %}
-      {% with settings=settings.cms.SiteSettings %}
-      <footer role="contentinfo" class="site-footer module-global-footer footer--mode-full" aria-label="Site footer">
+      {% with site_settings=settings.cms.SiteSettings footer_settings=settings.cms.FooterSettings %}
+      {% with col_count=footer_settings.nav_columns.count|default:0 %}
+      <footer role="contentinfo" class="site-footer module-global-footer footer--mode-full footer--brand-medium" aria-label="Site footer">
 
         <div class="footer__main">
           <div class="footer__container">
-            <div class="footer__grid">
+            <div class="footer__grid footer__grid--nav-cols-{{ col_count }}">
 
               {# Brand column #}
               <div class="footer__brand-col">
-                {% if settings.site_logo %}
+                {% if site_settings.site_logo %}
                   <div class="footer__logo">
                     <a href="/" aria-label="Go to homepage">
-                      {% image settings.site_logo original as logo %}
-                      <img src="{{ logo.url }}" alt="{{ settings.site_name|default:"Tonictail" }}" loading="lazy" width="auto" height="40">
+                      {% image site_settings.site_logo original as logo %}
+                      <img src="{{ logo.url }}" alt="{{ site_settings.site_name|default:"Tonictail" }}" loading="lazy" width="auto" height="40">
                     </a>
                   </div>
                 {% else %}
-                  <span class="footer__site-name">{{ settings.site_name|default:"Tonictail" }}</span>
+                  <span class="footer__site-name">{{ site_settings.site_name|default:"Tonictail" }}</span>
                 {% endif %}
 
-                {% if settings.footer_text %}
-                  <p class="footer__tagline">{{ settings.footer_text }}</p>
+                {% if site_settings.footer_text %}
+                  <p class="footer__tagline">{{ site_settings.footer_text }}</p>
                 {% endif %}
 
                 {# Social icons #}
-                {% if settings.twitter_url or settings.github_url %}
+                {% if site_settings.twitter_url or site_settings.github_url %}
                   <ul class="footer__social-icons" role="list" aria-label="Social media links">
-                    {% if settings.twitter_url %}
+                    {% if site_settings.twitter_url %}
                       <li class="footer__social-item">
-                        <a class="footer__social-link footer__social-link--twitter" href="{{ settings.twitter_url }}" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
+                        <a class="footer__social-link footer__social-link--twitter" href="{{ site_settings.twitter_url }}" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
                           <svg class="footer__social-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="20" height="20">
                             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.738-8.835L1.254 2.25H8.08l4.259 5.629 5.905-5.629zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor"/>
                           </svg>
                         </a>
                       </li>
                     {% endif %}
-                    {% if settings.github_url %}
+                    {% if site_settings.github_url %}
                       <li class="footer__social-item">
-                        <a class="footer__social-link footer__social-link--github" href="{{ settings.github_url }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                        <a class="footer__social-link footer__social-link--github" href="{{ site_settings.github_url }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                           <svg class="footer__social-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="20" height="20">
                             <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill="currentColor"/>
                           </svg>
@@ -264,8 +282,27 @@
                 {% endif %}
               </div>
 
-              {# Nav columns block — override in child templates #}
-              {% block footer_nav_columns %}{% endblock %}
+              {# Nav columns — populated from FooterSettings #}
+              {% block footer_nav_columns %}
+                {% for col in footer_settings.nav_columns.all %}
+                  <div class="footer__nav-col">
+                    <h3 class="footer__col-heading">{{ col.heading }}</h3>
+                    {% if col.menu %}
+                      <ul class="footer__nav-list" role="list">
+                        {% for item in col.menu.items.all %}
+                          <li class="footer__nav-item">
+                            <a
+                              class="footer__nav-link"
+                              href="{{ item.url }}"
+                              {% if item.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                            >{{ item.label }}</a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              {% endblock %}
 
             </div>{# /footer__grid #}
           </div>{# /footer__container #}
@@ -277,7 +314,7 @@
           <div class="footer__container">
             <div class="footer__copyright-inner">
               <p class="footer__copyright-text">
-                &copy; {% now "Y" %} {{ settings.site_name|default:"Tonictail" }}. All rights reserved.
+                &copy; {% now "Y" %} {{ site_settings.site_name|default:"Tonictail" }}. All rights reserved.
               </p>
               {% block footer_legal %}{% endblock %}
             </div>
@@ -285,7 +322,8 @@
         </div>
 
       </footer>
-      {% endwith %}
+      {% endwith %}{# col_count #}
+      {% endwith %}{# site_settings / footer_settings #}
     {% endblock site_footer %}
 
   </div>{# /site-wrapper #}

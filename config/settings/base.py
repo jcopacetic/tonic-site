@@ -209,6 +209,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "tonictail.users.context_processors.allauth_settings",
+                "wagtail.contrib.settings.context_processors.settings",
             ],
         },
     },

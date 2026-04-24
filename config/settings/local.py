@@ -51,6 +51,11 @@ DEBUG_TOOLBAR_CONFIG = {
         # Disable profiling panel due to an issue with Python 3.12+:
         # https://github.com/jazzband/django-debug-toolbar/issues/1875
         "debug_toolbar.panels.profiling.ProfilingPanel",
+        # Disable Templates panel — its generate_stats() calls force_str() on
+        # template context values (including Wagtail BaseSiteSetting instances)
+        # which triggers a lazy FK lookup (.site) via the sync ORM inside the
+        # async ASGI context, causing SynchronousOnlyOperation.
+        "debug_toolbar.panels.templates.TemplatesPanel",
     ],
     "SHOW_TEMPLATE_CONTEXT": True,
 }

@@ -2357,7 +2357,7 @@
 
 /* --- inline styles (require_css) --- */
 .module-global-footer {
-    background-color: var(--color-bg-light, #ffffff);
+    background-color: var(--color-bg-dark, #0F172A);
     color: rgba(255,255,255,0.8);
   }
 
@@ -5536,14 +5536,9 @@
     
     background-color: rgba(0, 0);
     border-radius: 0px;
-    padding: 0px;
+    padding: 30px;
     
     border: 1px solid rgba(0, 0);
-    
-    
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
     
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
     
@@ -5556,8 +5551,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 0px;
-    height: 0px;
+    width: 60px;
+    height: 60px;
     border-radius: 0px;
     background-color: rgba(0, 0);
     
@@ -11863,6 +11858,15 @@
   padding: 8px 0;
 }
 
+.tonic-cta-banner .container,
+.module-testimonials-grid .container,
 .module-stats-numbers .container {
   padding: 80px 0;
 }
+
+
+.tonic-full-hero .btn-group {
+  margin-top: 40px !important;
+}
+
+.tonic-cta-banner { background: #1a1a1a !important;}

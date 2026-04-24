@@ -11,7 +11,7 @@
     {% endif %}
     <div class="module-icon-feature-grid__grid" style="grid-template-columns: repeat({{ value.columns_desktop|default:'3' }}, 1fr);">
       {% for item in value.items %}
-        <div class="module-icon-feature-grid__item--{{ value.item_layout|default:'top' }}">
+        <div class="module-icon-feature-grid__item module-icon-feature-grid__item--{{ value.item_layout|default:'top' }}">
           {% if item.icon %}
             <div class="module-icon-feature-grid__icon-wrap">
               <span class="module-icon-feature-grid__icon" style="font-size: 2rem;">{{ item.icon }}</span>

@@ -10,18 +10,55 @@ from django.db import models
 
 from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
 from wagtail.blocks import RichTextBlock
 from wagtail.images.models import AbstractImage, AbstractRendition, Image
 from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from wagtail.search import index
 
 from modelcluster.contrib.taggit import ClusterTaggableManager
+from wagtail.snippets.models import register_snippet
+from modelcluster.models import ClusterableModel
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
 
 
 from .blocks import CONTENT_BLOCKS
+
+from django.db import models
+
+class NavItem(models.Model):
+    menu = ParentalKey('NavMenu', related_name='items', on_delete=models.CASCADE)
+    label = models.CharField(max_length=100)
+    page = models.ForeignKey(
+        'wagtailcore.Page',
+        null=True, blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    custom_url = models.CharField(max_length=500, blank=True)
+    open_in_new_tab = models.BooleanField(default=False)
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
+
+    def url(self):
+        if self.page:
+            return self.page.url
+        return self.custom_url
+
+@register_snippet
+class NavMenu(ClusterableModel):
+    name = models.CharField(max_length=100)
+
+    panels = [
+        FieldPanel('name'),
+        InlinePanel('items', label='Navigation items'),
+    ]
+
+    def __str__(self):
+        return self.name
 
 
 # ============================================================
@@ -357,6 +394,64 @@ class DocsPage(Page):
 # SITE SETTINGS
 # ============================================================
 
+class FooterNavColumn(models.Model):
+    """
+    A single nav column in the footer. Each column has a heading and points
+    to a NavMenu snippet whose items become the link list.
+    """
+    settings = ParentalKey(
+        'FooterSettings',
+        related_name='nav_columns',
+        on_delete=models.CASCADE,
+    )
+    heading = models.CharField(
+        max_length=100,
+        help_text="Column heading displayed above the links (e.g. 'Product', 'Company').",
+    )
+    menu = models.ForeignKey(
+        NavMenu,
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        help_text="Choose a nav menu whose items will appear as links in this column.",
+    )
+    order = models.PositiveIntegerField(default=0)
+
+    panels = [
+        FieldPanel('heading'),
+        FieldPanel('menu'),
+        FieldPanel('order'),
+    ]
+
+    class Meta:
+        ordering = ['order']
+
+    def __str__(self):
+        return self.heading
+
+
+@register_setting
+class FooterSettings(BaseSiteSetting, ClusterableModel):
+    """
+    Footer layout settings. Controls the nav columns shown to the right of
+    the brand column. The logo/tagline/social links come from SiteSettings.
+    """
+    panels = [
+        InlinePanel('nav_columns', label='Footer nav columns', max_num=4),
+    ]
+
+    class Meta:
+        verbose_name = "Footer settings"
+
+    def __str__(self):
+        # Override to avoid the default BaseSiteSetting.__str__ which accesses
+        # self.site (a deferred FK), triggering a sync ORM query that raises
+        # SynchronousOnlyOperation when evaluated inside an ASGI async context
+        # (e.g. by Django Debug Toolbar's TemplatesPanel.generate_stats).
+        return "Footer settings"
+
+
 @register_setting
 class SiteSettings(BaseSiteSetting):
     """
@@ -398,6 +493,10 @@ class SiteSettings(BaseSiteSetting):
 
     class Meta:
         verbose_name = "Site settings"
+
+    def __str__(self):
+        # Safe override — site_name is a plain CharField, no FK lookup needed.
+        return self.site_name or "Site settings"
 
 
 @register_setting
@@ -614,3 +713,6 @@ class ThemeSettings(BaseSiteSetting):
 
     class Meta:
         verbose_name = "Theme settings"
+
+    def __str__(self):
+        return "Theme settings"
