@@ -5119,21 +5119,7 @@
     align-items: 0;
     width: 100%;
     overflow: hidden;
-
-    {# Height #}
-    
-      min-height: 100vh;
-    
       min-height: 67vh;
-    
-      min-height: 50vh;
-    
-      min-height: auto;
-    
-
-    {# Background #}
-    
-      background-color: rgba(0, 0);
     
       background: linear-gradient(
         0,
@@ -5152,10 +5138,9 @@
       background-repeat: no-repeat;
     
       background-color: #1A1A1A;
-    
 
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
 
   @media (max-width: 767px) {
