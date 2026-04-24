@@ -965,11 +965,10 @@ class Command(BaseCommand):
         # ── Home ──────────────────────────────────────────────────────────
         home = HomePage.objects.filter(slug="home").first()
         if not home:
-            # Check if a page with this slug already exists under root (any type)
             existing = root.get_children().filter(slug="home").first()
             if existing:
-                # Delete the default Wagtail welcome page before creating ours
                 existing.delete()
+                root.refresh_from_db()  # ← add this
 
             home = HomePage(
                 title="Tonic — A HubSpot CMS Theme by Khaotic Digital",
@@ -979,8 +978,6 @@ class Command(BaseCommand):
             root.add_child(instance=home)
             home.save_revision().publish()
             self.stdout.write(self.style.SUCCESS("  ✓ Home page"))
-        else:
-            self.stdout.write("  — Home already exists, skipping")
 
         # ── Point site at home ────────────────────────────────────────────
         site = Site.objects.first()
