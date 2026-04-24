@@ -649,6 +649,20 @@ wheels = [
 ]
 
 [[package]]
+name = "django-tasks"
+version = "0.11.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+    { name = "django-stubs-ext" },
+    { name = "typing-extensions" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/6a/17/c7478fcae7c277a0f648f6e6334d318ad28f48372c3e0f84d1fdc79ec7f3/django_tasks-0.11.0.tar.gz", hash = "sha256:923bf4ac444daee5d879393daf09c7cdf4575c8b0e12726c9d9fceafdea5187f", size = 32971, upload-time = "2026-01-09T17:38:45.824Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/64/c4/1cb34c94078ee02fcf14eb9198d1816f3cd24fe0086d2ce8ecf8aab25628/django_tasks-0.11.0-py3-none-any.whl", hash = "sha256:28f00fcda4e2cc8fe09ca685fbe54d52602ab42077543f9164890781c7e58599", size = 45015, upload-time = "2026-01-09T17:38:44.704Z" },
+]
+
+[[package]]
 name = "django-timezone-field"
 version = "7.2.1"
 source = { registry = "https://pypi.org/simple" }
@@ -1100,19 +1114,6 @@ wheels = [
 ]
 
 [[package]]
-name = "l18n"
-version = "2021.3"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "pytz" },
-    { name = "six" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/ff/9c/13d732e16e8fbdef7e68f4f339f3b86618430d4003c7ffe82e15bf925d7c/l18n-2021.3.tar.gz", hash = "sha256:1956e890d673d17135cc20913253c154f6bc1c00266c22b7d503cc1a5a42d848", size = 50712, upload-time = "2021-11-12T09:32:36.255Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/6c/e7/dfa82d0bb2b314950e457a755463b429090127ffc0ab9d8d14ef4563ad44/l18n-2021.3-py3-none-any.whl", hash = "sha256:78495d1df95b6f7dcc694d1ba8994df709c463a1cbac1bf016e1b9a5ce7280b9", size = 51534, upload-time = "2021-11-12T09:32:34.296Z" },
-]
-
-[[package]]
 name = "laces"
 version = "0.1.2"
 source = { registry = "https://pypi.org/simple" }
@@ -1174,6 +1175,19 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/c7/74/97e72a36efd4ae2bccb3463284300f8953f199b5ffbc04cbbb0ec78f74b1/matplotlib_inline-0.2.1.tar.gz", hash = "sha256:e1ee949c340d771fc39e241ea75683deb94762c8fa5f2927ec57c83c4dffa9fe", size = 8110, upload-time = "2025-10-23T09:00:22.126Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/af/33/ee4519fa02ed11a94aef9559552f3b17bb863f2ecfe1a35dc7f548cde231/matplotlib_inline-0.2.1-py3-none-any.whl", hash = "sha256:d56ce5156ba6085e00a9d54fead6ed29a9c47e215cd1bba2e976ef39f5710a76", size = 9516, upload-time = "2025-10-23T09:00:20.675Z" },
+]
+
+[[package]]
+name = "modelsearch"
+version = "1.2.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+    { name = "django-tasks" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/de/ff/ab9bea5ee016a2b78a1e4e9aafdaafaef1677a3887aee1f0a51013c6b9fd/modelsearch-1.2.1.tar.gz", hash = "sha256:8732cb84f424a592ea9fa44763650285af5ecf6475aa742125e7e368083d6505", size = 91262, upload-time = "2026-04-16T10:44:49.421Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c4/db/23e8b874e1b68d2f76e127733a325468a0739cb204d0c9d7bad471ef8c57/modelsearch-1.2.1-py3-none-any.whl", hash = "sha256:6576cb66162b8b1f80806116c2530b4b6409c50a55727735e3175556409c0355", size = 111492, upload-time = "2026-04-16T10:44:47.911Z" },
 ]
 
 [[package]]
@@ -1962,7 +1976,7 @@ requires-dist = [
     { name = "sentry-sdk", specifier = "==2.58.0" },
     { name = "uvicorn", extras = ["standard"], specifier = "==0.44.0" },
     { name = "uvicorn-worker", specifier = "==0.4.0" },
-    { name = "wagtail", specifier = ">=6.0,<7.0" },
+    { name = "wagtail", specifier = ">=7.3.1,<8.0" },
     { name = "whitenoise", specifier = "==6.12.0" },
 ]
 
@@ -2162,7 +2176,7 @@ wheels = [
 
 [[package]]
 name = "wagtail"
-version = "6.3.8"
+version = "7.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "anyascii" },
@@ -2172,20 +2186,21 @@ dependencies = [
     { name = "django-modelcluster" },
     { name = "django-permissionedforms" },
     { name = "django-taggit" },
+    { name = "django-tasks" },
     { name = "django-treebeard" },
     { name = "djangorestframework" },
     { name = "draftjs-exporter" },
-    { name = "l18n" },
     { name = "laces" },
+    { name = "modelsearch" },
     { name = "openpyxl" },
     { name = "pillow" },
     { name = "requests" },
     { name = "telepath" },
     { name = "willow", extra = ["heif"] },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/a4/db/70e02e8e86a6ea186365c0978de3677c455b4b67c6f346ae9353e3423df6/wagtail-6.3.8.tar.gz", hash = "sha256:9c7695457f18e7a6e7815ffbc0d64be0ecb956ed896eaf107df8b5768648a7f2", size = 6644553, upload-time = "2026-03-03T15:52:12.485Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/4e/f9/e28a1b87ea61c68b74990c9f5c8cb11da9a689e07c8b769acc89121f8523/wagtail-7.3.1.tar.gz", hash = "sha256:2ce131d9a4e7d55fdb5b592d320a758a189174b2cc3966b70a34a1b3dc56f449", size = 6855119, upload-time = "2026-03-03T15:54:48.523Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/dd/82/fe591421beb91c29173806777db5bedb59ed1b8ca4d6d8caf4dd9522d204/wagtail-6.3.8-py3-none-any.whl", hash = "sha256:cbe241055234a3dac0f4ae73992cd0519340ab66c2bc4077257929d392ec19b2", size = 9131605, upload-time = "2026-03-03T15:52:06.557Z" },
+    { url = "https://files.pythonhosted.org/packages/bb/0e/5efc903966b966df2261a66cce8cb88909e4ade86f1173a156aadbbd1a06/wagtail-7.3.1-py3-none-any.whl", hash = "sha256:eab131e15ab9edc7ed24143d44271e92af79239e105bc3e173d26c95d2b489b3", size = 9479191, upload-time = "2026-03-03T15:54:42.644Z" },
 ]
 
 [[package]]
