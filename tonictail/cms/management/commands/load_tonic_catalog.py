@@ -962,8 +962,15 @@ class Command(BaseCommand):
                 BlogIndexPage.objects.filter(slug="blog").delete()
 
         # ── Home ──────────────────────────────────────────────────────────
+        # ── Home ──────────────────────────────────────────────────────────
         home = HomePage.objects.filter(slug="home").first()
         if not home:
+            # Check if a page with this slug already exists under root (any type)
+            existing = root.get_children().filter(slug="home").first()
+            if existing:
+                # Delete the default Wagtail welcome page before creating ours
+                existing.delete()
+
             home = HomePage(
                 title="Tonic — A HubSpot CMS Theme by Khaotic Digital",
                 slug="home",
