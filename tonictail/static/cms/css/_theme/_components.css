@@ -3044,7 +3044,7 @@
         var(--color-primary, #06B6D4)
       );
     
-      background-image: url('0');
+      background-image: none;
       background-size: 0;
       background-position: 0;
       background-repeat: no-repeat;
@@ -3714,7 +3714,7 @@
     
       background: linear-gradient(/* [dynamic value] */, /* [dynamic value] */, /* [dynamic value] */);
     
-      background-image: url('/* [dynamic value] */');
+      background-image: none;
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -3830,7 +3830,7 @@
         var(--color-primary, #06B6D4)
       );
     
-      background-image: url('0');
+      background-image: none;
       background-size: cover;
       background-position: 0;
       background-repeat: no-repeat;
@@ -4166,7 +4166,7 @@
         0
       );
     
-      background-image: url('0');
+      background-image: none;
       background-size: 0;
       background-position: 0;
       background-repeat: no-repeat;
@@ -4642,7 +4642,7 @@
         var(--color-primary, #06B6D4)
       );
     
-      background-image: url('0');
+      background-image: none;
       background-size: 0;
       background-position: 0;
       background-repeat: no-repeat;
@@ -5139,12 +5139,12 @@
         var(--color-primary, #06B6D4)
       );
     
-      background-image: url('0');
+      background-image: none;
       background-size: cover;
       background-position: 0;
       background-repeat: no-repeat;
     
-      background-image: url('0');
+      background-image: none;
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -5495,7 +5495,7 @@
         var(--color-primary, #06B6D4)
       );
     
-      background-image: url('0');
+      background-image: none;
       background-size: 0;
       background-position: 0;
       background-repeat: no-repeat;
@@ -6003,7 +6003,7 @@
         var(--color-primary, #06B6D4)
       );
     
-      background-image: url('0');
+      background-image: none;
       background-size: 0;
       background-position: 0;
       background-repeat: no-repeat;
@@ -7185,7 +7185,7 @@
         var(--color-primary, #06B6D4)
       );
     
-      background-image: url('0');
+      background-image: none;
       background-size: 0;
       background-position: 0;
       background-repeat: no-repeat;
@@ -7700,7 +7700,7 @@
         var(--color-primary, #06B6D4)
       );
     
-      background-image: url('0');
+      background-image: none;
       background-size: 0;
       background-position: 0;
       background-repeat: no-repeat;
@@ -8098,7 +8098,7 @@
         var(--color-primary, #06B6D4)
       );
     
-      background-image: url('0');
+      background-image: none;
       background-size: cover;
       background-position: 0;
       background-repeat: no-repeat;
@@ -8859,7 +8859,7 @@
         var(--color-primary, #06B6D4)
       );
     
-      background-image: url('0');
+      background-image: none;
       background-size: 0;
       background-position: 0;
       background-repeat: no-repeat;
@@ -9924,7 +9924,7 @@
         var(--color-primary, #06B6D4)
       );
     
-      background-image: url('0');
+      background-image: none;
       background-size: 0;
       background-position: 0;
       background-repeat: no-repeat;
@@ -10272,7 +10272,7 @@
         var(--color-primary, #06B6D4)
       );
     
-      background-image: url('0');
+      background-image: none;
       background-size: 0;
       background-position: 0;
       background-repeat: no-repeat;
@@ -10705,7 +10705,7 @@
         var(--color-primary, #06B6D4)
       );
     
-      background-image: url('0');
+      background-image: none;
       background-size: 0;
       background-position: 0;
       background-repeat: no-repeat;
