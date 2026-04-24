@@ -5119,7 +5119,6 @@
     align-items: 0;
     width: 100%;
     overflow: hidden;
-      min-height: 67vh;
     
       background: linear-gradient(
         0,
@@ -5139,8 +5138,8 @@
     
       background-color: #1A1A1A;
 
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 120px;
+    padding-bottom: 120px;
   }
 
   @media (max-width: 767px) {
@@ -11858,6 +11857,7 @@
   padding: 8px 0;
 }
 
+.module-icon-feature-grid .container,
 .tonic-cta-banner .container,
 .module-testimonials-grid .container,
 .module-stats-numbers .container {
