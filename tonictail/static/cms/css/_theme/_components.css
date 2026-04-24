@@ -11873,3 +11873,11 @@
 .btn-group {
   gap: 24px;
 }
+
+.module-global-announcements .container {
+  padding: 8px 0;
+}
+
+.module-stats-numbers .container {
+  padding: 80px 0;
+}
