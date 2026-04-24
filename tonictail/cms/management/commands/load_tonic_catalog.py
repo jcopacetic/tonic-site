@@ -967,12 +967,12 @@ class Command(BaseCommand):
 
         home = HomePage.objects.filter(slug="tonic-home").first()
         if not home:
-            home = HomePage(
+            root = Page.objects.get(depth=1)  # guaranteed fresh fetch
+            home = root.add_child(instance=HomePage(
                 title="Tonic — A HubSpot CMS Theme by Khaotic Digital",
                 slug="tonic-home",
                 body=json.loads(home_page_content()),
-            )
-            root.add_child(instance=home)
+            ))
             home.save_revision().publish()
             self.stdout.write(self.style.SUCCESS("  ✓ Home page"))
 
