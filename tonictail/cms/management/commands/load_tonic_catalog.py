@@ -970,17 +970,15 @@ class Command(BaseCommand):
             existing = root.get_children().filter(slug="home").first()
             if existing:
                 existing.delete()
-
-            # Fix the treebeard path after any deletions
-            MP_Node.fix_tree()
-            root = Page.objects.filter(depth=1).first()  # re-fetch fresh
+            
+            root = Page.objects.filter(depth=1).first()  # re-fetch after delete
 
             home = HomePage(
                 title="Tonic — A HubSpot CMS Theme by Khaotic Digital",
                 slug="home",
                 body=json.loads(home_page_content()),
             )
-            root.add_child(instance=home)
+            root.add_child(instance=home, pos="first-child")  # ← explicit position
             home.save_revision().publish()
             self.stdout.write(self.style.SUCCESS("  ✓ Home page"))
 
