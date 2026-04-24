@@ -19,6 +19,7 @@ import uuid
 from django.core.management.base import BaseCommand
 from django.contrib.auth import get_user_model
 from wagtail.models import Page, Site
+from treebeard.mp_tree import MP_Node
 
 User = get_user_model()
 
@@ -962,13 +963,17 @@ class Command(BaseCommand):
                 BlogIndexPage.objects.filter(slug="blog").delete()
 
         # ── Home ──────────────────────────────────────────────────────────
-        # ── Home ──────────────────────────────────────────────────────────
+        
+
         home = HomePage.objects.filter(slug="home").first()
         if not home:
             existing = root.get_children().filter(slug="home").first()
             if existing:
                 existing.delete()
-                root.refresh_from_db()  # ← add this
+
+            # Fix the treebeard path after any deletions
+            MP_Node.fix_tree()
+            root = Page.objects.filter(depth=1).first()  # re-fetch fresh
 
             home = HomePage(
                 title="Tonic — A HubSpot CMS Theme by Khaotic Digital",
