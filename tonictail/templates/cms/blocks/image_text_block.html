@@ -1,0 +1,31 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+<section class="section section--bg-{{ value.background.background_type|default:'light' }}">
+  <div class="container">
+    <div class="d-flex flex-wrap items-center" style="gap: var(--space-12); flex-direction: {% if value.image_side == 'left' %}row{% else %}row-reverse{% endif %};">
+      <div class="flex-1" style="min-width: 280px;">
+        {% image value.image width-800 as img %}
+        <img src="{{ img.url }}" alt="{{ value.image.alt_text|default:'' }}" style="width:100%; height:auto; border-radius: var(--border-radius-img);">
+        {% if value.image_caption %}<p class="image-figure__caption">{{ value.image_caption }}</p>{% endif %}
+      </div>
+      <div class="flex-1" style="min-width: 280px;">
+        {% if value.eyebrow %}<span class="eyebrow">{{ value.eyebrow }}</span>{% endif %}
+        {% if value.heading %}
+          <{{ value.heading_level|default:"h2" }}>{{ value.heading }}</{{ value.heading_level|default:"h2" }}>
+        {% endif %}
+        {% if value.body %}
+          <div class="prose mt-4">{{ value.body|richtext }}</div>
+        {% endif %}
+        {% if value.primary_cta.label or value.secondary_cta.label %}
+          <div class="btn-group mt-8">
+            {% if value.primary_cta.label %}
+              <a href="{{ value.primary_cta.url }}" class="btn btn--{{ value.primary_cta.style|default:'primary' }}">{{ value.primary_cta.label }}</a>
+            {% endif %}
+            {% if value.secondary_cta.label %}
+              <a href="{{ value.secondary_cta.url }}" class="btn btn--{{ value.secondary_cta.style|default:'secondary' }}">{{ value.secondary_cta.label }}</a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

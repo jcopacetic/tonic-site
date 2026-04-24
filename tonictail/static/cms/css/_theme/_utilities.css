@@ -1,0 +1,601 @@
+/*
+ * File: _utilities.css
+ * Description: Spacing (margin/padding), positioning, z-index, overflow,
+ *              sizing, visibility, and miscellaneous helper utilities.
+ *              Responsive spacing variants included at md and lg breakpoints.
+ * Author: Jonathan Sumner | jonathan@khaoticdigital.com
+ * Theme: Tonic — Khaotic Digital, LLC
+ */
+
+/* ============================================================
+   PADDING — ALL SIDES
+   ============================================================ */
+.p-0   { padding: 0; }
+.p-1   { padding: var(--space-1); }
+.p-2   { padding: var(--space-2); }
+.p-3   { padding: var(--space-3); }
+.p-4   { padding: var(--space-4); }
+.p-5   { padding: var(--space-5); }
+.p-6   { padding: var(--space-6); }
+.p-8   { padding: var(--space-8); }
+.p-10  { padding: var(--space-10); }
+.p-12  { padding: var(--space-12); }
+.p-16  { padding: var(--space-16); }
+.p-20  { padding: var(--space-20); }
+.p-24  { padding: var(--space-24); }
+
+/* Padding X (horizontal) */
+.px-0   { padding-left: 0; padding-right: 0; }
+.px-1   { padding-left: var(--space-1); padding-right: var(--space-1); }
+.px-2   { padding-left: var(--space-2); padding-right: var(--space-2); }
+.px-3   { padding-left: var(--space-3); padding-right: var(--space-3); }
+.px-4   { padding-left: var(--space-4); padding-right: var(--space-4); }
+.px-5   { padding-left: var(--space-5); padding-right: var(--space-5); }
+.px-6   { padding-left: var(--space-6); padding-right: var(--space-6); }
+.px-8   { padding-left: var(--space-8); padding-right: var(--space-8); }
+.px-10  { padding-left: var(--space-10); padding-right: var(--space-10); }
+.px-12  { padding-left: var(--space-12); padding-right: var(--space-12); }
+.px-16  { padding-left: var(--space-16); padding-right: var(--space-16); }
+
+/* Padding Y (vertical) */
+.py-0   { padding-top: 0; padding-bottom: 0; }
+.py-1   { padding-top: var(--space-1); padding-bottom: var(--space-1); }
+.py-2   { padding-top: var(--space-2); padding-bottom: var(--space-2); }
+.py-3   { padding-top: var(--space-3); padding-bottom: var(--space-3); }
+.py-4   { padding-top: var(--space-4); padding-bottom: var(--space-4); }
+.py-5   { padding-top: var(--space-5); padding-bottom: var(--space-5); }
+.py-6   { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+.py-8   { padding-top: var(--space-8); padding-bottom: var(--space-8); }
+.py-10  { padding-top: var(--space-10); padding-bottom: var(--space-10); }
+.py-12  { padding-top: var(--space-12); padding-bottom: var(--space-12); }
+.py-16  { padding-top: var(--space-16); padding-bottom: var(--space-16); }
+.py-20  { padding-top: var(--space-20); padding-bottom: var(--space-20); }
+
+/* Padding individual sides */
+.pt-0  { padding-top: 0; }
+.pt-2  { padding-top: var(--space-2); }
+.pt-4  { padding-top: var(--space-4); }
+.pt-6  { padding-top: var(--space-6); }
+.pt-8  { padding-top: var(--space-8); }
+.pt-10 { padding-top: var(--space-10); }
+.pt-12 { padding-top: var(--space-12); }
+.pt-16 { padding-top: var(--space-16); }
+.pt-20 { padding-top: var(--space-20); }
+
+.pb-0  { padding-bottom: 0; }
+.pb-2  { padding-bottom: var(--space-2); }
+.pb-4  { padding-bottom: var(--space-4); }
+.pb-6  { padding-bottom: var(--space-6); }
+.pb-8  { padding-bottom: var(--space-8); }
+.pb-10 { padding-bottom: var(--space-10); }
+.pb-12 { padding-bottom: var(--space-12); }
+.pb-16 { padding-bottom: var(--space-16); }
+.pb-20 { padding-bottom: var(--space-20); }
+
+.pl-0  { padding-left: 0; }
+.pl-2  { padding-left: var(--space-2); }
+.pl-4  { padding-left: var(--space-4); }
+.pl-6  { padding-left: var(--space-6); }
+.pl-8  { padding-left: var(--space-8); }
+
+.pr-0  { padding-right: 0; }
+.pr-2  { padding-right: var(--space-2); }
+.pr-4  { padding-right: var(--space-4); }
+.pr-6  { padding-right: var(--space-6); }
+.pr-8  { padding-right: var(--space-8); }
+
+/* ============================================================
+   MARGIN — ALL SIDES
+   ============================================================ */
+.m-0   { margin: 0; }
+.m-1   { margin: var(--space-1); }
+.m-2   { margin: var(--space-2); }
+.m-4   { margin: var(--space-4); }
+.m-6   { margin: var(--space-6); }
+.m-8   { margin: var(--space-8); }
+.m-auto { margin: auto; }
+
+/* Margin X */
+.mx-0    { margin-left: 0; margin-right: 0; }
+.mx-2    { margin-left: var(--space-2); margin-right: var(--space-2); }
+.mx-4    { margin-left: var(--space-4); margin-right: var(--space-4); }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* Margin Y */
+.my-0   { margin-top: 0; margin-bottom: 0; }
+.my-2   { margin-top: var(--space-2); margin-bottom: var(--space-2); }
+.my-4   { margin-top: var(--space-4); margin-bottom: var(--space-4); }
+.my-6   { margin-top: var(--space-6); margin-bottom: var(--space-6); }
+.my-8   { margin-top: var(--space-8); margin-bottom: var(--space-8); }
+.my-12  { margin-top: var(--space-12); margin-bottom: var(--space-12); }
+.my-16  { margin-top: var(--space-16); margin-bottom: var(--space-16); }
+
+/* Margin individual sides */
+.mt-0  { margin-top: 0; }
+.mt-1  { margin-top: var(--space-1); }
+.mt-2  { margin-top: var(--space-2); }
+.mt-3  { margin-top: var(--space-3); }
+.mt-4  { margin-top: var(--space-4); }
+.mt-6  { margin-top: var(--space-6); }
+.mt-8  { margin-top: var(--space-8); }
+.mt-10 { margin-top: var(--space-10); }
+.mt-12 { margin-top: var(--space-12); }
+.mt-16 { margin-top: var(--space-16); }
+.mt-auto { margin-top: auto; }
+
+.mb-0  { margin-bottom: 0; }
+.mb-1  { margin-bottom: var(--space-1); }
+.mb-2  { margin-bottom: var(--space-2); }
+.mb-3  { margin-bottom: var(--space-3); }
+.mb-4  { margin-bottom: var(--space-4); }
+.mb-6  { margin-bottom: var(--space-6); }
+.mb-8  { margin-bottom: var(--space-8); }
+.mb-10 { margin-bottom: var(--space-10); }
+.mb-12 { margin-bottom: var(--space-12); }
+.mb-16 { margin-bottom: var(--space-16); }
+.mb-auto { margin-bottom: auto; }
+
+.ml-0    { margin-left: 0; }
+.ml-2    { margin-left: var(--space-2); }
+.ml-4    { margin-left: var(--space-4); }
+.ml-auto { margin-left: auto; }
+
+.mr-0    { margin-right: 0; }
+.mr-2    { margin-right: var(--space-2); }
+.mr-4    { margin-right: var(--space-4); }
+.mr-auto { margin-right: auto; }
+
+/* ============================================================
+   POSITIONING
+   ============================================================ */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed    { position: fixed; }
+.sticky   { position: sticky; }
+.static   { position: static; }
+
+.top-0    { top: 0; }
+.right-0  { right: 0; }
+.bottom-0 { bottom: 0; }
+.left-0   { left: 0; }
+.inset-0  { inset: 0; }
+.top-auto    { top: auto; }
+.right-auto  { right: auto; }
+.bottom-auto { bottom: auto; }
+.left-auto   { left: auto; }
+
+/* ============================================================
+   Z-INDEX
+   ============================================================ */
+.z-0       { z-index: var(--z-base); }
+.z-10      { z-index: 10; }
+.z-20      { z-index: 20; }
+.z-30      { z-index: 30; }
+.z-raised  { z-index: var(--z-raised); }
+.z-dropdown { z-index: var(--z-dropdown); }
+.z-sticky  { z-index: var(--z-sticky); }
+.z-overlay { z-index: var(--z-overlay); }
+.z-nav     { z-index: var(--z-nav); }
+.z-modal   { z-index: var(--z-modal); }
+.z-tooltip { z-index: var(--z-tooltip); }
+.z-auto    { z-index: auto; }
+.z-neg     { z-index: var(--z-below); }
+
+/* ============================================================
+   OVERFLOW
+   ============================================================ */
+.overflow-hidden  { overflow: hidden; }
+.overflow-auto    { overflow: auto; }
+.overflow-scroll  { overflow: scroll; }
+.overflow-visible { overflow: visible; }
+.overflow-x-hidden { overflow-x: hidden; }
+.overflow-y-auto   { overflow-y: auto; }
+
+/* ============================================================
+   WIDTH & HEIGHT
+   ============================================================ */
+.w-full    { width: 100%; }
+.w-auto    { width: auto; }
+.w-screen  { width: 100vw; }
+.w-fit     { width: fit-content; }
+.w-max     { width: max-content; }
+.w-min     { width: min-content; }
+.h-full    { height: 100%; }
+.h-screen  { height: 100vh; }
+.h-auto    { height: auto; }
+.h-fit     { height: fit-content; }
+
+/* Min / Max */
+.min-w-0       { min-width: 0; }
+.min-h-0       { min-height: 0; }
+.min-h-screen  { min-height: 100vh; }
+.max-w-full    { max-width: 100%; }
+.max-w-none    { max-width: none; }
+.max-h-full    { max-height: 100%; }
+.max-h-screen  { max-height: 100vh; }
+
+/* ============================================================
+   ASPECT RATIO
+   ============================================================ */
+.aspect-square { aspect-ratio: 1 / 1; }
+.aspect-video  { aspect-ratio: 16 / 9; }
+.aspect-4-3    { aspect-ratio: 4 / 3; }
+.aspect-3-2    { aspect-ratio: 3 / 2; }
+.aspect-2-1    { aspect-ratio: 2 / 1; }
+
+/* ============================================================
+   OBJECT FIT (for <img> and <video> inside sized containers)
+   ============================================================ */
+.object-cover    { object-fit: cover; }
+.object-contain  { object-fit: contain; }
+.object-fill     { object-fit: fill; }
+.object-none     { object-fit: none; }
+.object-center   { object-position: center; }
+.object-top      { object-position: top; }
+.object-bottom   { object-position: bottom; }
+
+/* ============================================================
+   BORDER RADIUS
+   ============================================================ */
+.rounded-none { border-radius: 0; }
+.rounded-sm   { border-radius: 2px; }
+.rounded      { border-radius: var(--border-radius); }
+.rounded-md   { border-radius: calc(var(--border-radius) * 1.5); }
+.rounded-lg   { border-radius: var(--border-radius-card); }
+.rounded-xl   { border-radius: calc(var(--border-radius-card) * 2); }
+.rounded-full { border-radius: 9999px; }
+
+/* ============================================================
+   BORDER
+   ============================================================ */
+.border        { border: var(--border-width) solid var(--border-color); }
+.border-top    { border-top: var(--border-width) solid var(--border-color); }
+.border-bottom { border-bottom: var(--border-width) solid var(--border-color); }
+.border-left   { border-left: var(--border-width) solid var(--border-color); }
+.border-right  { border-right: var(--border-width) solid var(--border-color); }
+.border-none   { border: none; }
+
+.border-primary { border-color: var(--color-primary); }
+.border-accent  { border-color: var(--color-accent); }
+.border-muted   { border-color: var(--color-border); }
+
+/* ============================================================
+   BACKGROUND COLOR UTILITIES
+   ============================================================ */
+.bg-primary   { background-color: var(--color-primary); }
+.bg-secondary { background-color: var(--color-secondary); }
+.bg-accent    { background-color: var(--color-accent); }
+.bg-highlight { background-color: var(--color-highlight); }
+.bg-light     { background-color: var(--color-bg-light); }
+.bg-dark      { background-color: var(--color-bg-dark); }
+.bg-alt       { background-color: var(--color-bg-alt); }
+.bg-white     { background-color: #ffffff; }
+.bg-transparent { background-color: transparent; }
+
+/* ============================================================
+   SHADOW UTILITIES
+   ============================================================ */
+.shadow-none     { box-shadow: none; }
+.shadow-subtle   { box-shadow: var(--shadow-subtle); }
+.shadow-medium   { box-shadow: var(--shadow-medium); }
+.shadow-elevated { box-shadow: var(--shadow-elevated); }
+.shadow-card     { box-shadow: var(--shadow-card); }
+
+/* ============================================================
+   OPACITY
+   ============================================================ */
+.opacity-0   { opacity: 0; }
+.opacity-25  { opacity: 0.25; }
+.opacity-50  { opacity: 0.50; }
+.opacity-75  { opacity: 0.75; }
+.opacity-100 { opacity: 1; }
+
+/* ============================================================
+   CURSOR
+   ============================================================ */
+.cursor-pointer  { cursor: pointer; }
+.cursor-default  { cursor: default; }
+.cursor-not-allowed { cursor: not-allowed; }
+.cursor-grab     { cursor: grab; }
+
+/* ============================================================
+   POINTER EVENTS
+   ============================================================ */
+.pointer-events-none { pointer-events: none; }
+.pointer-events-auto { pointer-events: auto; }
+
+/* ============================================================
+   USER SELECT
+   ============================================================ */
+.select-none { user-select: none; }
+.select-all  { user-select: all; }
+.select-auto { user-select: auto; }
+
+/* ============================================================
+   TRUNCATION
+   ============================================================ */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.whitespace-nowrap   { white-space: nowrap; }
+.whitespace-normal   { white-space: normal; }
+.break-words         { overflow-wrap: break-word; }
+
+/* ============================================================
+   VISIBILITY
+   ============================================================ */
+.visible   { visibility: visible; }
+.invisible { visibility: hidden; }
+
+/* ============================================================
+   DISPLAY VISIBILITY
+   ============================================================ */
+.hidden { display: none; }
+
+/* Hide on mobile (<768px) — driven by Advanced tab field */
+@media (max-width: 767px) {
+  .hide-on-mobile { display: none !important; }
+}
+
+/* Hide on desktop (≥768px) */
+@media (min-width: 768px) {
+  .hide-on-desktop { display: none !important; }
+}
+
+/* Show only on mobile */
+@media (min-width: 768px) {
+  .show-on-mobile-only { display: none !important; }
+}
+
+/* ============================================================
+   RESPONSIVE DISPLAY — md breakpoint
+   ============================================================ */
+@media (min-width: 768px) {
+  .md\:hidden  { display: none; }
+  .md\:block   { display: block; }
+  .md\:d-flex  { display: flex; }
+  .md\:d-grid  { display: grid; }
+}
+
+/* ============================================================
+   RESPONSIVE DISPLAY — lg breakpoint
+   ============================================================ */
+@media (min-width: 1024px) {
+  .lg\:hidden  { display: none; }
+  .lg\:block   { display: block; }
+  .lg\:d-flex  { display: flex; }
+  .lg\:d-grid  { display: grid; }
+}
+
+/* ============================================================
+   RESPONSIVE SPACING — md breakpoint
+   ============================================================ */
+@media (min-width: 768px) {
+  .md\:p-8   { padding: var(--space-8); }
+  .md\:p-12  { padding: var(--space-12); }
+  .md\:px-8  { padding-left: var(--space-8); padding-right: var(--space-8); }
+  .md\:py-8  { padding-top: var(--space-8); padding-bottom: var(--space-8); }
+  .md\:py-12 { padding-top: var(--space-12); padding-bottom: var(--space-12); }
+  .md\:mt-0  { margin-top: 0; }
+  .md\:mt-8  { margin-top: var(--space-8); }
+  .md\:mb-0  { margin-bottom: 0; }
+}
+
+/* ============================================================
+   RESPONSIVE SPACING — lg breakpoint
+   ============================================================ */
+@media (min-width: 1024px) {
+  .lg\:p-12  { padding: var(--space-12); }
+  .lg\:p-16  { padding: var(--space-16); }
+  .lg\:px-16 { padding-left: var(--space-16); padding-right: var(--space-16); }
+  .lg\:py-16 { padding-top: var(--space-16); padding-bottom: var(--space-16); }
+  .lg\:mt-0  { margin-top: 0; }
+  .lg\:mb-0  { margin-bottom: 0; }
+}
+
+/* ============================================================
+   TRANSITION HELPERS
+   ============================================================ */
+.transition       { transition: var(--transition-base); }
+.transition-fast  { transition: var(--transition-fast); }
+.transition-slow  { transition: var(--transition-slow); }
+.transition-color { transition: var(--transition-color); }
+.transition-none  { transition: none; }
+
+/* ============================================================
+   TRANSFORM UTILITIES
+   ============================================================ */
+.translate-x-0   { transform: translateX(0); }
+.translate-y-0   { transform: translateY(0); }
+.-translate-y-1  { transform: translateY(-0.25rem); }
+.-translate-y-2  { transform: translateY(-0.5rem); }
+.scale-100       { transform: scale(1); }
+.scale-105       { transform: scale(1.05); }
+.rotate-180      { transform: rotate(180deg); }
+.rotate-90       { transform: rotate(90deg); }
+.-rotate-90      { transform: rotate(-90deg); }
+
+/* ============================================================
+   IMAGE UTILITIES
+   ============================================================ */
+.img-rounded { border-radius: var(--border-radius-img); }
+.img-circle  { border-radius: 9999px; }
+.img-fluid   { width: 100%; height: auto; }
+
+/* Grayscale filter — used in logo grid modules */
+.img-grayscale {
+  filter: grayscale(100%);
+  opacity: 0.6;
+  transition: filter var(--transition-base), opacity var(--transition-base);
+}
+
+.img-grayscale:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* ============================================================
+   LINK UTILITIES
+   ============================================================ */
+.link-unstyled {
+  color: inherit;
+  text-decoration: none;
+}
+
+.link-unstyled:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Animated underline — grows from left on hover */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+  color: var(--color-link);
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width var(--transition-base);
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ============================================================
+   ICON SIZE HELPERS
+   For inline SVG icons alongside text.
+   ============================================================ */
+.icon-xs  { width: 12px; height: 12px; }
+.icon-sm  { width: 16px; height: 16px; }
+.icon-md  { width: 20px; height: 20px; }
+.icon-lg  { width: 24px; height: 24px; }
+.icon-xl  { width: 32px; height: 32px; }
+.icon-2xl { width: 48px; height: 48px; }
+
+.icon-sm,
+.icon-md,
+.icon-lg,
+.icon-xl,
+.icon-2xl {
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+/* ============================================================
+   SKIP NAVIGATION
+   WCAG 2.1 AA — visually hidden until keyboard focus.
+   Appears at top-left when a keyboard user tabs to it.
+   Mouse users never see it.
+   ============================================================ */
+.skip-nav {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.75rem 1.25rem;
+  background-color: var(--color-primary, #0057B8);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 var(--border-radius, 4px) var(--border-radius, 4px);
+  transition: top 0.15s ease;
+  white-space: nowrap;
+}
+
+.skip-nav:focus {
+  top: 0;
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   SCROLL TO TOP BUTTON
+   Fixed bottom-right. Hidden until user scrolls 400px.
+   Uses theme tokens for color. JS class .is-visible controls
+   opacity/transform transition.
+   ============================================================ */
+.scroll-top {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-primary, #0057B8);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius-btn, 6px);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    background-color 0.15s ease;
+  pointer-events: none;
+}
+
+.scroll-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.scroll-top:hover {
+  background-color: var(--color-primary-dark, #004A9E);
+}
+
+.scroll-top:focus-visible {
+  outline: 3px solid var(--color-focus, var(--color-primary, #0057B8));
+  outline-offset: 3px;
+}
+
+.scroll-top svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .scroll-top {
+    bottom: 1.25rem;
+    right: 1.25rem;
+  }
+}

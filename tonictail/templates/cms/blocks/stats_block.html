@@ -1,0 +1,28 @@
+<section class="module-stats-numbers section section--bg-{{ value.background.background_type|default:'light' }}" {% if value.enable_countup %}data-countup="true"{% endif %}>
+  <div class="module-stats-numbers__overlay" aria-hidden="true"></div>
+  <div class="container">
+    {% if value.eyebrow or value.heading or value.subheading %}
+      <div class="module-stats-numbers__header content-centered mb-12">
+        {% if value.eyebrow %}<span class="module-stats-numbers__eyebrow eyebrow">{{ value.eyebrow }}</span>{% endif %}
+        {% if value.heading %}<h2 class="module-stats-numbers__heading">{{ value.heading }}</h2>{% endif %}
+        {% if value.subheading %}<p class="module-stats-numbers__subheading mt-4">{{ value.subheading }}</p>{% endif %}
+      </div>
+    {% endif %}
+    <div class="module-stats-numbers__grid{% if value.show_dividers %} module-stats-numbers__grid--dividers{% elif value.show_card_style %} module-stats-numbers__grid--cards{% endif %}"
+         style="grid-template-columns: repeat({{ value.columns_desktop|default:'3' }}, minmax(0,1fr));">
+      {% for stat in value.stats %}
+        <div class="module-stats-numbers__stat" {% if value.show_card_style %}style="background: var(--color-bg-alt);"{% endif %}>
+          <p class="module-stats-numbers__number">
+            {% if stat.prefix %}<span class="module-stats-numbers__prefix">{{ stat.prefix }}</span>{% endif %}
+            <span class="module-stats-numbers__count" {% if value.enable_countup %}data-target="{{ stat.number }}"{% endif %}>{{ stat.number }}</span>
+            {% if stat.suffix %}<span class="module-stats-numbers__suffix">{{ stat.suffix }}</span>{% endif %}
+          </p>
+          <p class="module-stats-numbers__stat-label">{{ stat.stat_label }}</p>
+          {% if stat.description %}
+            <p class="module-stats-numbers__stat-description">{{ stat.description }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

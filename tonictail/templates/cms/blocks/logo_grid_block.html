@@ -1,0 +1,41 @@
+{% load wagtailimages_tags %}
+<section class="module-logo-grid section section--bg-{{ value.background.background_type|default:'alt' }}">
+  <div class="container">
+    {% if value.eyebrow %}
+      <p class="logo-grid__eyebrow">{{ value.eyebrow }}</p>
+    {% endif %}
+    {% if value.display_mode == "marquee" %}
+      <div class="logo-marquee">
+        <div class="logo-marquee-track" style="animation-name: marquee-{{ value.scroll_direction|default:'left' }}; animation-duration: 30s;">
+          {% for set in "12" %}
+            <div class="logo-marquee-set">
+              {% for logo in value.logos %}
+                <div class="logo-item">
+                  {% if logo.link_url %}
+                    <a href="{{ logo.link_url }}" class="logo-item__link" target="_blank" rel="noopener" aria-label="{{ logo.company_name }}">
+                  {% endif %}
+                  {% image logo.logo_image height-48 as img %}
+                  <img class="logo-item__image" src="{{ img.url }}" alt="{{ logo.company_name|default:'' }}" style="opacity: 0.7; max-height: 48px;">
+                  {% if logo.link_url %}</a>{% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% else %}
+      <div class="logo-grid-static" style="display:grid; grid-template-columns: repeat({{ value.columns_desktop|default:'5' }}, minmax(0,1fr)); align-items: center;">
+        {% for logo in value.logos %}
+          <div class="logo-item" style="padding: 1.5rem 2rem;">
+            {% if logo.link_url %}
+              <a href="{{ logo.link_url }}" class="logo-item__link" target="_blank" rel="noopener" aria-label="{{ logo.company_name }}">
+            {% endif %}
+            {% image logo.logo_image height-48 as img %}
+            <img class="logo-item__image" src="{{ img.url }}" alt="{{ logo.company_name|default:'' }}" style="opacity: 0.7; max-height: 48px; width: auto;">
+            {% if logo.link_url %}</a>{% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,25 @@
+{% load wagtailimages_tags %}
+<section class="tonic-full-hero section section--bg-{{ value.background_type|default:'dark' }}"
+  {% if value.background_image %}style="background-image: url('{% image value.background_image original as bg %}{{ bg.url }}')"{% endif %}>
+  <div class="container {{ value.content_alignment|default:'content-centered' }}">
+    {% if value.eyebrow %}<span class="eyebrow">{{ value.eyebrow }}</span>{% endif %}
+    <{{ value.heading_tag|default:"h1" }} class="tonic-full-hero__heading">{{ value.heading }}</{{ value.heading_tag|default:"h1" }}>
+    {% if value.subheadline %}<p class="text-lg mt-4">{{ value.subheadline }}</p>{% endif %}
+    {% if value.primary_cta.label or value.secondary_cta.label %}
+      <div class="btn-group btn-group--center mt-8">
+        {% if value.primary_cta.label %}
+          <a href="{{ value.primary_cta.url }}" class="btn btn--{{ value.primary_cta.style|default:'primary' }} btn--{{ value.primary_cta.size|default:'md' }}"
+            {% if value.primary_cta.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}>
+            {{ value.primary_cta.label }}
+          </a>
+        {% endif %}
+        {% if value.secondary_cta.label %}
+          <a href="{{ value.secondary_cta.url }}" class="btn btn--{{ value.secondary_cta.style|default:'ghost' }} btn--{{ value.secondary_cta.size|default:'md' }}"
+            {% if value.secondary_cta.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}>
+            {{ value.secondary_cta.label }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,105 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+{# Block template: tonic-blog-related-posts → blog_related_posts_block.html #}
+<!--
+  Module: Tonic Blog Related Posts (Global)
+  Description: Displays related blog posts using HubSpot's related_blog_posts tag,
+               which scores relevance based on shared tags and content similarity.
+               Renders as a card grid with featured image, tag, title, author, date,
+               optional read time, and excerpt. All display toggles are style fields
+               configured once and applied to all posts.
+               — Author: Jonathan Sumner | jonathan@khaoticdigital.com
+  Usage: Place in the blog post template below the author box. Global.
+-->
+
+
+
+    <section
+      id="{{ name }}"
+      class="tonic-related-posts {{ value.advanced.custom_class }} hide-on-mobile"
+    >
+      <div class="tonic-related-posts__inner">
+
+
+          <h2 class="tonic-related-posts__heading">{{ value.labels.section_title }}</h2>
+
+
+        <div class="tonic-related-posts__grid">
+
+
+
+
+
+
+          <article class="tonic-related-posts__card">
+            <a
+              href="{{ post.absolute_url | escape_url }}"
+              aria-label="{{ value.labels.read_more_label }}: {{ post.name | escape_attr }}"
+              style="display: contents; text-decoration: none; color: inherit;"
+            >
+
+
+
+                <div class="tonic-related-posts__image-wrap">
+
+                    <img
+                      src="{{ post.featured_image | escape_url }}"
+                      alt="{{ post.featured_image_alt_text | default('') | escape_attr }}"
+                      class="tonic-related-posts__image"
+                      loading="lazy"
+                    >
+
+                    <div class="tonic-related-posts__image-placeholder" aria-hidden="true"></div>
+
+                </div>
+
+
+              <div class="tonic-related-posts__card-body">
+
+
+
+                  <span class="tonic-related-posts__tag">
+                    {{ post.tag_list[0].name | escape_html }}
+                  </span>
+
+
+
+                <h3 class="tonic-related-posts__title">{{ post.name | escape_html }}</h3>
+
+
+
+
+                  <div class="tonic-related-posts__meta">
+
+                      <span>{{ post.blog_post_author.display_name | escape_html }}</span>
+
+
+                      <span class="tonic-related-posts__meta-sep" aria-hidden="true">·</span>
+
+
+                      <span>{{ post.publish_date_localized | escape_html }}</span>
+
+
+                      <span class="tonic-related-posts__meta-sep" aria-hidden="true">·</span>
+
+
+                      <span>{{ post_read_time }} {{ value.labels.read_time_suffix }}</span>
+
+                  </div>
+
+
+
+
+                  <p class="tonic-related-posts__excerpt">
+                    {{ post.post_summary | striptags | truncate(140, true, '…') }}
+                  </p>
+
+
+              </div>
+            </a>
+          </article>
+
+
+
+        </div>
+      </div>
+    </section>

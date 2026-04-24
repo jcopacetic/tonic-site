@@ -1,0 +1,30 @@
+{% load wagtailcore_tags %}
+<section class="module-icon-feature-grid section section--bg-{{ value.background.background_type|default:'light' }}">
+  <div class="module-icon-feature-grid__overlay" aria-hidden="true"></div>
+  <div class="container">
+    {% if value.eyebrow or value.heading or value.subtext %}
+      <div class="module-icon-feature-grid__section-header content-centered mb-12">
+        {% if value.eyebrow %}<span class="module-icon-feature-grid__eyebrow eyebrow">{{ value.eyebrow }}</span>{% endif %}
+        {% if value.heading %}<h2 class="module-icon-feature-grid__heading">{{ value.heading }}</h2>{% endif %}
+        {% if value.subtext %}<div class="module-icon-feature-grid__subtext prose mt-4">{{ value.subtext|richtext }}</div>{% endif %}
+      </div>
+    {% endif %}
+    <div class="module-icon-feature-grid__grid" style="grid-template-columns: repeat({{ value.columns_desktop|default:'3' }}, 1fr);">
+      {% for item in value.items %}
+        <div class="module-icon-feature-grid__item--{{ value.item_layout|default:'top' }}">
+          {% if item.icon %}
+            <div class="module-icon-feature-grid__icon-wrap">
+              <span class="module-icon-feature-grid__icon" style="font-size: 2rem;">{{ item.icon }}</span>
+            </div>
+          {% endif %}
+          <div class="module-icon-feature-grid__item-body">
+            <h3 class="module-icon-feature-grid__item-title">{{ item.title }}</h3>
+            {% if item.description %}
+              <div class="module-icon-feature-grid__description prose">{{ item.description|richtext }}</div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

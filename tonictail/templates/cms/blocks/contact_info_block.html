@@ -1,0 +1,62 @@
+<section class="section section--bg-{{ value.background.background_type|default:'light' }}">
+  <div class="container">
+    {% if value.eyebrow or value.heading or value.subheading %}
+      <div class="content-centered content-narrow mb-12">
+        {% if value.eyebrow %}<span class="eyebrow">{{ value.eyebrow }}</span>{% endif %}
+        {% if value.heading %}<h2>{{ value.heading }}</h2>{% endif %}
+        {% if value.subheading %}<p class="text-lg mt-4">{{ value.subheading }}</p>{% endif %}
+      </div>
+    {% endif %}
+    <div class="d-grid" style="grid-template-columns: repeat({{ value.columns|default:'2' }}, minmax(0,1fr)); gap: var(--grid-gutter);">
+      {% if value.show_address and value.street %}
+        <div class="tonic-contact-info d-flex items-start" style="gap: var(--space-4);">
+          <span style="font-size: 1.5rem; flex-shrink: 0;">📍</span>
+          <div>
+            <p style="font-weight: 600; margin-bottom: var(--space-1);">Address</p>
+            <address style="font-style: normal; color: var(--color-text-muted);">
+              {{ value.street }}<br>
+              {{ value.city_state_zip }}
+              {% if value.country %}<br>{{ value.country }}{% endif %}
+            </address>
+            {% if value.directions_url %}
+              <a href="{{ value.directions_url }}" class="btn btn--link btn--sm mt-2" target="_blank" rel="noopener">{{ value.directions_text|default:'Get directions' }}</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+      {% if value.show_phone and value.primary_number %}
+        <div class="d-flex items-start" style="gap: var(--space-4);">
+          <span style="font-size: 1.5rem; flex-shrink: 0;">📞</span>
+          <div>
+            <p style="font-weight: 600; margin-bottom: var(--space-1);">Phone</p>
+            <a href="tel:{{ value.primary_number }}" style="color: var(--color-text-body);">{{ value.primary_number }}</a>
+            {% if value.secondary_number %}
+              <br><a href="tel:{{ value.secondary_number }}" style="color: var(--color-text-muted); font-size: var(--text-sm);">{{ value.secondary_number }}{% if value.secondary_number_note %} {{ value.secondary_number_note }}{% endif %}</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+      {% if value.show_email and value.primary_email %}
+        <div class="d-flex items-start" style="gap: var(--space-4);">
+          <span style="font-size: 1.5rem; flex-shrink: 0;">✉️</span>
+          <div>
+            <p style="font-weight: 600; margin-bottom: var(--space-1);">Email</p>
+            <a href="mailto:{{ value.primary_email }}" style="color: var(--color-link);">{{ value.primary_email }}</a>
+            {% if value.secondary_email %}
+              <br><a href="mailto:{{ value.secondary_email }}" style="color: var(--color-text-muted); font-size: var(--text-sm);">{{ value.secondary_email }}</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+      {% if value.show_hours and value.hours_text %}
+        <div class="d-flex items-start" style="gap: var(--space-4);">
+          <span style="font-size: 1.5rem; flex-shrink: 0;">🕐</span>
+          <div>
+            <p style="font-weight: 600; margin-bottom: var(--space-1);">Hours</p>
+            <div class="tonic-contact-info__hours-text prose">{{ value.hours_text }}</div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

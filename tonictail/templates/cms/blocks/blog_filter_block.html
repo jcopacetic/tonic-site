@@ -1,0 +1,46 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+{# Block template: tonic-blog-filter → blog_filter_block.html #}
+<!--
+  Module: Tonic Blog Filter
+  Description: Topic/tag filter pill bar for the blog listing page.
+               Generates links to HubSpot's native topic filter URLs (/blog/topic/slug).
+               Uses blog_topics() to fetch all available topics for this blog.
+               Active state is determined by comparing current tag slug to each topic.
+               The "All" pill links back to the blog root URL.
+               — Author: Jonathan Sumner | jonathan@khaoticdigital.com
+  Usage: Place above the tonic-blog-listing module in the blog listing template.
+-->
+
+<nav
+  id="{{ name }}"
+  class="tonic-blog-filter {{ value.advanced.custom_class }} hide-on-mobile"
+  aria-label="Filter posts by topic"
+>
+  <div class="tonic-blog-filter__inner">
+    <ul class="tonic-blog-filter__list" role="list">
+
+
+      <li>
+        <a
+          href="{{ group.absolute_url | escape_url }}"
+          class="tonic-blog-filter__link tonic-blog-filter__link--active"
+          aria-current="page"
+        >{{ value.labels.all_label }}</a>
+      </li>
+
+
+
+
+        <li>
+          <a
+            href="{{ blog_tag_url(group.id, topic.slug) | escape_url }}"
+            class="tonic-blog-filter__link tonic-blog-filter__link--active"
+            rel="tag"
+            aria-current="page"
+          >{{ topic.name | escape_html }}</a>
+        </li>
+
+
+    </ul>
+  </div>
+</nav>

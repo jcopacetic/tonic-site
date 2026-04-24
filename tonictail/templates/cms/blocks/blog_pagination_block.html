@@ -1,0 +1,153 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+{# Block template: tonic-blog-pagination → blog_pagination_block.html #}
+<!--
+  Module: Tonic Blog Pagination
+  Description: Blog listing pagination wired to HubSpot's native blog pagination
+               variables (current_page_num, next_page_num, last_page_num,
+               total_page_count, blog_page_link()). Supports three styles:
+               Numbered (page numbers with prev/next), Simple (prev/next only with
+               arrows), and Minimal (older/newer text links). Only renders when
+               there is more than one page.
+               — Author: Jonathan Sumner | jonathan@khaoticdigital.com
+  Usage: Place below the tonic-blog-listing module in the blog listing template.
+-->
+
+<nav
+  id="{{ name }}"
+  class="tonic-blog-pagination tonic-blog-pagination--{{ value.style.layout.pagination_style }} {{ value.advanced.custom_class }} hide-on-mobile"
+  aria-label="Blog pagination"
+>
+  <div class="tonic-blog-pagination__inner">
+    <div class="tonic-blog-pagination__nav">
+
+
+
+
+
+
+          <a
+            href="{{ page_1_url }}{{ blog_page_link(current_page_num - 1) }}"
+            class="tonic-blog-pagination__link tonic-blog-pagination__link--prev"
+            aria-label="Previous page"
+          >
+
+            {{ value.labels.prev_label }}
+          </a>
+
+          <span class="tonic-blog-pagination__link tonic-blog-pagination__link--prev tonic-blog-pagination__link--disabled" aria-disabled="true">
+
+            {{ value.labels.prev_label }}
+          </span>
+
+
+
+
+
+
+
+
+
+
+
+
+              <span class="tonic-blog-pagination__ellipsis" aria-hidden="true">…</span>
+
+
+            <a
+              href="{{ page_1_url }}{{ blog_page_link(page_num) }}"
+              class="tonic-blog-pagination__link tonic-blog-pagination__link--active"
+              aria-label="{{ value.labels.page_aria_label }} {{ page_num }}"
+              aria-current="page"
+            >{{ page_num }}</a>
+
+
+
+              <span class="tonic-blog-pagination__ellipsis" aria-hidden="true">…</span>
+
+
+
+
+
+
+          <a
+            href="{{ blog_page_link(current_page_num + 1) }}"
+            class="tonic-blog-pagination__link tonic-blog-pagination__link--next"
+            aria-label="Next page"
+          >
+            {{ value.labels.next_label }}
+
+          </a>
+
+          <span class="tonic-blog-pagination__link tonic-blog-pagination__link--next tonic-blog-pagination__link--disabled" aria-disabled="true">
+            {{ value.labels.next_label }}
+
+          </span>
+
+
+
+
+
+
+          <a
+            href="{{ page_1_url }}{{ blog_page_link(current_page_num - 1) }}"
+            class="tonic-blog-pagination__link tonic-blog-pagination__link--prev"
+            aria-label="Previous page"
+          >
+
+            {{ value.labels.prev_label }}
+          </a>
+
+          <span class="tonic-blog-pagination__link tonic-blog-pagination__link--prev tonic-blog-pagination__link--disabled" aria-disabled="true">
+
+            {{ value.labels.prev_label }}
+          </span>
+
+
+        <span class="tonic-blog-pagination__ellipsis">
+          {{ current_page_num }} / {{ total_page_count }}
+        </span>
+
+
+          <a
+            href="{{ blog_page_link(current_page_num + 1) }}"
+            class="tonic-blog-pagination__link tonic-blog-pagination__link--next"
+            aria-label="Next page"
+          >
+            {{ value.labels.next_label }}
+
+          </a>
+
+          <span class="tonic-blog-pagination__link tonic-blog-pagination__link--next tonic-blog-pagination__link--disabled" aria-disabled="true">
+            {{ value.labels.next_label }}
+
+          </span>
+
+
+
+
+
+
+          <a
+            href="{{ blog_page_link(current_page_num + 1) }}"
+            class="tonic-blog-pagination__link tonic-blog-pagination__link--prev"
+            aria-label="Older posts"
+          >← Older</a>
+
+          <span class="tonic-blog-pagination__link tonic-blog-pagination__link--disabled">← Older</span>
+
+
+
+          <a
+            href="{{ page_1_url }}{{ blog_page_link(current_page_num - 1) }}"
+            class="tonic-blog-pagination__link tonic-blog-pagination__link--next"
+            aria-label="Newer posts"
+          >Newer →</a>
+
+          <span class="tonic-blog-pagination__link tonic-blog-pagination__link--disabled">Newer →</span>
+
+
+
+
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,12 @@
+<div class="section section--no-top">
+  <div class="container">
+    <div class="btn-group {% if value.alignment == 'center' %}btn-group--center{% elif value.alignment == 'right' %}btn-group--right{% endif %} {% if value.layout == 'stacked' %}btn-group--full{% endif %}">
+      {% for btn in value.buttons %}
+        <a href="{{ btn.url }}" class="btn btn--{{ btn.style|default:'primary' }} btn--{{ btn.size|default:'md' }}"
+          {% if btn.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}>
+          {{ btn.label }}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>

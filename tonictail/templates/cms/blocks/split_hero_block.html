@@ -1,0 +1,34 @@
+{% load wagtailimages_tags %}
+<section class="tonic-hero-split section section--bg-{{ value.background_type|default:'light' }}">
+  <div class="container">
+    <div class="d-flex flex-wrap items-center" style="gap: var(--space-12); flex-direction: {% if value.media_side == 'left' %}row-reverse{% else %}row{% endif %};">
+      <div class="flex-1" style="min-width: 280px;">
+        {% if value.eyebrow %}<span class="eyebrow">{{ value.eyebrow }}</span>{% endif %}
+        <{{ value.heading_tag|default:"h1" }} class="tonic-hero-split__heading">{{ value.heading }}</{{ value.heading_tag|default:"h1" }}>
+        {% if value.subheadline %}<p class="text-lg mt-4">{{ value.subheadline }}</p>{% endif %}
+        {% if value.primary_cta.label or value.secondary_cta.label %}
+          <div class="btn-group mt-8">
+            {% if value.primary_cta.label %}
+              <a href="{{ value.primary_cta.url }}" class="btn btn--{{ value.primary_cta.style|default:'primary' }}">{{ value.primary_cta.label }}</a>
+            {% endif %}
+            {% if value.secondary_cta.label %}
+              <a href="{{ value.secondary_cta.url }}" class="btn btn--{{ value.secondary_cta.style|default:'secondary' }}">{{ value.secondary_cta.label }}</a>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="flex-1" style="min-width: 280px;">
+        {% if value.media_type == "image" and value.image %}
+          {% image value.image width-800 as img %}
+          <img src="{{ img.url }}" alt="{{ value.image.alt_text|default:'' }}" style="width:100%; height:auto; border-radius: var(--border-radius-img);">
+        {% elif value.media_type == "video" and value.video_url %}
+          <video src="{{ value.video_url }}" autoplay muted loop playsinline style="width:100%; border-radius: var(--border-radius-img);"></video>
+        {% elif value.media_type == "embed" and value.embed_url %}
+          <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius: var(--border-radius-img);">
+            <iframe src="{{ value.embed_url }}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allowfullscreen loading="lazy"></iframe>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

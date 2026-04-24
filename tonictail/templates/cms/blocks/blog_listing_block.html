@@ -1,0 +1,192 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+{# Block template: tonic-blog-listing → blog_listing_block.html #}
+<!--
+  Module: Tonic Blog Listing
+  Description: Main blog post listing module. Handles all four HubSpot listing
+               context modes automatically:
+               - Regular listing: grid/list of recent posts with optional featured first post
+               - Author filter (blog_author): author header card + filtered post grid
+               - Tag filter (tag): tag banner + filtered post grid
+               - Simple list (/all): plain linked list of all posts
+               Per-post data sourced from HubSpot contents loop variables.
+               — Author: Jonathan Sumner | jonathan@khaoticdigital.com
+  Usage: Place in the blog listing template. Not global — configure per listing page.
+-->
+
+
+
+
+
+
+    <a
+      href="{{ blog_tag_url(group.id, post.tag_list[0].slug) }}"
+      class="tonic-blog-listing__tag"
+      rel="tag"
+    >{{ post.tag_list[0].name | escape_html }}</a>
+
+
+
+  <h23 class="tonic-blog-listing__post-title">
+    {{ post.name | escape_html }}
+  </h23>
+
+
+
+
+    <div class="tonic-blog-listing__meta">
+
+        <a
+          href="{{ blog_author_url(group.id, post.blog_post_author.slug) | escape_url }}"
+          style="color: inherit; text-decoration: none;"
+        >{{ post.blog_post_author.display_name | escape_html }}</a>
+
+
+        <span class="tonic-blog-listing__meta-sep" aria-hidden="true">·</span>
+
+
+        <time datetime="{{ post.publish_date | escape_attr }}">{{ post.publish_date_localized | escape_html }}</time>
+
+
+        <span class="tonic-blog-listing__meta-sep" aria-hidden="true">·</span>
+
+
+        <span>{{ post_read_time }} {{ value.labels.read_time_suffix }}</span>
+
+    </div>
+
+
+
+
+    <p class="tonic-blog-listing__excerpt">{{ post.post_summary | striptags | truncate(160, true, '…') }}</p>
+
+
+
+  <span class="tonic-blog-listing__read-more" aria-hidden="true">
+    {{ value.labels.read_more_label }} →
+  </span>
+
+<div
+  id="{{ name }}"
+  class="tonic-blog-listing {{ value.advanced.custom_class }} hide-on-mobile"
+>
+  <div class="tonic-blog-listing__inner">
+
+
+
+
+      <h1 class="tonic-blog-listing__title">{{ value.labels.all_posts_title }}</h1>
+      <ul class="tonic-blog-listing__simple-list">
+
+          <li>
+            <a
+              href="{{ content.absolute_url | escape_url }}"
+              class="tonic-blog-listing__simple-link"
+            >{{ content.name | escape_html }}</a>
+          </li>
+
+      </ul>
+
+
+
+
+
+        <div class="tonic-blog-listing__context-header">
+
+            <img
+              src="{{ blog_author.avatar | escape_url }}"
+              alt="{{ blog_author.display_name | escape_attr }}"
+              class="tonic-blog-listing__context-avatar"
+              loading="eager"
+              width="80"
+              height="80"
+            >
+
+          <div>
+            <h1 class="tonic-blog-listing__context-heading">
+              {{ value.labels.posts_by_label }} {{ blog_author.display_name | escape_html }}
+            </h1>
+
+              <p class="tonic-blog-listing__context-meta">{{ blog_author.bio | escape_html }}</p>
+
+          </div>
+        </div>
+
+
+
+        <div class="tonic-blog-listing__context-header">
+          <div>
+            <h1 class="tonic-blog-listing__context-heading">
+              {{ value.labels.posts_tagged_label }} "{{ tag.name | escape_html }}"
+            </h1>
+          </div>
+        </div>
+
+
+
+        <h1 class="tonic-blog-listing__title">{{ value.labels.recent_posts_title }}</h1>
+
+
+
+
+
+        <div class="tonic-blog-listing__featured">
+          <a
+            href="{{ featured.absolute_url | escape_url }}"
+            class="tonic-blog-listing__featured-card"
+            aria-label="{{ value.labels.read_more_label }}: {{ featured.name | escape_attr }}"
+          >
+
+              <div class="tonic-blog-listing__featured-image-wrap">
+                <img
+                  src="{{ featured.featured_image | escape_url }}"
+                  alt="{{ featured.featured_image_alt_text | default('') | escape_attr }}"
+                  loading="eager"
+                >
+              </div>
+
+            <div class="tonic-blog-listing__featured-body">
+              {{ card_body(featured, true) }}
+            </div>
+          </a>
+        </div>
+
+
+
+
+
+
+      <div class="tonic-blog-listing__grid {{ grid_class }}">
+
+
+
+          <a
+            href="{{ content.absolute_url | escape_url }}"
+            class="tonic-blog-listing__card"
+            aria-label="{{ value.labels.read_more_label }}: {{ content.name | escape_attr }}"
+          >
+
+              <div class="tonic-blog-listing__card-image-wrap">
+
+                  <img
+                    src="{{ content.featured_image | escape_url }}"
+                    alt="{{ content.featured_image_alt_text | default('') | escape_attr }}"
+                    loading="lazy"
+                  >
+
+              </div>
+
+
+            <div class="tonic-blog-listing__card-body">
+              {{ card_body(content, false) }}
+            </div>
+          </a>
+
+
+          <p style="color: var(--color-text-muted);">No posts found.</p>
+
+      </div>
+
+
+
+  </div>
+</div>

@@ -1,0 +1,43 @@
+{% load wagtailimages_tags %}
+<section class="module-slider section section--no-top section--no-bottom" style="background: var(--color-bg-dark);">
+  <div class="module-slider__viewport{% if value.show_arrows and value.arrow_position == 'sides' %} module-slider__viewport--has-side-arrows{% endif %}"
+       data-slider data-slides-to-show="{{ value.slides_to_show|default:'1' }}" data-autoplay="{{ value.autoplay|yesno:'true,false' }}" data-loop="{{ value.loop|yesno:'true,false' }}" data-speed="{{ value.autoplay_speed|default:4000 }}">
+    {% if value.show_arrows and value.arrow_position == "sides" %}
+      <button class="module-slider__btn module-slider__btn--side module-slider__btn--prev" data-slider-prev aria-label="Previous slide">
+        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+    {% endif %}
+    <div class="module-slider__track">
+      {% for slide in value.slides %}
+        <div class="module-slider__slide" style="min-width: 100%; height: {% if value.slide_height == 'full' %}100vh{% elif value.slide_height == 'large' %}560px{% elif value.slide_height == 'medium' %}400px{% else %}auto{% endif %};">
+          {% if slide.image %}
+            {% image slide.image fill-1920x1080 as img %}
+            <img class="module-slider__slide-img" src="{{ img.url }}" alt="{{ slide.heading|default:'' }}" style="width:100%; height:100%; object-fit:cover;">
+          {% endif %}
+          {% if slide.heading or slide.description or slide.cta_text %}
+            <div class="module-slider__slide-content">
+              {% if slide.eyebrow %}<span class="module-slider__eyebrow">{{ slide.eyebrow }}</span>{% endif %}
+              {% if slide.heading %}<h2 class="module-slider__slide-heading">{{ slide.heading }}</h2>{% endif %}
+              {% if slide.description %}<p class="module-slider__slide-desc">{{ slide.description }}</p>{% endif %}
+              {% if slide.cta_text and slide.cta_url %}
+                <a href="{{ slide.cta_url }}" class="btn btn--primary btn--md module-slider__cta">{{ slide.cta_text }}</a>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    {% if value.show_arrows and value.arrow_position == "sides" %}
+      <button class="module-slider__btn module-slider__btn--side module-slider__btn--next" data-slider-next aria-label="Next slide">
+        <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    {% endif %}
+  </div>
+  {% if value.show_dots %}
+    <div class="module-slider__dots">
+      {% for slide in value.slides %}
+        <button class="module-slider__dot{% if forloop.first %} is-active{% endif %}" data-slider-dot="{{ forloop.counter0 }}" aria-label="Go to slide {{ forloop.counter }}"></button>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>

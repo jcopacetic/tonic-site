@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}
+
+{# Landing pages suppress the global nav and footer for a clean conversion layout #}
+{% block site_header %}{% endblock %}
+{% block site_footer %}{% endblock %}
+
+{% block content %}
+  {% for block in self.body %}
+    {% include_block block %}
+  {% endfor %}
+{% endblock %}

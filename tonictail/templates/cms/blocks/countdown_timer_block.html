@@ -1,0 +1,50 @@
+<section class="module-countdown-timer section section--bg-{{ value.background.background_type|default:'dark' }}"
+  data-target-date="{{ value.target_date }}T{{ value.target_time|default:'00:00' }}">
+  <div class="module-countdown-timer__inner container content-centered">
+    {% if value.eyebrow or value.heading or value.subheading %}
+      <div class="module-countdown-timer__header">
+        {% if value.eyebrow %}<span class="module-countdown-timer__eyebrow eyebrow">{{ value.eyebrow }}</span>{% endif %}
+        {% if value.heading %}<h2 class="module-countdown-timer__heading">{{ value.heading }}</h2>{% endif %}
+        {% if value.subheading %}<p class="module-countdown-timer__subheading mt-4">{{ value.subheading }}</p>{% endif %}
+      </div>
+    {% endif %}
+    <div class="module-countdown-timer__display" data-countdown>
+      <div class="module-countdown-timer__unit">
+        <div class="module-countdown-timer__digit-wrapper" style="background: rgba(255,255,255,0.1); border-radius: var(--border-radius-card);">
+          <span class="module-countdown-timer__digit" data-days style="color: #fff;">00</span>
+        </div>
+        <span class="module-countdown-timer__unit-label" style="color: rgba(255,255,255,0.7);">{{ value.label_days|default:'Days' }}</span>
+      </div>
+      <span class="module-countdown-timer__separator" style="color: rgba(255,255,255,0.5);">:</span>
+      <div class="module-countdown-timer__unit">
+        <div class="module-countdown-timer__digit-wrapper" style="background: rgba(255,255,255,0.1); border-radius: var(--border-radius-card);">
+          <span class="module-countdown-timer__digit" data-hours style="color: #fff;">00</span>
+        </div>
+        <span class="module-countdown-timer__unit-label" style="color: rgba(255,255,255,0.7);">{{ value.label_hours|default:'Hours' }}</span>
+      </div>
+      <span class="module-countdown-timer__separator" style="color: rgba(255,255,255,0.5);">:</span>
+      <div class="module-countdown-timer__unit">
+        <div class="module-countdown-timer__digit-wrapper" style="background: rgba(255,255,255,0.1); border-radius: var(--border-radius-card);">
+          <span class="module-countdown-timer__digit" data-minutes style="color: #fff;">00</span>
+        </div>
+        <span class="module-countdown-timer__unit-label" style="color: rgba(255,255,255,0.7);">{{ value.label_minutes|default:'Minutes' }}</span>
+      </div>
+      <span class="module-countdown-timer__separator" style="color: rgba(255,255,255,0.5);">:</span>
+      <div class="module-countdown-timer__unit">
+        <div class="module-countdown-timer__digit-wrapper" style="background: rgba(255,255,255,0.1); border-radius: var(--border-radius-card);">
+          <span class="module-countdown-timer__digit" data-seconds style="color: #fff;">00</span>
+        </div>
+        <span class="module-countdown-timer__unit-label" style="color: rgba(255,255,255,0.7);">{{ value.label_seconds|default:'Seconds' }}</span>
+      </div>
+    </div>
+    <div class="module-countdown-timer__expired" style="display:none;" data-expired>
+      <h3 class="module-countdown-timer__expired-heading" style="color:#fff;">{{ value.expired_heading|default:'Event has ended' }}</h3>
+      {% if value.expired_message %}<p class="module-countdown-timer__expired-message" style="color:rgba(255,255,255,0.7);">{{ value.expired_message }}</p>{% endif %}
+    </div>
+    {% if value.show_cta and value.cta_text and value.cta_url %}
+      <div class="module-countdown-timer__cta-wrap mt-8">
+        <a href="{{ value.cta_url }}" class="btn btn--primary btn--lg">{{ value.cta_text }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>

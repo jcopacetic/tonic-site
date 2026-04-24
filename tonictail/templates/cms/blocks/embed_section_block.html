@@ -1,0 +1,19 @@
+<section class="module-embed-block section section--bg-{{ value.background.background_type|default:'light' }}">
+  <div class="container {% if value.alignment == 'center' %}content-centered{% endif %}">
+    <div class="embed-block__frame-wrap" style="border-radius: var(--border-radius-card); overflow: hidden; max-width: {{ value.max_width|default:800 }}px; margin: 0 auto;">
+      <div class="embed-block__ratio-box" style="{% if value.aspect_ratio == 'fixed' %}height: {{ value.fixed_height|default:400 }}px;{% elif value.aspect_ratio == '4-3' %}padding-bottom: 75%;{% elif value.aspect_ratio == '1-1' %}padding-bottom: 100%;{% else %}padding-bottom: 56.25%;{% endif %} position: relative;">
+        <iframe
+          class="embed-block__embed"
+          src="{{ value.embed_url }}"
+          title="{{ value.embed_title|default:'Embedded content' }}"
+          allowfullscreen
+          loading="lazy"
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;">
+        </iframe>
+      </div>
+    </div>
+    {% if value.show_caption and value.caption %}
+      <p class="embed-block__caption mt-3">{{ value.caption }}</p>
+    {% endif %}
+  </div>
+</section>

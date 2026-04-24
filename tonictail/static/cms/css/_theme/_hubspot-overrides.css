@@ -1,0 +1,866 @@
+/*
+ * File: _hubspot-overrides.css
+ * Description: CSS overrides for HubSpot's native rendered modules. Every
+ *              OVERRIDE-tier module in the disposition table gets a named
+ *              section here. All values reference CSS custom properties from
+ *              theme fields — never hardcoded. This file is imported last in
+ *              theme.css so it wins specificity battles against HubSpot's
+ *              injected stylesheet without relying on !important except where
+ *              V3 form inline styles make it unavoidable.
+ * Author: Jonathan Sumner | jonathan@khaoticdigital.com
+ * Theme: Tonic — Khaotic Digital, LLC
+ */
+
+
+/* ============================================================
+   ── DIVIDER ──────────────────────────────────────────────────
+   Targets: .hs-horizontal-rule, native <hr> boilerplate output
+   ============================================================ */
+
+.hs-horizontal-rule hr,
+hr {
+  border: none;
+  border-top: var(--border-width, 1px) solid var(--section-divider-color, var(--color-border));
+  margin: 0;
+}
+
+
+/* ============================================================
+   ── FORMS ────────────────────────────────────────────────────
+   Targets: .hs-form (V2 + V3 HubSpot embedded forms)
+   Strategy: Map HubSpot's class names onto our --form-* and
+   --color-* custom properties. Use !important only on the
+   properties HubSpot's V3 inline styles directly override.
+   ============================================================ */
+
+/* ── Form container ── */
+.hs-form-private,
+.hs-form {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  color: var(--color-text-body);
+  width: 100%;
+}
+
+/* ── Field rows ── */
+.hs-form .hs-form-field,
+.hs-form fieldset {
+  margin-bottom: 1rem;
+  max-width: 100% !important;
+}
+
+.hs-form fieldset.form-columns-2 .hs-form-field,
+.hs-form fieldset.form-columns-3 .hs-form-field {
+  float: none;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .hs-form fieldset.form-columns-2 {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .hs-form fieldset.form-columns-2 .hs-form-field {
+    flex: 1;
+    width: auto;
+  }
+
+  .hs-form fieldset.form-columns-3 {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .hs-form fieldset.form-columns-3 .hs-form-field {
+    flex: 1;
+    width: auto;
+  }
+}
+
+/* ── Labels ── */
+.hs-form label,
+.hs-form .hs-form-field > label {
+  display: block;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  color: var(--color-text-heading);
+  margin-bottom: 0.375rem;
+  line-height: 1.3;
+}
+
+.hs-form label .hs-form-required {
+  color: #dc2626;
+  margin-left: 2px;
+}
+
+/* ── Inputs, textarea, select ── */
+.hs-form input[type="text"],
+.hs-form input[type="email"],
+.hs-form input[type="tel"],
+.hs-form input[type="url"],
+.hs-form input[type="number"],
+.hs-form input[type="search"],
+.hs-form input[type="password"],
+.hs-form input[type="date"],
+.hs-form textarea,
+.hs-form select {
+  display: block;
+  width: 100% !important;
+  padding: 0.5rem 0.875rem !important;
+  font-family: var(--font-body) !important;
+  font-size: var(--font-size-body) !important;
+  font-weight: 400;
+  line-height: var(--line-height-body);
+  color: var(--color-text-body) !important;
+  background-color: var(--color-bg-light) !important;
+  border: var(--border-width, 1px) solid var(--form-input-border, var(--color-border)) !important;
+  border-radius: var(--form-input-radius, var(--border-radius)) !important;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  box-shadow: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.hs-form input::placeholder,
+.hs-form textarea::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+
+/* ── Focus state ── */
+.hs-form input[type="text"]:focus,
+.hs-form input[type="email"]:focus,
+.hs-form input[type="tel"]:focus,
+.hs-form input[type="url"]:focus,
+.hs-form input[type="number"]:focus,
+.hs-form input[type="search"]:focus,
+.hs-form input[type="password"]:focus,
+.hs-form input[type="date"]:focus,
+.hs-form textarea:focus,
+.hs-form select:focus {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 15%, transparent) !important;
+  outline: none;
+}
+
+/* ── Textarea ── */
+.hs-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ── Select ── */
+.hs-form select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888780' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 0.875rem center !important;
+  padding-right: 2.5rem !important;
+  cursor: pointer;
+}
+
+/* ── Checkboxes & radios ── */
+.hs-form input[type="checkbox"],
+.hs-form input[type="radio"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
+}
+
+.hs-form .inputs-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hs-form .inputs-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.375rem;
+}
+
+.hs-form .inputs-list label {
+  font-size: var(--font-size-body);
+  font-weight: 400;
+  color: var(--color-text-body);
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+/* ── Submit button ── */
+.hs-form input[type="submit"],
+.hs-form .hs-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body) !important;
+  font-size: var(--font-size-body) !important;
+  font-weight: var(--btn-font-weight, 600) !important;
+  line-height: 1.2;
+  text-transform: var(--btn-text-transform, none);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  padding: 0.625rem 1.5rem !important;
+  border-radius: var(--border-radius-btn) !important;
+  border: 1px solid var(--btn-primary-border, transparent) !important;
+  background-color: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-text) !important;
+  box-shadow: var(--shadow-btn, none);
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  width: auto;
+}
+
+.hs-form input[type="submit"]:hover,
+.hs-form .hs-button:hover {
+  background-color: var(--btn-primary-hover) !important;
+  color: var(--btn-primary-text) !important;
+}
+
+.hs-form input[type="submit"]:focus-visible,
+.hs-form .hs-button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/* ── Validation errors ── */
+.hs-form .hs-error-msgs {
+  list-style: none;
+  margin: 0.375rem 0 0;
+  padding: 0;
+}
+
+.hs-form .hs-error-msg,
+.hs-form .hs-main-font-element {
+  font-size: var(--font-size-small);
+  color: #dc2626;
+  line-height: 1.4;
+}
+
+.hs-form .hs-form-field.hs-has-error input,
+.hs-form .hs-form-field.hs-has-error textarea,
+.hs-form .hs-form-field.hs-has-error select {
+  border-color: #dc2626 !important;
+}
+
+/* ── Success / thank you message ── */
+.hs-form .hs-richtext,
+.submitted-message {
+  font-size: var(--font-size-body);
+  color: var(--color-text-body);
+  line-height: var(--line-height-body);
+}
+
+/* ── GDPR / consent ── */
+.hs-form .legal-consent-container {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-top: 0.75rem;
+}
+
+.hs-form .legal-consent-container a {
+  color: var(--color-link);
+  text-decoration: underline;
+}
+
+.hs-form .legal-consent-container a:hover {
+  color: var(--color-link-hover);
+}
+
+
+/* ============================================================
+   ── MENU / NAV ───────────────────────────────────────────────
+   Targets: .hs-menu-wrapper (HubSpot native menu module)
+   Note: Primary nav styling lives in global-header module CSS.
+   These overrides handle cases where the native menu module is
+   used outside of the global header (e.g. footer menus).
+   ============================================================ */
+
+.hs-menu-wrapper ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hs-menu-wrapper a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.hs-menu-wrapper a:hover,
+.hs-menu-wrapper a:focus {
+  color: var(--color-link-hover);
+  text-decoration: none;
+}
+
+.hs-menu-wrapper .active-branch > a,
+.hs-menu-wrapper .active > a {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   ── BLOG COMMENTS ────────────────────────────────────────────
+   Targets: .hs-comments (HubSpot comment thread output)
+   ============================================================ */
+
+.hs-comments {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  color: var(--color-text-body);
+  line-height: var(--line-height-body);
+}
+
+.hs-comments h3,
+.hs-comments .comments-title {
+  font-size: var(--font-size-heading);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-text-heading);
+  margin-bottom: 1.5rem;
+}
+
+.hs-comments .comment {
+  border-bottom: var(--border-width, 1px) solid var(--color-border);
+  padding: 1.5rem 0;
+}
+
+.hs-comments .comment:last-child {
+  border-bottom: none;
+}
+
+.hs-comments .comment-author {
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+
+.hs-comments .comment-date {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+.hs-comments .comment-body {
+  margin-top: 0.75rem;
+}
+
+/* Comment form */
+.hs-comments input[type="text"],
+.hs-comments input[type="email"],
+.hs-comments textarea {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.875rem;
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  color: var(--color-text-body);
+  background-color: var(--color-bg-light);
+  border: var(--border-width, 1px) solid var(--color-border);
+  border-radius: var(--form-input-radius, var(--border-radius));
+  outline: none;
+}
+
+.hs-comments input[type="text"]:focus,
+.hs-comments input[type="email"]:focus,
+.hs-comments textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 15%, transparent);
+}
+
+.hs-comments input[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.5rem;
+  font-family: var(--font-body);
+  font-weight: var(--btn-font-weight, 600);
+  font-size: var(--font-size-body);
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 1px solid var(--btn-primary-border, transparent);
+  border-radius: var(--border-radius-btn);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  appearance: none;
+}
+
+.hs-comments input[type="submit"]:hover {
+  background-color: var(--btn-primary-hover);
+}
+
+
+/* ============================================================
+   ── BLOG SUBSCRIBE ───────────────────────────────────────────
+   Targets: .hs-blog-subscribe (blog subscription form widget)
+   ============================================================ */
+
+.hs-blog-subscribe {
+  font-family: var(--font-body);
+}
+
+.hs-blog-subscribe .blog-subscribe-title {
+  font-weight: var(--font-weight-heading);
+  color: var(--color-text-heading);
+  margin-bottom: 0.75rem;
+}
+
+/* Input and submit inherit .hs-form styles above via shared selectors */
+
+
+/* ============================================================
+   ── PAGINATION ───────────────────────────────────────────────
+   Targets: .hs-pagination (blog listing page navigation)
+   ============================================================ */
+
+.hs-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  font-family: var(--font-body);
+  margin: 2rem 0;
+}
+
+.hs-pagination a,
+.hs-pagination .hs-pagination-previous a,
+.hs-pagination .hs-pagination-next a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0 0.5rem;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  color: var(--color-text-body);
+  background-color: transparent;
+  border: var(--border-width, 1px) solid transparent;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.hs-pagination a:hover {
+  background-color: var(--color-bg-alt);
+  border-color: var(--color-border);
+  color: var(--color-text-heading);
+}
+
+.hs-pagination .active a,
+.hs-pagination a[aria-current="page"] {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.hs-pagination .active a:hover {
+  background-color: var(--btn-primary-hover);
+  border-color: var(--btn-primary-hover);
+  color: #fff;
+}
+
+.hs-pagination .hs-pagination-previous,
+.hs-pagination .hs-pagination-next {
+  font-weight: 600;
+}
+
+
+/* ============================================================
+   ── SOCIAL FOLLOW ────────────────────────────────────────────
+   Targets: .widget-type-follow_me (social follow icon links)
+   ============================================================ */
+
+.widget-type-follow_me ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.widget-type-follow_me a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+.widget-type-follow_me a:hover,
+.widget-type-follow_me a:focus {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.widget-type-follow_me img {
+  width: 1.25rem;
+  height: 1.25rem;
+  object-fit: contain;
+}
+
+
+/* ============================================================
+   ── SOCIAL SHARING ───────────────────────────────────────────
+   Targets: .hs-blog-social-share (blog post share buttons)
+   ============================================================ */
+
+.hs-blog-social-share {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.hs-blog-social-share ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.hs-blog-social-share a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  padding: 0 0.75rem;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  border: var(--border-width, 1px) solid var(--color-border);
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+  gap: 0.375rem;
+}
+
+.hs-blog-social-share a:hover,
+.hs-blog-social-share a:focus {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  background-color: var(--color-highlight);
+  text-decoration: none;
+}
+
+
+/* ============================================================
+   ── LANGUAGE SWITCHER ────────────────────────────────────────
+   Targets: .hs-language-switcher (multi-language dropdown)
+   ============================================================ */
+
+.hs-language-switcher {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--font-size-small);
+}
+
+.hs-language-switcher select {
+  display: block;
+  padding: 0.375rem 2rem 0.375rem 0.75rem;
+  font-family: var(--font-body);
+  font-size: var(--font-size-small);
+  color: var(--color-text-body);
+  background-color: transparent;
+  border: var(--border-width, 1px) solid var(--color-border);
+  border-radius: var(--border-radius);
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888780' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.625rem center;
+}
+
+.hs-language-switcher select:focus {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-color: var(--color-primary);
+}
+
+
+/* ============================================================
+   ── HubSpot CTA EMBED ────────────────────────────────────────
+   Targets: .hs-cta-wrapper (HubSpot CTA tool output)
+   Note: We cannot control the CTA button's internal styles —
+   only the container. Keep minimal.
+   ============================================================ */
+
+.hs-cta-wrapper {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.hs-cta-node {
+  display: inline-block;
+}
+
+/* Reset unwanted default spacing HubSpot injects */
+.hs-cta-wrapper img,
+.hs-cta-wrapper a {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+/* ============================================================
+   ── MEETINGS EMBED ───────────────────────────────────────────
+   Targets: .meetings-iframe-container (HubSpot Meetings widget)
+   ============================================================ */
+
+.meetings-iframe-container {
+  width: 100%;
+  border-radius: var(--border-radius-card);
+  overflow: hidden;
+  border: var(--border-width, 1px) solid var(--color-border);
+}
+
+.meetings-iframe-container iframe {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+
+/* ============================================================
+   ── PASSWORD PROMPT ──────────────────────────────────────────
+   Targets: .hs-password-prompt (membership password gate form)
+   ============================================================ */
+
+.hs-password-prompt {
+  font-family: var(--font-body);
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 2rem;
+  border: var(--border-width, 1px) solid var(--color-border);
+  border-radius: var(--border-radius-card);
+  background-color: var(--color-bg-light);
+}
+
+.hs-password-prompt h2,
+.hs-password-prompt h3 {
+  color: var(--color-text-heading);
+  font-weight: var(--font-weight-heading);
+  margin-bottom: 1rem;
+}
+
+.hs-password-prompt input[type="password"] {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.875rem;
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  color: var(--color-text-body);
+  background-color: var(--color-bg-light);
+  border: var(--border-width, 1px) solid var(--color-border);
+  border-radius: var(--form-input-radius, var(--border-radius));
+  outline: none;
+  margin-bottom: 1rem;
+  transition: border-color 0.15s ease;
+}
+
+.hs-password-prompt input[type="password"]:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 15%, transparent);
+}
+
+.hs-password-prompt input[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.5rem;
+  font-family: var(--font-body);
+  font-weight: var(--btn-font-weight, 600);
+  font-size: var(--font-size-body);
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 1px solid var(--btn-primary-border, transparent);
+  border-radius: var(--border-radius-btn);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  appearance: none;
+}
+
+.hs-password-prompt input[type="submit"]:hover {
+  background-color: var(--btn-primary-hover);
+}
+
+
+/* ============================================================
+   ── RSS LISTING ──────────────────────────────────────────────
+   Targets: .hs-rss-module (RSS feed listing output)
+   ============================================================ */
+
+.hs-rss-module {
+  font-family: var(--font-body);
+  color: var(--color-text-body);
+}
+
+.hs-rss-module .rss-title a,
+.hs-rss-module .hs-rss-item-title a {
+  color: var(--color-text-heading);
+  font-weight: var(--font-weight-heading);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.hs-rss-module .rss-title a:hover,
+.hs-rss-module .hs-rss-item-title a:hover {
+  color: var(--color-primary);
+}
+
+.hs-rss-module .hs-rss-item-date,
+.hs-rss-module .rss-date {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+.hs-rss-module .hs-rss-item-description,
+.hs-rss-module .rss-description {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-body);
+}
+
+.hs-rss-module .hs-rss-item {
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: var(--border-width, 1px) solid var(--color-border);
+}
+
+.hs-rss-module .hs-rss-item:last-child {
+  border-bottom: none;
+}
+
+
+/* ============================================================
+   ── TABLES ───────────────────────────────────────────────────
+   Targets: native table elements in blog posts and rich text.
+   The tonic-table module handles its own styling. These rules
+   target uncontrolled <table> output from blog post body copy
+   and the HubSpot rich_text module.
+   ============================================================ */
+
+.blog-post-body table,
+.hs-richtext table,
+.module-richtext table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-body);
+  color: var(--color-text-body);
+  margin: 1.5rem 0;
+}
+
+.blog-post-body thead,
+.hs-richtext thead,
+.module-richtext thead {
+  background-color: var(--color-bg-alt);
+}
+
+.blog-post-body th,
+.hs-richtext th,
+.module-richtext th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-text-heading);
+  border-bottom: 2px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.blog-post-body td,
+.hs-richtext td,
+.module-richtext td {
+  padding: 0.75rem 1rem;
+  border-bottom: var(--border-width, 1px) solid var(--color-border);
+  vertical-align: top;
+}
+
+.blog-post-body tbody tr:last-child td,
+.hs-richtext tbody tr:last-child td,
+.module-richtext tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.blog-post-body tbody tr:hover td,
+.hs-richtext tbody tr:hover td,
+.module-richtext tbody tr:hover td {
+  background-color: var(--color-bg-alt);
+}
+
+/* Responsive table wrapper — editors can wrap tables in this class */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* ============================================================
+   ── BREADCRUMBS ──────────────────────────────────────────────
+   Targets: .hs-breadcrumb-menu (HubSpot breadcrumb output)
+   Note: The tonic-breadcrumbs module handles its own styling.
+   These rules are a fallback for native output.
+   ============================================================ */
+
+.hs-breadcrumb-menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+}
+
+.hs-breadcrumb-menu li {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.hs-breadcrumb-menu li::after {
+  content: "/";
+  color: var(--color-text-muted);
+  opacity: 0.5;
+  margin-left: 0.25rem;
+}
+
+.hs-breadcrumb-menu li:last-child::after {
+  display: none;
+}
+
+.hs-breadcrumb-menu a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.hs-breadcrumb-menu a:hover,
+.hs-breadcrumb-menu a:focus {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+
+.hs-breadcrumb-menu .active,
+.hs-breadcrumb-menu [aria-current="page"] {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}

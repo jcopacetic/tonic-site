@@ -1,0 +1,102 @@
+:root {
+  --color-primary:     {{ theme.color_primary }};
+  --color-secondary:   {{ theme.color_secondary }};
+  --color-accent:      {{ theme.color_accent }};
+  --color-highlight:   {{ theme.color_highlight }};
+
+  --color-text-heading: {{ theme.color_text_heading }};
+  --color-text-body:    {{ theme.color_text_body }};
+  --color-text-muted:   {{ theme.color_text_muted }};
+
+  --color-bg-light: {{ theme.color_bg_light }};
+  --color-bg-dark:  {{ theme.color_bg_dark }};
+  --color-bg-alt:   {{ theme.color_bg_alt }};
+
+  --color-border:     {{ theme.color_border }};
+  --color-link:       {{ theme.color_link }};
+  --color-link-hover: {{ theme.color_link_hover }};
+  --color-focus:      {{ theme.color_focus }};
+
+  --font-heading: "{{ theme.font_heading }}", system-ui, sans-serif;
+  --font-body:    "{{ theme.font_body }}", system-ui, sans-serif;
+  --font-display: "{{ theme.font_display }}", system-ui, sans-serif;
+  --font-mono:    "{{ theme.font_mono }}", ui-monospace, monospace;
+
+  --font-size-display: {{ theme.font_size_display }}px;
+  --font-size-heading: {{ theme.font_size_heading }}px;
+  --font-size-body:    {{ theme.font_size_body }}px;
+  --font-size-small:   {{ theme.font_size_small }}px;
+
+  --font-weight-heading: {{ theme.font_weight_heading }};
+  --font-weight-body:    {{ theme.font_weight_body }};
+  --line-height-body:    {{ theme.line_height_body }};
+  --line-height-heading: 1.15;
+  --line-height-display: 1.05;
+
+  --section-padding:        {{ theme.section_padding }}px;
+  --section-padding-mobile: {{ theme.section_padding_mobile }}px;
+  --container-max:          {{ theme.container_max }}px;
+  --container-gutter:       {{ theme.container_gutter }}px;
+  --grid-gutter:            {{ theme.grid_gutter }}px;
+  --row-gap:                {{ theme.row_gap }}px;
+
+  --border-radius:      {{ theme.border_radius }}px;
+  --border-radius-btn:  {{ theme.border_radius_btn }}px;
+  --border-radius-card: {{ theme.border_radius_card }}px;
+  --border-radius-img:  {{ theme.border_radius_img }}px;
+  --border-color:       {{ theme.border_color }};
+  --border-width:       {{ theme.border_width }}px;
+
+  --shadow-none:     none;
+  --shadow-subtle:   0 2px 8px rgba(0,0,0,0.06);
+  --shadow-medium:   0 4px 16px rgba(0,0,0,0.10);
+  --shadow-elevated: 0 8px 32px rgba(0,0,0,0.14);
+
+  --shadow-card: {% if theme.shadow_card == "subtle" %}var(--shadow-subtle){% elif theme.shadow_card == "medium" %}var(--shadow-medium){% elif theme.shadow_card == "elevated" %}var(--shadow-elevated){% else %}var(--shadow-none){% endif %};
+  --shadow-btn:  {% if theme.shadow_button == "subtle" %}var(--shadow-subtle){% elif theme.shadow_button == "medium" %}var(--shadow-medium){% elif theme.shadow_button == "elevated" %}var(--shadow-elevated){% else %}var(--shadow-none){% endif %};
+
+  --btn-primary-bg:     {{ theme.btn_primary_bg }};
+  --btn-primary-hover:  {{ theme.btn_primary_hover }};
+  --btn-primary-active: {{ theme.btn_primary_active }};
+  --btn-primary-text:   {{ theme.btn_primary_text }};
+  --btn-primary-border: {{ theme.btn_primary_border }};
+
+  --btn-secondary-bg:     {{ theme.btn_secondary_bg }};
+  --btn-secondary-hover:  {{ theme.btn_secondary_hover }};
+  --btn-secondary-active: {{ theme.btn_secondary_active }};
+  --btn-secondary-text:   {{ theme.btn_secondary_text }};
+  --btn-secondary-border: {{ theme.btn_secondary_border }};
+
+  --btn-ghost-bg:     transparent;
+  --btn-ghost-hover:  rgba(255,255,255,0.15);
+  --btn-ghost-active: rgba(255,255,255,0.25);
+  --btn-ghost-text:   {{ theme.btn_ghost_text }};
+  --btn-ghost-border: {{ theme.btn_ghost_border }};
+
+  --btn-subtle-bg:     {{ theme.btn_subtle_bg }};
+  --btn-subtle-hover:  {{ theme.btn_subtle_hover }};
+  --btn-subtle-active: {{ theme.btn_subtle_active }};
+  --btn-subtle-text:   {{ theme.btn_subtle_text }};
+  --btn-subtle-border: {{ theme.btn_subtle_border }};
+
+  --btn-text-transform: {{ theme.btn_text_transform }};
+  --btn-font-weight:    {{ theme.btn_font_weight }};
+  --btn-radius:         var(--border-radius-btn);
+  --btn-padding-sm: 0.375rem 0.875rem;
+  --btn-padding-md: 0.625rem 1.25rem;
+  --btn-padding-lg: 0.875rem 1.75rem;
+
+  --form-input-radius: {{ theme.form_input_radius }}px;
+  --form-input-border: {{ theme.form_input_border }};
+  --form-input-bg:          var(--color-bg-light);
+  --form-input-text:        var(--color-text-body);
+  --form-input-placeholder: var(--color-text-muted);
+  --form-input-focus-ring:  var(--color-focus);
+  --form-input-padding:     0.5rem 0.875rem;
+  --form-label-size:        var(--text-sm);
+  --form-label-weight:      500;
+
+  --section-divider-color:   {{ theme.section_divider_color }};
+  --blockquote-border-color: {{ theme.blockquote_border_color }};
+  --blockquote-font-style:   {{ theme.blockquote_font_style }};
+}

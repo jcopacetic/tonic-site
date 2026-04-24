@@ -1,0 +1,161 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+{# Block template: tonic-blog-toc → blog_toc_block.html #}
+<!--
+  Module: Tonic Blog TOC (Global)
+  Description: Table of contents that automatically scans the post body for headings,
+               injects anchor IDs where missing, and generates smooth-scrolling jump links.
+               Supports inline (above post body) and sticky sidebar positions.
+               Collapses to a mobile-friendly dropdown on narrow screens.
+               Active section tracking via IntersectionObserver.
+               — Author: Jonathan Sumner | jonathan@khaoticdigital.com
+  Usage: Place in the blog post template. For sticky sidebar, the template must have
+         a two-column layout with this module in the sidebar column.
+         Global — edit once to update all posts.
+-->
+
+<nav
+  id="{{ name }}"
+  class="tonic-toc {{ value.advanced.custom_class }} hide-on-mobile"
+  aria-label="Table of contents"
+  data-toc-min="{{ value.style.layout.min_headings }}"
+  data-toc-levels="{{ value.style.layout.heading_levels }}"
+  data-toc-target="#tonic-post-content"
+>
+
+  <div class="tonic-toc__header" role="button" aria-expanded="false" aria-controls="tonic-toc-nav">
+    <p class="tonic-toc__title">{{ value.labels.toc_title }}</p>
+    <span class="tonic-toc__toggle-icon" aria-hidden="true">
+
+    </span>
+  </div>
+
+  <div class="tonic-toc__nav" id="tonic-toc-nav">
+
+    <ul class="tonic-toc__list" role="list"></ul>
+  </div>
+
+</nav>
+
+<script>
+(function () {
+  'use strict';
+
+  const TOC_MOBILE_LABEL = {{ value.labels.mobile_toggle_label | json }};
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const toc       = document.getElementById({{ name | json }});
+    if (!toc) return;
+
+    const targetSel = toc.dataset.tocTarget || '#tonic-post-content';
+    const levels    = toc.dataset.tocLevels  || 'h2';
+    const minH      = parseInt(toc.dataset.tocMin || '3', 10);
+    const postBody  = document.querySelector(targetSel);
+    if (!postBody) return;
+
+
+    const selMap = {
+      'h2':    'h2',
+      'h2-h3': 'h2, h3',
+      'h2-h4': 'h2, h3, h4'
+    };
+    const headingSel = selMap[levels] || 'h2';
+    const headings   = Array.from(postBody.querySelectorAll(headingSel));
+
+    if (headings.length < minH) {
+      toc.style.display = 'none';
+      return;
+    }
+
+
+    headings.forEach(function (h, i) {
+      if (!h.id) {
+        const slug = (h.textContent || '')
+          .trim()
+          .toLowerCase()
+          .replace(/[^a-z0-9\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-');
+        h.id = slug || ('section-' + (i + 1));
+      }
+    });
+
+
+    const list = toc.querySelector('.tonic-toc__list');
+    headings.forEach(function (h) {
+      const level  = h.tagName.toLowerCase();
+      const li     = document.createElement('li');
+      li.className = 'tonic-toc__item tonic-toc__item--' + level;
+
+      const a      = document.createElement('a');
+      a.href        = '#' + h.id;
+      a.className   = 'tonic-toc__link';
+      a.textContent = h.textContent;
+
+
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.getElementById(h.id);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          history.pushState(null, '', '#' + h.id);
+        }
+
+        if (window.innerWidth < 768) {
+          toc.classList.remove('tonic-toc--open');
+          const btn = toc.querySelector('.tonic-toc__header');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+
+
+    const header = toc.querySelector('.tonic-toc__header');
+    if (header) {
+      header.addEventListener('click', function () {
+        const isOpen = toc.classList.toggle('tonic-toc--open');
+        header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    }
+
+
+    if ('IntersectionObserver' in window) {
+      const links       = Array.from(list.querySelectorAll('.tonic-toc__link'));
+      const linkMap     = {};
+      links.forEach(function (a) {
+        const id = a.getAttribute('href').slice(1);
+        linkMap[id] = a;
+      });
+
+      let activeId = null;
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            const id  = entry.target.id;
+            const idx = headings.findIndex(function (h) { return h.id === id; });
+
+
+            if (activeId !== id) {
+              if (activeId && linkMap[activeId]) {
+                linkMap[activeId].classList.remove('tonic-toc__link--active');
+              }
+              activeId = id;
+              if (linkMap[id]) {
+                linkMap[id].classList.add('tonic-toc__link--active');
+              }
+            }
+          }
+        });
+      }, {
+        rootMargin: '-80px 0px -60% 0px',
+        threshold: 0
+      });
+
+      headings.forEach(function (h) { observer.observe(h); });
+    }
+  });
+}());
+</script>

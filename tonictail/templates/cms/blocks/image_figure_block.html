@@ -1,0 +1,16 @@
+{% load wagtailimages_tags %}
+<section class="section section--bg-light section--no-top">
+  <div class="{{ value.container_width|default:'container-lg' }}">
+    <figure class="image-figure__figure" style="text-align: {{ value.alignment|default:'center' }};">
+      {% if value.link_image and value.image_link %}
+        <a href="{{ value.image_link }}" class="image-figure__link">
+      {% endif %}
+      {% image value.image width-1280 as img %}
+      <img src="{{ img.url }}" alt="{{ value.image.alt_text|default:'' }}" class="image-figure__img">
+      {% if value.link_image and value.image_link %}</a>{% endif %}
+      {% if value.show_caption and value.caption %}
+        <figcaption class="image-figure__caption">{{ value.caption }}</figcaption>
+      {% endif %}
+    </figure>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+{% load wagtailcore_tags %}
+<section class="module-feature-list section section--bg-{{ value.background.background_type|default:'light' }}">
+  <div class="container">
+    {% if value.eyebrow or value.heading or value.subheading %}
+      <div class="content-centered content-narrow mb-12">
+        {% if value.eyebrow %}<span class="eyebrow">{{ value.eyebrow }}</span>{% endif %}
+        {% if value.heading %}<h2>{{ value.heading }}</h2>{% endif %}
+        {% if value.subheading %}<div class="prose mt-4">{{ value.subheading|richtext }}</div>{% endif %}
+      </div>
+    {% endif %}
+    <div class="d-grid" style="grid-template-columns: repeat({{ value.columns_desktop|default:'3' }}, minmax(0,1fr)); gap: var(--grid-gutter);">
+      {% for item in value.items %}
+        <div class="module-feature-list__item d-flex {% if value.item_layout == 'icon-left' %}flex-row items-start{% else %}flex-col{% endif %}" style="gap: var(--space-4);">
+          {% if item.icon %}
+            <div class="flex-shrink-0" style="font-size: 1.5rem;">{{ item.icon }}</div>
+          {% endif %}
+          <div>
+            <h3 class="h5 mb-2">{{ item.title }}</h3>
+            {% if item.description %}
+              <div class="prose">{{ item.description|richtext }}</div>
+            {% endif %}
+            {% if item.link_text and item.link_url %}
+              <a href="{{ item.link_url }}" class="btn btn--link btn--sm mt-3">{{ item.link_text }}</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

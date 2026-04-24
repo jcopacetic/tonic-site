@@ -1,0 +1,60 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+<section class="section section--bg-{{ value.background.background_type|default:'light' }}">
+  <div class="container">
+    {% if value.eyebrow or value.heading or value.subheading %}
+      <div class="module-timeline__header text-{{ value.header_alignment|default:'center' }}">
+        {% if value.eyebrow %}<span class="module-timeline__section-eyebrow eyebrow">{{ value.eyebrow }}</span>{% endif %}
+        {% if value.heading %}<h2 class="module-timeline__section-heading">{{ value.heading }}</h2>{% endif %}
+        {% if value.subheading %}<p class="module-timeline__section-subheading mt-4">{{ value.subheading }}</p>{% endif %}
+      </div>
+    {% endif %}
+    <div class="module-timeline__body">
+      <div class="module-timeline__spine-track" aria-hidden="true">
+        <div class="module-timeline__spine" style="background: var(--color-border);"></div>
+      </div>
+      <ul class="module-timeline__rows">
+        {% for item in value.items %}
+          <li class="module-timeline__row module-timeline__row--both">
+            <div class="module-timeline__cell module-timeline__cell--left">
+              {% if item.left.heading %}
+                <div class="module-timeline__card{% if value.show_card %} {% else %} module-timeline__card--bare{% endif %}">
+                  {% if item.left.image %}
+                    {% image item.left.image width-600 as img %}
+                    <div class="module-timeline__card-image"><img src="{{ img.url }}" alt="{{ item.left.heading }}" style="border-radius: var(--border-radius-img);"></div>
+                  {% endif %}
+                  <div class="module-timeline__card-body">
+                    {% if item.left.eyebrow %}<span class="module-timeline__eyebrow">{{ item.left.eyebrow }}</span>{% endif %}
+                    <h3 class="module-timeline__entry-heading">{{ item.left.heading }}</h3>
+                    {% if item.left.description %}<div class="module-timeline__entry-body prose">{{ item.left.description|richtext }}</div>{% endif %}
+                    {% if item.left.link.link_text and item.left.link.url %}<a href="{{ item.left.link.url }}" class="module-timeline__link">{{ item.left.link.link_text }} →</a>{% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+            <div class="module-timeline__node">
+              <div class="module-timeline__node-dot">
+                <div class="module-timeline__node-inner module-timeline__node-inner--{{ item.node.node_style|default:'dot' }}" style="background: var(--color-primary);"></div>
+              </div>
+            </div>
+            <div class="module-timeline__cell module-timeline__cell--right">
+              {% if item.right.heading %}
+                <div class="module-timeline__card{% if not value.show_card %} module-timeline__card--bare{% endif %}">
+                  {% if item.right.image %}
+                    {% image item.right.image width-600 as img %}
+                    <div class="module-timeline__card-image"><img src="{{ img.url }}" alt="{{ item.right.heading }}" style="border-radius: var(--border-radius-img);"></div>
+                  {% endif %}
+                  <div class="module-timeline__card-body">
+                    {% if item.right.eyebrow %}<span class="module-timeline__eyebrow">{{ item.right.eyebrow }}</span>{% endif %}
+                    <h3 class="module-timeline__entry-heading">{{ item.right.heading }}</h3>
+                    {% if item.right.description %}<div class="module-timeline__entry-body prose">{{ item.right.description|richtext }}</div>{% endif %}
+                    {% if item.right.link.link_text and item.right.link.url %}<a href="{{ item.right.link.url }}" class="module-timeline__link">{{ item.right.link.link_text }} →</a>{% endif %}
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>

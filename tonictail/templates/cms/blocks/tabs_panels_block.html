@@ -1,0 +1,45 @@
+{% load wagtailcore_tags %}
+<section class="module-tabbed-content section section--bg-{{ value.background.background_type|default:'light' }}">
+  <div class="container">
+    {% if value.section_eyebrow or value.section_heading or value.section_subtext %}
+      <div class="tc-header mb-8" style="text-align: center;">
+        {% if value.section_eyebrow %}<span class="tc-eyebrow eyebrow">{{ value.section_eyebrow }}</span>{% endif %}
+        {% if value.section_heading %}<h2 class="tc-heading">{{ value.section_heading }}</h2>{% endif %}
+        {% if value.section_subtext %}<p class="tc-subtext mt-4">{{ value.section_subtext }}</p>{% endif %}
+      </div>
+    {% endif %}
+    <div class="tc-orientation--{{ value.tab_orientation|default:'top' }} tc-variant--{{ value.tab_style|default:'underline' }}">
+      <div class="tc-wrapper">
+        <ul class="tc-tablist tc-tablist--center" role="tablist">
+          {% for tab in value.tabs %}
+            <li role="presentation">
+              <button
+                class="tc-tab-btn{% if forloop.first %} is-active{% endif %}"
+                role="tab"
+                id="tab-{{ forloop.counter }}"
+                aria-controls="panel-{{ forloop.counter }}"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                {% if not forloop.first %}tabindex="-1"{% endif %}>
+                {{ tab.tab_label }}
+              </button>
+            </li>
+          {% endfor %}
+        </ul>
+        <div class="tc-panels">
+          {% for tab in value.tabs %}
+            <div
+              class="tc-panel"
+              id="panel-{{ forloop.counter }}"
+              role="tabpanel"
+              aria-labelledby="tab-{{ forloop.counter }}"
+              {% if not forloop.first %}hidden{% endif %}>
+              <div class="tc-panel__inner prose">
+                {{ tab.tab_content|richtext }}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

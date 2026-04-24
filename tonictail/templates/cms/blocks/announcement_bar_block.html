@@ -1,0 +1,11 @@
+<div class="module-global-announcements" style="background: var(--color-primary); color: #fff; padding: var(--space-3) 0;" data-scroll-mode="{{ value.scroll_mode|default:'static' }}">
+  <div class="container d-flex items-center justify-center" style="gap: var(--space-4);">
+    <p style="margin: 0; font-size: var(--text-sm); font-weight: 500;">{{ value.message_text }}</p>
+    {% if value.show_cta and value.cta_label and value.cta_url %}
+      <a href="{{ value.cta_url }}" class="btn btn--sm" style="background: rgba(255,255,255,0.2); color: #fff; border-color: rgba(255,255,255,0.4);"
+         {% if value.cta_new_tab %}target="_blank" rel="noopener"{% endif %}>
+        {{ value.cta_label }}
+      </a>
+    {% endif %}
+  </div>
+</div>

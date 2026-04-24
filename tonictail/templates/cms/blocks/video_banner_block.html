@@ -1,0 +1,28 @@
+{% load wagtailimages_tags %}
+<section class="module-video-background" style="min-height: 560px;">
+  {% if value.video_source == "mp4" and value.mp4_url %}
+    <video class="module-video-background__video" autoplay muted loop playsinline>
+      <source src="{{ value.mp4_url }}" type="video/mp4">
+    </video>
+  {% endif %}
+  {% if value.fallback_image %}
+    {% image value.fallback_image fill-1920x1080 as fb %}
+    <img class="module-video-background__fallback" src="{{ fb.url }}" alt="" aria-hidden="true">
+  {% endif %}
+  <div class="module-video-background__overlay" style="background: rgba(0,0,0,0.45);"></div>
+  <div class="module-video-background__content container" style="text-align: {{ value.content_alignment|default:'center' }}; color: #fff; padding-top: var(--space-20); padding-bottom: var(--space-20);">
+    {% if value.eyebrow %}<span class="module-video-background__eyebrow eyebrow">{{ value.eyebrow }}</span>{% endif %}
+    <{{ value.heading_tag|default:"h2" }} class="module-video-background__headline">{{ value.heading }}</{{ value.heading_tag|default:"h2" }}>
+    {% if value.subheadline %}<p class="module-video-background__subheadline">{{ value.subheadline }}</p>{% endif %}
+    {% if value.primary_cta.label or value.secondary_cta.label %}
+      <div class="module-video-background__ctas btn-group {% if value.content_alignment == 'center' %}btn-group--center{% endif %}">
+        {% if value.primary_cta.label %}
+          <a href="{{ value.primary_cta.url }}" class="btn btn--{{ value.primary_cta.style|default:'primary' }}">{{ value.primary_cta.label }}</a>
+        {% endif %}
+        {% if value.secondary_cta.label %}
+          <a href="{{ value.secondary_cta.url }}" class="btn btn--{{ value.secondary_cta.style|default:'ghost' }}">{{ value.secondary_cta.label }}</a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}
+
+{% block content %}
+
+  <section class="section section--bg-alt section--border-bottom">
+    <div class="container container-md">
+      <h1>{{ self.title }}</h1>
+      {% if self.intro %}
+        <div class="prose">{{ self.intro|richtext }}</div>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="section section--bg-light">
+    <div class="container container-lg">
+      {% if docs %}
+        <div class="d-grid" style="grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--grid-gutter);">
+          {% for doc in docs %}
+            <a href="{{ doc.url }}" style="display: block; padding: var(--space-6); background: var(--color-bg-light); border: var(--border-width) solid var(--color-border); border-radius: var(--border-radius-card); text-decoration: none; transition: box-shadow var(--transition-base);">
+              <h3 style="margin: 0 0 var(--space-2); font-size: var(--text-lg); color: var(--color-text-heading);">{{ doc.title }}</h3>
+              {% if doc.specific.intro %}
+                <p style="margin: 0; color: var(--color-text-muted); font-size: var(--text-sm);">{{ doc.specific.intro|truncatechars:120 }}</p>
+              {% endif %}
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p style="color: var(--color-text-muted);">No documentation pages yet.</p>
+      {% endif %}
+    </div>
+  </section>
+
+{% endblock %}

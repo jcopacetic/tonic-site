@@ -1,0 +1,43 @@
+{% load wagtailimages_tags %}
+<section class="module-testimonials-grid section section--bg-{{ value.background.background_type|default:'alt' }}">
+  <div class="module-testimonials-grid__overlay" aria-hidden="true"></div>
+  <div class="container">
+    {% if value.eyebrow or value.heading or value.subheading %}
+      <div class="module-testimonials-grid__header content-centered mb-12">
+        {% if value.eyebrow %}<span class="module-testimonials-grid__eyebrow eyebrow">{{ value.eyebrow }}</span>{% endif %}
+        {% if value.heading %}<h2 class="module-testimonials-grid__heading">{{ value.heading }}</h2>{% endif %}
+        {% if value.subheading %}<p class="module-testimonials-grid__subheading mt-4">{{ value.subheading }}</p>{% endif %}
+      </div>
+    {% endif %}
+    <div class="module-testimonials-grid__grid" style="display:grid; grid-template-columns: repeat({{ value.columns_desktop|default:'3' }}, minmax(0,1fr)); gap: 1.5rem;">
+      {% for t in value.testimonials %}
+        <div class="module-testimonials-grid__card" style="background: var(--color-bg-light); border: var(--border-width) solid var(--color-border); border-radius: var(--border-radius-card);">
+          {% if t.star_rating and t.star_rating != "0" %}
+            <div class="module-testimonials-grid__stars">
+              {% for i in "12345" %}
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--color-primary)"><path d="M8 1l1.854 3.756L14 5.528l-3 2.924.708 4.131L8 10.593l-3.708 1.99L5 8.452 2 5.528l4.146-.772z"/></svg>
+              {% endfor %}
+            </div>
+          {% endif %}
+          <blockquote class="module-testimonials-grid__quote"><p>{{ t.quote }}</p></blockquote>
+          <div class="module-testimonials-grid__author">
+            {% if t.avatar %}
+              {% image t.avatar fill-96x96 as av %}
+              <img src="{{ av.url }}" alt="{{ t.author_name }}" class="module-testimonials-grid__avatar" style="border-radius:50%;">
+            {% else %}
+              <div class="module-testimonials-grid__avatar--initials" style="background: var(--color-highlight); color: var(--color-primary); border-radius: 50%;">
+                {{ t.author_name|first }}
+              </div>
+            {% endif %}
+            <div class="module-testimonials-grid__author-info">
+              <p class="module-testimonials-grid__author-name">{{ t.author_name }}</p>
+              {% if t.author_title or t.company_name %}
+                <p class="module-testimonials-grid__author-meta">{{ t.author_title }}{% if t.author_title and t.company_name %}, {% endif %}{{ t.company_name }}</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

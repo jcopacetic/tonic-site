@@ -1,0 +1,24 @@
+<section class="module-map-embed section section--bg-{{ value.background.background_type|default:'light' }}">
+  <div class="container">
+    {% if value.eyebrow or value.heading or value.subheading %}
+      <div class="module-map-embed__header content-centered mb-8">
+        {% if value.eyebrow %}<span class="module-map-embed__eyebrow eyebrow">{{ value.eyebrow }}</span>{% endif %}
+        {% if value.heading %}<h2 class="module-map-embed__heading">{{ value.heading }}</h2>{% endif %}
+        {% if value.subheading %}<p class="module-map-embed__subheading mt-4">{{ value.subheading }}</p>{% endif %}
+      </div>
+    {% endif %}
+    {% if value.embed_url %}
+      <div class="module-map-embed__canvas" style="height: {{ value.map_height|default:450 }}px; border-radius: var(--border-radius-card); overflow: hidden;">
+        <iframe
+          src="{{ value.embed_url }}"
+          width="100%" height="100%"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Map">
+        </iframe>
+      </div>
+    {% endif %}
+  </div>
+</section>

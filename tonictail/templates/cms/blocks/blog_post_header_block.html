@@ -1,0 +1,179 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+{# Block template: tonic-blog-post-header → blog_post_header_block.html #}
+<!--
+  Module: Tonic Blog Post Header (Global)
+  Description: Renders the blog post title, metadata bar (author, date, read time),
+               topic tags, and featured image. Content is sourced entirely from
+               HubSpot blog post variables — no per-post configuration needed.
+               All visual controls live in the Style tab and apply site-wide.
+               Supports Stacked layout (title above image) and Hero layout
+               (title overlaid on full-bleed image with optional overlay).
+               — Author: Jonathan Sumner | jonathan@khaoticdigital.com
+  Usage: Place once in the blog post template. Global — edit once, updates all posts.
+-->
+
+<header
+  id="{{ name }}"
+  class="tonic-post-header tonic-post-header--{{ value.style.layout.header_style }} {{ value.advanced.custom_class }} hide-on-mobile"
+  aria-label="{{ content.name | escape_attr }}"
+>
+
+
+
+
+    <div class="tonic-post-header__hero">
+
+
+        <img
+          src="{{ content.featured_image | escape_url }}"
+          alt="{{ content.featured_image_alt_text | default('') | escape_attr }}"
+          class="tonic-post-header__hero-img"
+          loading="eager"
+        >
+
+
+      <div class="tonic-post-header__hero-overlay" aria-hidden="true"></div>
+
+      <div class="tonic-post-header__hero-content">
+
+
+          <div class="tonic-post-header__tags">
+
+              <a
+                href="{{ blog_tag_url(group.id, tag.slug) }}"
+                class="tonic-post-header__tag"
+                rel="tag"
+              >{{ tag.name | escape_html }}</a>
+
+          </div>
+
+
+        <h1 class="tonic-post-header__title">{{ content.name | sanitize_html }}</h1>
+
+
+        <div class="tonic-post-header__meta">
+
+
+            <a
+              href="{{ blog_author_url(group.id, content.blog_post_author.slug) | escape_url }}"
+              class="tonic-post-header__meta-author"
+              rel="author"
+            >
+
+                <img
+                  src="{{ content.blog_post_author.avatar | escape_url }}"
+                  alt="{{ content.blog_post_author.display_name | escape_attr }}"
+                  class="tonic-post-header__avatar"
+                  loading="lazy"
+                  width="28"
+                  height="28"
+                >
+
+              {{ value.labels.by_label }} {{ content.blog_post_author.display_name | escape_html }}
+            </a>
+
+
+
+            <span class="tonic-post-header__meta-sep" aria-hidden="true">·</span>
+
+
+
+            <time datetime="{{ content.publish_date | escape_attr }}">
+              {{ content.publish_date_localized | escape_html }}
+            </time>
+
+
+
+            <span class="tonic-post-header__meta-sep" aria-hidden="true">·</span>
+
+
+
+            <span>{{ read_time }} {{ value.labels.read_time_suffix }}</span>
+
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+    <div class="tonic-post-header__stacked">
+      <div class="tonic-post-header__content">
+
+
+          <div class="tonic-post-header__tags">
+
+              <a
+                href="{{ blog_tag_url(group.id, tag.slug) }}"
+                class="tonic-post-header__tag"
+                rel="tag"
+              >{{ tag.name | escape_html }}</a>
+
+          </div>
+
+
+        <h1 class="tonic-post-header__title">{{ content.name | sanitize_html }}</h1>
+
+
+        <div class="tonic-post-header__meta">
+
+
+            <a
+              href="{{ blog_author_url(group.id, content.blog_post_author.slug) | escape_url }}"
+              class="tonic-post-header__meta-author"
+              rel="author"
+            >
+
+                <img
+                  src="{{ content.blog_post_author.avatar | escape_url }}"
+                  alt="{{ content.blog_post_author.display_name | escape_attr }}"
+                  class="tonic-post-header__avatar"
+                  loading="lazy"
+                  width="28"
+                  height="28"
+                >
+
+              {{ value.labels.by_label }} {{ content.blog_post_author.display_name | escape_html }}
+            </a>
+
+
+
+            <span class="tonic-post-header__meta-sep" aria-hidden="true">·</span>
+
+
+
+            <time datetime="{{ content.publish_date | escape_attr }}">
+              {{ content.publish_date_localized | escape_html }}
+            </time>
+
+
+
+            <span class="tonic-post-header__meta-sep" aria-hidden="true">·</span>
+
+
+
+            <span>{{ read_time }} {{ value.labels.read_time_suffix }}</span>
+
+
+        </div>
+
+      </div>
+
+
+
+        <div class="tonic-post-header__image-wrap">
+          <img
+            src="{{ content.featured_image | escape_url }}"
+            alt="{{ content.featured_image_alt_text | default('') | escape_attr }}"
+            loading="eager"
+          >
+        </div>
+
+
+    </div>
+
+
+
+</header>

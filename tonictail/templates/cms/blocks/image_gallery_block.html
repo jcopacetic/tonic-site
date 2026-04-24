@@ -1,0 +1,43 @@
+{% load wagtailimages_tags %}
+<section class="module-image-gallery section section--bg-{{ value.background.background_type|default:'light' }}">
+  <div class="module-image-gallery__overlay" aria-hidden="true"></div>
+  <div class="container">
+    {% if value.eyebrow or value.heading or value.subheading %}
+      <div class="module-image-gallery__header content-centered mb-10">
+        {% if value.eyebrow %}<span class="module-image-gallery__eyebrow eyebrow">{{ value.eyebrow }}</span>{% endif %}
+        {% if value.heading %}<h2 class="module-image-gallery__heading">{{ value.heading }}</h2>{% endif %}
+        {% if value.subheading %}<p class="module-image-gallery__subheading mt-4">{{ value.subheading }}</p>{% endif %}
+      </div>
+    {% endif %}
+    <div data-layout="{{ value.layout|default:'grid' }}"
+         style="{% if value.layout == 'masonry' %}columns: {{ value.columns_desktop|default:'3' }}; gap: var(--grid-gutter);{% else %}display:grid; grid-template-columns: repeat({{ value.columns_desktop|default:'3' }}, minmax(0,1fr)); gap: var(--grid-gutter);{% endif %}">
+      {% for item in value.images %}
+        <div class="module-image-gallery__item">
+          <{% if value.enable_lightbox %}button class="module-image-gallery__item-inner module-image-gallery__item-inner--lightbox" data-lightbox-src="{% image item.image original as full %}{{ full.url }}"{% else %}div class="module-image-gallery__item-inner"{% endif %}
+            style="border-radius: var(--border-radius-card); overflow: hidden; {% if value.layout == 'grid' %}aspect-ratio: {{ value.aspect_ratio|default:'4-3'|cut:'-'|default:'4/3' }};{% endif %} display: block; position: relative;">
+            {% image item.image fill-720x540 as img %}
+            <img class="module-image-gallery__img" src="{{ img.url }}" alt="{{ item.caption|default:'' }}" style="width:100%; height:100%; object-fit:cover;">
+            {% if value.enable_lightbox %}
+              <span class="module-image-gallery__zoom-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35M11 8v6M8 11h6"/></svg>
+              </span>
+            {% endif %}
+          </{% if value.enable_lightbox %}button{% else %}div{% endif %}>
+          {% if item.caption and value.show_caption_overlay %}
+            <p class="module-image-gallery__caption-text" style="padding: 0.5rem 0; font-size: var(--text-sm); color: var(--color-text-muted);">{{ item.caption }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% if value.enable_lightbox %}
+    <div class="module-image-gallery__lightbox" id="gallery-lightbox-{{ block_id }}" aria-modal="true" role="dialog" aria-label="Image lightbox">
+      <button class="module-image-gallery__lightbox-close" data-lightbox-close aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="module-image-gallery__lightbox-stage">
+        <img class="module-image-gallery__lightbox-img" src="" alt="">
+      </div>
+    </div>
+  {% endif %}
+</section>

@@ -1,0 +1,10 @@
+<section class="module-code-block section section--no-top">
+  <div class="container container-md">
+    {% if value.caption %}
+      <p class="code-block__caption">{{ value.caption }}</p>
+    {% endif %}
+    <div class="code-toolbar">
+      <pre class="{% if value.show_line_numbers %}line-numbers {% endif %}language-{{ value.language|default:'python' }}"><code class="language-{{ value.language|default:'python' }}">{{ value.code_snippet|escape }}</code></pre>
+    </div>
+  </div>
+</section>

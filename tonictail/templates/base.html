@@ -1,0 +1,311 @@
+{% load static i18n wagtailcore_tags wagtailimages_tags %}
+{% get_current_language as LANGUAGE_CODE %}
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {# ── PAGE META ──────────────────────────────────────────────────────── #}
+  <title>
+    {% block title %}{% if self.seo_title %}{{ self.seo_title }}{% elif self.title %}{{ self.title }} — {% endif %}{{ settings.cms.SiteSettings.site_name|default:"Tonictail" }}{% endblock %}
+  </title>
+  {% block meta_description %}
+    {% if self.search_description %}
+      <meta name="description" content="{{ self.search_description }}">
+    {% endif %}
+  {% endblock %}
+
+  {# ── OPEN GRAPH ─────────────────────────────────────────────────────── #}
+  {% block open_graph %}
+    <meta property="og:title" content="{% block og_title %}{{ self.title|default:"Tonictail" }}{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    {% if self.search_description %}
+      <meta property="og:description" content="{{ self.search_description }}">
+      <meta name="twitter:description" content="{{ self.search_description }}">
+    {% endif %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ self.title|default:"Tonictail" }}">
+  {% endblock %}
+
+  {# ── FAVICON ────────────────────────────────────────────────────────── #}
+  <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+
+  {# ── FONTS PRECONNECT ───────────────────────────────────────────────── #}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  {# ── CSS ────────────────────────────────────────────────────────────── #}
+  {% block css %}
+    {# 1. Dynamic theme variables — must load first #}
+    <link rel="stylesheet" href="{% url 'theme_css' %}">
+
+    {# 2. Static theme partials via theme.css #}
+    <link rel="stylesheet" href="{% static 'cms/css/theme.css' %}">
+
+    {# 3. Project-level overrides #}
+    <link rel="stylesheet" href="{% static 'css/project.css' %}">
+  {% endblock css %}
+
+  {# ── JS DETECTION (inline — prevents flash of no-JS styles) ────────── #}
+  <script>document.documentElement.classList.replace("no-js", "js");</script>
+
+  {# ── PAGE-LEVEL HEAD BLOCK ──────────────────────────────────────────── #}
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body class="{% block bodyclass %}{% endblock %}">
+
+  {# ── SITE WRAPPER — flex column for sticky footer ───────────────────── #}
+  <div class="site-wrapper">
+
+    {# ── GLOBAL HEADER ──────────────────────────────────────────────────── #}
+    {% block site_header %}
+      {% with settings=settings.cms.SiteSettings %}
+      <header role="banner" class="site-header">
+
+        {# Sentinel — IntersectionObserver target for sticky detection #}
+        <div class="header__sentinel" aria-hidden="true" id="site-header-sentinel"></div>
+
+        <div
+          id="site-header"
+          class="module-global-header header--layout-logo-left-nav-right-cta-right"
+          data-transparent="false"
+          role="banner"
+        >
+          <a href="#main-content" class="header__skip">Skip to content</a>
+
+          <div class="header__container">
+            <div class="header__inner">
+
+              {# ── Brand ──────────────────────────────────────────────── #}
+              <div class="header__brand">
+                <a href="/" aria-label="{{ settings.site_name|default:"Tonictail" }} — Go to homepage">
+                  {% if settings.site_logo %}
+                    {% image settings.site_logo original as logo %}
+                    <img
+                      class="header__logo header__logo--default"
+                      src="{{ logo.url }}"
+                      alt="{{ settings.site_name|default:"Tonictail" }}"
+                      height="40"
+                      width="auto"
+                    >
+                  {% else %}
+                    <span class="header__site-name">{{ settings.site_name|default:"Tonictail" }}</span>
+                  {% endif %}
+                </a>
+              </div>
+
+              {# ── Desktop nav ─────────────────────────────────────────── #}
+              <nav class="header__nav" aria-label="Main navigation">
+                <ul class="nav__list" role="list">
+                  <li class="nav__item">
+                    <a class="nav__link {% if request.path == '/' %}is-active{% endif %}" href="/">Home</a>
+                  </li>
+                  {% block nav_items %}{% endblock %}
+                  {% if request.user.is_authenticated %}
+                    <li class="nav__item">
+                      <a class="nav__link" href="{% url 'users:detail' request.user.pk %}">{% trans "My Profile" %}</a>
+                    </li>
+                    <li class="nav__item">
+                      <a class="nav__link" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
+                    </li>
+                  {% else %}
+                    {% if ACCOUNT_ALLOW_REGISTRATION %}
+                      <li class="nav__item">
+                        <a class="nav__link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
+                      </li>
+                    {% endif %}
+                    <li class="nav__item">
+                      <a class="nav__link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
+                    </li>
+                  {% endif %}
+                </ul>
+              </nav>
+
+              {# ── Desktop CTA ─────────────────────────────────────────── #}
+              {% block header_cta %}
+                <div class="header__cta">
+                  {% if not request.user.is_authenticated %}
+                    <a class="header__cta-btn header__cta-btn--primary header__cta-btn--md" href="{% url 'account_signup' %}">
+                      {% trans "Get Started" %}
+                    </a>
+                  {% endif %}
+                </div>
+              {% endblock %}
+
+              {# ── Mobile toggle ───────────────────────────────────────── #}
+              <button
+                class="header__mobile-toggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="site-header-mobile-nav"
+                type="button"
+              >
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <line class="toggle-bar toggle-bar--top" x1="2" y1="5"  x2="22" y2="5"  stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <line class="toggle-bar toggle-bar--mid" x1="2" y1="12" x2="22" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <line class="toggle-bar toggle-bar--bot" x1="2" y1="19" x2="22" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+
+            </div>{# /header__inner #}
+          </div>{# /header__container #}
+
+          {# ── Mobile nav panel ──────────────────────────────────────────── #}
+          <div class="header__mobile-nav" id="site-header-mobile-nav" aria-label="Mobile navigation" role="navigation">
+            <ul class="mobile-nav__list" role="list">
+              <li class="mobile-nav__item">
+                <a class="mobile-nav__link {% if request.path == '/' %}is-active{% endif %}" href="/">Home</a>
+              </li>
+              {% block mobile_nav_items %}{% endblock %}
+              {% if request.user.is_authenticated %}
+                <li class="mobile-nav__item">
+                  <a class="mobile-nav__link" href="{% url 'users:detail' request.user.pk %}">{% trans "My Profile" %}</a>
+                </li>
+                <li class="mobile-nav__item">
+                  <a class="mobile-nav__link" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
+                </li>
+              {% else %}
+                {% if ACCOUNT_ALLOW_REGISTRATION %}
+                  <li class="mobile-nav__item">
+                    <a class="mobile-nav__link" href="{% url 'account_signup' %}">{% trans "Sign Up" %}</a>
+                  </li>
+                {% endif %}
+                <li class="mobile-nav__item">
+                  <a class="mobile-nav__link" href="{% url 'account_login' %}">{% trans "Sign In" %}</a>
+                </li>
+              {% endif %}
+            </ul>
+            {% if not request.user.is_authenticated %}
+              <div class="mobile-nav__cta">
+                <a class="mobile-nav__cta-btn mobile-nav__cta-btn--primary" href="{% url 'account_signup' %}">{% trans "Get Started" %}</a>
+              </div>
+            {% endif %}
+          </div>{# /mobile-nav #}
+
+        </div>{# /module-global-header #}
+      </header>
+      {% endwith %}
+    {% endblock site_header %}
+
+    {# ── ANNOUNCEMENT BAR BLOCK ─────────────────────────────────────────── #}
+    {% block announcement_bar %}{% endblock %}
+
+    {# ── MESSAGES ───────────────────────────────────────────────────────── #}
+    {% if messages %}
+      <div class="container" style="padding-top: 1rem;">
+        {% for message in messages %}
+          <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {# ── MAIN CONTENT ───────────────────────────────────────────────────── #}
+    <main id="main-content" role="main" class="site-main" tabindex="-1">
+      {% block breadcrumbs %}{% endblock %}
+      {% block hero %}{% endblock %}
+      {% block content %}{% endblock content %}
+      {% block secondary_content %}{% endblock %}
+    </main>
+
+    {# ── GLOBAL FOOTER ──────────────────────────────────────────────────── #}
+    {% block site_footer %}
+      {% with settings=settings.cms.SiteSettings %}
+      <footer role="contentinfo" class="site-footer module-global-footer footer--mode-full" aria-label="Site footer">
+
+        <div class="footer__main">
+          <div class="footer__container">
+            <div class="footer__grid">
+
+              {# Brand column #}
+              <div class="footer__brand-col">
+                {% if settings.site_logo %}
+                  <div class="footer__logo">
+                    <a href="/" aria-label="Go to homepage">
+                      {% image settings.site_logo original as logo %}
+                      <img src="{{ logo.url }}" alt="{{ settings.site_name|default:"Tonictail" }}" loading="lazy" width="auto" height="40">
+                    </a>
+                  </div>
+                {% else %}
+                  <span class="footer__site-name">{{ settings.site_name|default:"Tonictail" }}</span>
+                {% endif %}
+
+                {% if settings.footer_text %}
+                  <p class="footer__tagline">{{ settings.footer_text }}</p>
+                {% endif %}
+
+                {# Social icons #}
+                {% if settings.twitter_url or settings.github_url %}
+                  <ul class="footer__social-icons" role="list" aria-label="Social media links">
+                    {% if settings.twitter_url %}
+                      <li class="footer__social-item">
+                        <a class="footer__social-link footer__social-link--twitter" href="{{ settings.twitter_url }}" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
+                          <svg class="footer__social-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="20" height="20">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.738-8.835L1.254 2.25H8.08l4.259 5.629 5.905-5.629zm-1.161 17.52h1.833L7.084 4.126H5.117z" fill="currentColor"/>
+                          </svg>
+                        </a>
+                      </li>
+                    {% endif %}
+                    {% if settings.github_url %}
+                      <li class="footer__social-item">
+                        <a class="footer__social-link footer__social-link--github" href="{{ settings.github_url }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                          <svg class="footer__social-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" width="20" height="20">
+                            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" fill="currentColor"/>
+                          </svg>
+                        </a>
+                      </li>
+                    {% endif %}
+                  </ul>
+                {% endif %}
+              </div>
+
+              {# Nav columns block — override in child templates #}
+              {% block footer_nav_columns %}{% endblock %}
+
+            </div>{# /footer__grid #}
+          </div>{# /footer__container #}
+        </div>{# /footer__main #}
+
+        <hr class="footer__divider" aria-hidden="true">
+
+        <div class="footer__copyright-bar footer__copyright-bar--split">
+          <div class="footer__container">
+            <div class="footer__copyright-inner">
+              <p class="footer__copyright-text">
+                &copy; {% now "Y" %} {{ settings.site_name|default:"Tonictail" }}. All rights reserved.
+              </p>
+              {% block footer_legal %}{% endblock %}
+            </div>
+          </div>
+        </div>
+
+      </footer>
+      {% endwith %}
+    {% endblock site_footer %}
+
+  </div>{# /site-wrapper #}
+
+  {# ── SCROLL TO TOP ──────────────────────────────────────────────────── #}
+  <button id="scroll-top-btn" class="scroll-top" aria-label="Scroll to top" tabindex="0">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  {# ── JAVASCRIPT ─────────────────────────────────────────────────────── #}
+  {% block javascript %}
+      <script src="{% static 'cms/js/theme.js' %}" defer></script>
+  <script src="{% static 'cms/js/header.js' %}" defer></script>
+  <script src="{% static 'cms/js/components.js' %}" defer></script>
+  {% endblock javascript %}
+
+  {% block modal %}{% endblock %}
+  {% block inline_javascript %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<section class="module-process-steps section section--bg-{{ value.background.background_type|default:'light' }}">
+  <div class="module-process-steps__overlay" aria-hidden="true"></div>
+  <div class="container">
+    {% if value.eyebrow or value.heading or value.subtext %}
+      <div class="module-process-steps__section-header content-centered mb-12">
+        {% if value.eyebrow %}<span class="module-process-steps__eyebrow eyebrow">{{ value.eyebrow }}</span>{% endif %}
+        {% if value.heading %}<h2 class="module-process-steps__heading">{{ value.heading }}</h2>{% endif %}
+        {% if value.subtext %}<div class="module-process-steps__subtext prose mt-4">{{ value.subtext }}</div>{% endif %}
+      </div>
+    {% endif %}
+    <ol class="module-process-steps__list module-process-steps__list--{{ value.orientation|default:'horizontal' }}" style="grid-template-columns: repeat({{ value.columns_desktop|default:'3' }}, 1fr);">
+      {% for step in value.steps %}
+        <li class="module-process-steps__step">
+          {% if value.orientation == "vertical" %}
+            <div class="module-process-steps__node-col">
+          {% endif %}
+          <div class="module-process-steps__node" style="background: var(--color-primary); color: #fff;">
+            {% if step.node_type == "icon" and step.icon %}
+              <span style="font-size: 1.25rem;">{{ step.icon }}</span>
+            {% elif step.node_type == "dot" %}
+              &nbsp;
+            {% else %}
+              {{ forloop.counter }}
+            {% endif %}
+          </div>
+          {% if value.orientation == "vertical" %}
+            {% if not forloop.last %}
+              <div class="module-process-steps__connector" style="background: var(--color-border);"></div>
+            {% endif %}
+            </div>
+          {% endif %}
+          <div class="module-process-steps__step-body">
+            <h3 class="module-process-steps__step-title">{{ step.step_title }}</h3>
+            {% if step.description %}
+              <div class="module-process-steps__description prose">{{ step.description }}</div>
+            {% endif %}
+            {% if step.link_text and step.link_url %}
+              <a href="{{ step.link_url }}" class="module-process-steps__link" style="color: var(--color-primary);">{{ step.link_text }}</a>
+            {% endif %}
+          </div>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>

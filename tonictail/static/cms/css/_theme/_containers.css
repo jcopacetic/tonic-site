@@ -1,0 +1,263 @@
+/*
+ * File: _containers.css
+ * Description: Content container classes, section wrapper utilities, and
+ *              background context classes. Every module's outer wrapper uses
+ *              .section; the inner content wrapper uses .container or a
+ *              .container-* size variant.
+ * Author: Jonathan Sumner | jonathan@khaoticdigital.com
+ * Theme: Tonic — Khaotic Digital, LLC
+ */
+
+/* ============================================================
+   BASE CONTAINER
+   Default: inherits --container-max from theme fields (1280px).
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: var(--container-max, 1280px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-gutter, 1.5rem);
+  padding-right: var(--container-gutter, 1.5rem);
+}
+
+/* ============================================================
+   CONTAINER SIZE VARIANTS
+   Use when a specific module needs a narrower or wider container
+   than the theme default. Applied to the inner content wrapper,
+   not the section outer wrapper.
+   ============================================================ */
+.container-xs {
+  width: 100%;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-gutter, 1.5rem);
+  padding-right: var(--container-gutter, 1.5rem);
+}
+
+.container-sm {
+  width: 100%;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-gutter, 1.5rem);
+  padding-right: var(--container-gutter, 1.5rem);
+}
+
+.container-md {
+  width: 100%;
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-gutter, 1.5rem);
+  padding-right: var(--container-gutter, 1.5rem);
+}
+
+.container-lg {
+  width: 100%;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-gutter, 1.5rem);
+  padding-right: var(--container-gutter, 1.5rem);
+}
+
+.container-xl {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-gutter, 1.5rem);
+  padding-right: var(--container-gutter, 1.5rem);
+}
+
+.container-2xl {
+  width: 100%;
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-gutter, 1.5rem);
+  padding-right: var(--container-gutter, 1.5rem);
+}
+
+/* Full width — removes max-width, keeps gutter padding */
+.container-full {
+  width: 100%;
+  max-width: none;
+  padding-left: var(--container-gutter, 1.5rem);
+  padding-right: var(--container-gutter, 1.5rem);
+}
+
+/* Fluid — no max-width, no padding. For edge-to-edge content. */
+.container-fluid {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+
+/* ============================================================
+   SECTION WRAPPER
+   Applied to the outermost wrapper of every module.
+   Controls vertical padding, row gap, and background context.
+   ============================================================ */
+.section {
+  position: relative;
+  padding-top: var(--section-padding, 80px);
+  padding-bottom: var(--section-padding, 80px);
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding-top: var(--section-padding-mobile, 40px);
+    padding-bottom: var(--section-padding-mobile, 40px);
+  }
+}
+
+/* Section — no top padding (use when a module directly follows another) */
+.section--no-top    { padding-top: 0; }
+.section--no-bottom { padding-bottom: 0; }
+.section--flush     { padding-top: 0; padding-bottom: 0; }
+
+/* ============================================================
+   SECTION — BACKGROUND CONTEXT CLASSES
+   These classes set the section's background color AND trigger
+   appropriate text color inversions for dark sections.
+   ============================================================ */
+
+/* Light (default) */
+.section--bg-light {
+  background-color: var(--color-bg-light);
+}
+
+/* Dark — inverts text colors for legibility */
+.section--bg-dark {
+  background-color: var(--color-bg-dark);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.section--bg-dark h1,
+.section--bg-dark h2,
+.section--bg-dark h3,
+.section--bg-dark h4,
+.section--bg-dark h5,
+.section--bg-dark h6,
+.section--bg-dark .h1,
+.section--bg-dark .h2,
+.section--bg-dark .h3,
+.section--bg-dark .h4,
+.section--bg-dark .h5,
+.section--bg-dark .h6 {
+  color: #ffffff;
+}
+
+.section--bg-dark p,
+.section--bg-dark li {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.section--bg-dark a:not(.btn) {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.section--bg-dark a:not(.btn):hover {
+  color: #ffffff;
+}
+
+/* Alternate — off-white zebra stripe */
+.section--bg-alt {
+  background-color: var(--color-bg-alt);
+}
+
+/* Primary — brand color background */
+.section--bg-primary {
+  background-color: var(--color-primary);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.section--bg-primary h1,
+.section--bg-primary h2,
+.section--bg-primary h3,
+.section--bg-primary h4,
+.section--bg-primary h5,
+.section--bg-primary h6 {
+  color: #ffffff;
+}
+
+/* Highlight — soft tint */
+.section--bg-highlight {
+  background-color: var(--color-highlight);
+}
+
+/* Transparent — for layering over images */
+.section--bg-transparent {
+  background-color: transparent;
+}
+
+/* ============================================================
+   SECTION — BORDER UTILITIES
+   Driven by --section-divider-color from theme.ui.section_divider
+   ============================================================ */
+.section--border-top {
+  border-top: var(--border-width) solid var(--section-divider-color, var(--color-border));
+}
+
+.section--border-bottom {
+  border-bottom: var(--border-width) solid var(--section-divider-color, var(--color-border));
+}
+
+/* ============================================================
+   SECTION — OVERLAY PATTERN
+   For sections with background images. Wrap content inside
+   .section__overlay-content and apply overlay via scope_css.
+   ============================================================ */
+.section--has-bg-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.section__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-base);
+  pointer-events: none;
+}
+
+.section__inner {
+  position: relative;
+  z-index: calc(var(--z-base) + 1);
+}
+
+/* ============================================================
+   CONTENT CENTERING HELPERS
+   Use inside a .container to center content horizontally.
+   ============================================================ */
+.content-centered {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Narrow prose container — used for section intros and standalone text blocks */
+.content-narrow {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-narrow--left {
+  max-width: 680px;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* ── DnD area baseline reset ── */
+.dnd-section > .row-fluid {
+  max-width: none;
+  margin: 0;
+}
+
+.dnd-section .dnd-column {
+  padding: 0;
+}

@@ -1,0 +1,8 @@
+{% load wagtailcore_tags %}
+<section class="module-rich-text section section--bg-{{ value.background.background_type|default:'light' }}">
+  <div class="{{ value.container_width|default:'container-md' }}">
+    <div class="module-rich-text__content prose {% if value.text_alignment == 'center' %}text-center{% endif %}">
+      {{ value.rich_text|richtext }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+<section class="module-data-table section section--bg-{{ value.background.background_type|default:'light' }}">
+  <div class="container">
+    {% if value.section_heading %}
+      <h2 class="dt-heading mb-2">{{ value.section_heading }}</h2>
+    {% endif %}
+    {% if value.intro_text %}
+      <p class="dt-intro mb-8">{{ value.intro_text }}</p>
+    {% endif %}
+    <div class="dt-scroll-wrapper" style="overflow-x: auto;">
+      <table class="dt-table">
+        <thead>
+          <tr class="dt-header">
+            <th></th>
+            {% for col in value.columns %}
+              <th class="{% if col.is_featured %}dt-col--featured{% endif %}" style="text-align: center;">
+                {{ col.header_text }}
+                {% if col.is_featured and col.featured_badge %}
+                  <div><span class="dt-badge" style="background: var(--color-primary); color: #fff;">{{ col.featured_badge }}</span></div>
+                {% endif %}
+              </th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in value.rows %}
+            <tr class="{% if row.is_section_break %}dt-row--section-break{% endif %}" style="{% if not row.is_section_break %}border-bottom: 1px solid var(--color-border);{% endif %}">
+              <td style="font-weight: 500;">{{ row.row_heading }}</td>
+              {% for cell in row.cells %}
+                <td style="text-align: center;">
+                  {% if cell.cell_icon == "check" %}
+                    <span class="dt-icon" style="color: var(--color-secondary);">✓</span>
+                  {% elif cell.cell_icon == "x" %}
+                    <span class="dt-icon" style="color: var(--color-text-muted);">✕</span>
+                  {% elif cell.cell_icon == "dash" %}
+                    <span class="dt-icon dt-icon--dash">—</span>
+                  {% else %}
+                    {{ cell.cell_value }}
+                  {% endif %}
+                </td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% if value.footnote %}
+      <p class="dt-footnote mt-4">{{ value.footnote }}</p>
+    {% endif %}
+  </div>
+</section>

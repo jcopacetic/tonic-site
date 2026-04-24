@@ -1,0 +1,28 @@
+<section class="module-section-header section section--bg-{{ value.background.background_type|default:'light' }}">
+  <div class="{{ value.container_width|default:'container-lg' }}">
+    <div class="module-section-header__inner" style="text-align: {{ value.text_alignment|default:'center' }};">
+      {% if value.eyebrow %}
+        <span class="module-section-header__eyebrow eyebrow">{{ value.eyebrow }}</span>
+      {% endif %}
+      {% if value.show_divider %}
+        <span class="module-section-header__divider" style="background: var(--color-primary);"></span>
+      {% endif %}
+      {% if value.heading %}
+        <{{ value.heading_level|default:"h2" }} class="module-section-header__heading">{{ value.heading }}</{{ value.heading_level|default:"h2" }}>
+      {% endif %}
+      {% if value.subheading %}
+        <p class="module-section-header__subheading">{{ value.subheading }}</p>
+      {% endif %}
+      {% if value.primary_cta.label or value.secondary_cta.label %}
+        <div class="module-section-header__buttons">
+          {% if value.primary_cta.label %}
+            <a href="{{ value.primary_cta.url }}" class="btn btn--{{ value.primary_cta.style|default:'primary' }} btn--{{ value.primary_cta.size|default:'md' }}">{{ value.primary_cta.label }}</a>
+          {% endif %}
+          {% if value.secondary_cta.label %}
+            <a href="{{ value.secondary_cta.url }}" class="btn btn--{{ value.secondary_cta.style|default:'secondary' }} btn--{{ value.secondary_cta.size|default:'md' }}">{{ value.secondary_cta.label }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

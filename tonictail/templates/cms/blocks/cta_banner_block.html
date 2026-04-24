@@ -1,0 +1,25 @@
+<section class="tonic-cta-banner section section--bg-{{ value.background.background_type|default:'primary' }}">
+  <div class="container content-centered content-narrow">
+    {% if value.eyebrow %}<span class="eyebrow">{{ value.eyebrow }}</span>{% endif %}
+    {% if value.heading %}
+      <{{ value.heading_level|default:"h2" }} class="tonic-cta-banner__heading">{{ value.heading }}</{{ value.heading_level|default:"h2" }}>
+    {% endif %}
+    {% if value.subheading %}<p class="text-lg mt-4">{{ value.subheading }}</p>{% endif %}
+    {% if value.primary_cta.label or value.secondary_cta.label %}
+      <div class="btn-group btn-group--center mt-8">
+        {% if value.primary_cta.label %}
+          <a href="{{ value.primary_cta.url }}" class="btn btn--{{ value.primary_cta.style|default:'primary' }} btn--{{ value.primary_cta.size|default:'lg' }}"
+            {% if value.primary_cta.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}>
+            {{ value.primary_cta.label }}
+          </a>
+        {% endif %}
+        {% if value.secondary_cta.label %}
+          <a href="{{ value.secondary_cta.url }}" class="btn btn--{{ value.secondary_cta.style|default:'ghost' }} btn--{{ value.secondary_cta.size|default:'lg' }}"
+            {% if value.secondary_cta.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}>
+            {{ value.secondary_cta.label }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>

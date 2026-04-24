@@ -1,0 +1,453 @@
+/*
+ * File: _forms.css
+ * Description: Base styles for form elements: inputs, textareas, selects,
+ *              checkboxes, radios, labels, validation states, and field groups.
+ *              Uses CSS custom properties from theme fields. HubSpot-specific
+ *              form overrides (V2/V3 form embeds) live in _hubspot-overrides.css.
+ * Author: Jonathan Sumner | jonathan@khaoticdigital.com
+ * Theme: Tonic — Khaotic Digital, LLC
+ */
+
+/* ============================================================
+   FORM — BASE LAYOUT
+   ============================================================ */
+.form {
+  width: 100%;
+}
+
+.form__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.form__row:last-child {
+  margin-bottom: 0;
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.form__field--full {
+  flex-basis: 100%;
+}
+
+/* ============================================================
+   LABEL
+   ============================================================ */
+.form__label,
+label {
+  display: block;
+  font-size: var(--form-label-size, var(--text-sm));
+  font-weight: var(--form-label-weight, 500);
+  color: var(--color-text-heading);
+  margin-bottom: var(--space-1);
+  line-height: 1.3;
+}
+
+.form__label--required::after,
+label.required::after {
+  content: " *";
+  color: #dc2626;
+}
+
+/* ============================================================
+   TEXT INPUTS, TEXTAREA, SELECT
+   ============================================================ */
+.form__input,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+input[type="search"],
+input[type="password"],
+input[type="date"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+textarea,
+select {
+  display: block;
+  width: 100%;
+  padding: var(--form-input-padding, 0.5rem 0.875rem);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  font-weight: 400;
+  line-height: var(--line-height-body);
+  color: var(--form-input-text, var(--color-text-body));
+  background-color: var(--form-input-bg, var(--color-bg-light));
+  border: 1px solid var(--form-input-border, var(--color-border));
+  border-radius: var(--form-input-radius, var(--border-radius));
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form__input::placeholder,
+input::placeholder,
+textarea::placeholder {
+  color: var(--form-input-placeholder, var(--color-text-muted));
+  opacity: 1;
+}
+
+/* ============================================================
+   FOCUS STATE
+   ============================================================ */
+.form__input:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+input[type="datetime-local"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 87, 184, 0.12);
+  outline: none;
+}
+
+/* ============================================================
+   DISABLED STATE
+   ============================================================ */
+.form__input:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: var(--color-bg-alt);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* ============================================================
+   TEXTAREA
+   ============================================================ */
+textarea,
+.form__textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ============================================================
+   SELECT
+   ============================================================ */
+select,
+.form__select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888780' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.875rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+select[multiple] {
+  background-image: none;
+  padding-right: var(--space-3);
+}
+
+/* ============================================================
+   CHECKBOX & RADIO
+   ============================================================ */
+.form__check {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  cursor: pointer;
+}
+
+.form__check input[type="checkbox"],
+.form__check input[type="radio"] {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.form__check-label {
+  font-size: var(--text-base);
+  color: var(--color-text-body);
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+/* Custom styled checkbox */
+.form__check--styled {
+  position: relative;
+  padding-left: 1.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.form__check--styled input[type="checkbox"],
+.form__check--styled input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.form__check--styled .checkmark {
+  position: absolute;
+  top: 0.125rem;
+  left: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  background-color: #fff;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.form__check--styled input:checked ~ .checkmark {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.form__check--styled .checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+.form__check--styled input:checked ~ .checkmark::after {
+  display: block;
+}
+
+/* Radio variant */
+.form__check--radio .checkmark {
+  border-radius: 50%;
+}
+
+.form__check--radio .checkmark::after {
+  border: none;
+  width: 6px;
+  height: 6px;
+  background-color: #fff;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ============================================================
+   TOGGLE / SWITCH
+   ============================================================ */
+.form__toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+}
+
+.form__toggle-switch {
+  position: relative;
+  width: 2.5rem;
+  height: 1.375rem;
+  flex-shrink: 0;
+}
+
+.form__toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.form__toggle-track {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-border);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.form__toggle-track::before {
+  content: "";
+  position: absolute;
+  height: 1rem;
+  width: 1rem;
+  left: 3px;
+  bottom: 3px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform var(--transition-fast);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.form__toggle-switch input:checked ~ .form__toggle-track {
+  background-color: var(--color-primary);
+}
+
+.form__toggle-switch input:checked ~ .form__toggle-track::before {
+  transform: translateX(1.125rem);
+}
+
+.form__toggle-label {
+  font-size: var(--text-base);
+  color: var(--color-text-body);
+}
+
+/* ============================================================
+   VALIDATION STATES
+   ============================================================ */
+
+/* Valid */
+.form__field--valid input,
+.form__field--valid textarea,
+.form__field--valid select,
+input.is-valid,
+textarea.is-valid,
+select.is-valid {
+  border-color: #16a34a;
+}
+
+.form__field--valid input:focus,
+.form__field--valid textarea:focus,
+.form__field--valid select:focus {
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+/* Error */
+.form__field--error input,
+.form__field--error textarea,
+.form__field--error select,
+input.is-invalid,
+textarea.is-invalid,
+select.is-invalid {
+  border-color: #dc2626;
+}
+
+.form__field--error input:focus,
+.form__field--error textarea:focus,
+.form__field--error select:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+}
+
+/* ============================================================
+   VALIDATION MESSAGES
+   ============================================================ */
+.form__help {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+  margin-top: var(--space-1);
+}
+
+.form__error-message,
+.hs-error-msg {
+  font-size: var(--text-sm);
+  color: #dc2626;
+  line-height: 1.4;
+  margin-top: var(--space-1);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.form__success-message {
+  font-size: var(--text-sm);
+  color: #16a34a;
+  line-height: 1.4;
+  margin-top: var(--space-1);
+}
+
+/* ============================================================
+   FORM — INLINE LAYOUT
+   Horizontal label + input row.
+   ============================================================ */
+.form--inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+
+.form--inline .form__field {
+  flex: 1 1 200px;
+}
+
+.form--inline .form__submit {
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   SEARCH INPUT
+   ============================================================ */
+.form__search {
+  position: relative;
+}
+
+.form__search-input {
+  padding-left: 2.5rem;
+}
+
+.form__search-icon {
+  position: absolute;
+  left: 0.875rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-muted);
+  pointer-events: none;
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ============================================================
+   FIELDSET & LEGEND
+   ============================================================ */
+.form__group {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--space-4) var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.form__group-legend {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-heading);
+  padding: 0 var(--space-2);
+}
+
+/* ============================================================
+   FORM SUBMIT ACTIONS AREA
+   ============================================================ */
+.form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  margin-top: var(--space-6);
+}
+
+.form__actions--right {
+  justify-content: flex-end;
+}
+
+.form__actions--center {
+  justify-content: center;
+}

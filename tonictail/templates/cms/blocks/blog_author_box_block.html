@@ -1,0 +1,82 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+{# Block template: tonic-blog-author-box → blog_author_box_block.html #}
+<!--
+  Module: Tonic Blog Author Box (Global)
+  Description: Displays the post author's avatar, name, bio, and social links.
+               Content sourced entirely from content.blog_post_author.* blog variables.
+               Only renders if the post has an assigned author.
+               — Author: Jonathan Sumner | jonathan@khaoticdigital.com
+  Usage: Place once in the blog post template below the post body. Global.
+-->
+
+<aside
+  id="{{ name }}"
+  class="tonic-author-box {{ value.advanced.custom_class }} hide-on-mobile"
+  aria-label="About the author"
+>
+  <div class="tonic-author-box__inner">
+
+
+      <span class="tonic-author-box__label">{{ value.labels.about_label }}</span>
+
+
+    <div class="tonic-author-box__card">
+
+
+
+        <img
+          src="{{ content.blog_post_author.avatar | escape_url }}"
+          alt="{{ content.blog_post_author.display_name | escape_attr }}"
+          class="tonic-author-box__avatar"
+          loading="lazy"
+          width="72"
+          height="72"
+        >
+
+        <div class="tonic-author-box__avatar-placeholder" aria-hidden="true">
+          {{ content.blog_post_author.display_name | truncate(1, true, '') }}
+        </div>
+
+
+
+      <div class="tonic-author-box__body">
+
+        <a
+          href="{{ blog_author_url(group.id, content.blog_post_author.slug) | escape_url }}"
+          class="tonic-author-box__name"
+          rel="author"
+        >{{ content.blog_post_author.display_name | escape_html }}</a>
+
+
+          <p class="tonic-author-box__bio">{{ content.blog_post_author.bio | escape_html }}</p>
+
+
+
+          <div class="tonic-author-box__social">
+
+              <a href="{{ content.blog_post_author.website | escape_url }}" class="tonic-author-box__social-link" target="_blank" rel="noopener" aria-label="Website">
+
+              </a>
+
+
+              <a href="{{ content.blog_post_author.linkedin | escape_url }}" class="tonic-author-box__social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+
+              </a>
+
+
+              <a href="{{ content.blog_post_author.twitter | escape_url }}" class="tonic-author-box__social-link" target="_blank" rel="noopener" aria-label="X / Twitter">
+
+              </a>
+
+
+              <a href="{{ content.blog_post_author.facebook | escape_url }}" class="tonic-author-box__social-link" target="_blank" rel="noopener" aria-label="Facebook">
+
+              </a>
+
+          </div>
+
+
+      </div>
+    </div>
+  </div>
+</aside>

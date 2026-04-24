@@ -1,0 +1,405 @@
+/*
+ * File: _typography.css
+ * Description: Type scale, heading styles H1–H6, body copy rules, eyebrow
+ *              labels, blockquotes, code blocks, and the .prose context class.
+ *              All sizes reference fluid clamp() variables from _variables.css.
+ *              Per-heading fine-tuning lives here — not in theme fields — to
+ *              keep Theme Settings clean.
+ * Author: Jonathan Sumner | jonathan@khaoticdigital.com
+ * Theme: Tonic — Khaotic Digital, LLC
+ */
+
+/* ============================================================
+   HEADINGS — TYPE SCALE
+   H1 base size is set by --font-size-heading from the theme field.
+   H2–H6 step down using the fluid clamp() scale in _variables.css.
+   ============================================================ */
+h1, .h1 { font-size: var(--text-h1); }
+h2, .h2 { font-size: var(--text-h2); }
+h3, .h3 { font-size: var(--text-h3); }
+h4, .h4 { font-size: var(--text-h4); }
+h5, .h5 { font-size: var(--text-h5); }
+h6, .h6 { font-size: var(--text-h6); }
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-heading);
+  line-height: var(--line-height-heading);
+  color: var(--color-text-heading);
+  letter-spacing: -0.01em;
+}
+
+/* H1 and H2 get tighter tracking for large display use */
+h1, .h1 {
+  letter-spacing: -0.02em;
+}
+
+h2, .h2 {
+  letter-spacing: -0.015em;
+}
+
+/* ============================================================
+   DISPLAY TEXT
+   Larger than H1 — used in full-width hero modules.
+   Apply with class .text-display on any element.
+   ============================================================ */
+.text-display {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: var(--font-weight-heading);
+  line-height: var(--line-height-display);
+  letter-spacing: -0.03em;
+  color: var(--color-text-heading);
+}
+
+/* ============================================================
+   BODY TEXT
+   ============================================================ */
+body,
+p,
+li,
+td,
+th {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-body);
+  line-height: var(--line-height-body);
+  color: var(--color-text-body);
+}
+
+/* ============================================================
+   TEXT SIZE UTILITIES
+   Apply to any element to override the default size.
+   ============================================================ */
+.text-xs    { font-size: var(--text-xs); }
+.text-sm    { font-size: var(--text-sm); }
+.text-base  { font-size: var(--text-base); }
+.text-lg    { font-size: var(--text-lg); }
+.text-xl    { font-size: var(--text-xl); }
+.text-2xl   { font-size: var(--text-2xl); }
+.text-3xl   { font-size: var(--text-3xl); }
+.text-4xl   { font-size: var(--text-4xl); }
+.text-5xl   { font-size: var(--text-5xl); }
+.text-6xl   { font-size: var(--text-6xl); }
+
+/* ============================================================
+   FONT WEIGHT UTILITIES
+   ============================================================ */
+.font-light    { font-weight: 300; }
+.font-normal   { font-weight: 400; }
+.font-medium   { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold     { font-weight: 700; }
+
+/* ============================================================
+   FONT FAMILY UTILITIES
+   ============================================================ */
+.font-heading { font-family: var(--font-heading); }
+.font-body    { font-family: var(--font-body); }
+.font-display { font-family: var(--font-display); }
+.font-mono    { font-family: var(--font-mono); }
+
+/* ============================================================
+   TEXT COLOR UTILITIES
+   ============================================================ */
+.text-heading { color: var(--color-text-heading); }
+.text-body    { color: var(--color-text-body); }
+.text-muted   { color: var(--color-text-muted); }
+.text-primary { color: var(--color-primary); }
+.text-white   { color: #ffffff; }
+.text-inherit { color: inherit; }
+
+/* ============================================================
+   TEXT ALIGNMENT
+   ============================================================ */
+.text-left   { text-align: left; }
+.text-center { text-align: center; }
+.text-right  { text-align: right; }
+
+/* ============================================================
+   TEXT TRANSFORM
+   ============================================================ */
+.uppercase   { text-transform: uppercase; }
+.lowercase   { text-transform: lowercase; }
+.capitalize  { text-transform: capitalize; }
+.normal-case { text-transform: none; }
+
+/* ============================================================
+   LETTER SPACING
+   ============================================================ */
+.tracking-tight  { letter-spacing: -0.025em; }
+.tracking-normal { letter-spacing: 0; }
+.tracking-wide   { letter-spacing: 0.08em; }
+.tracking-wider  { letter-spacing: 0.15em; }
+
+/* ============================================================
+   LINE HEIGHT UTILITIES
+   ============================================================ */
+.leading-none    { line-height: 1; }
+.leading-tight   { line-height: 1.15; }
+.leading-snug    { line-height: 1.35; }
+.leading-normal  { line-height: 1.5; }
+.leading-relaxed { line-height: 1.65; }
+.leading-loose   { line-height: 2; }
+
+/* ============================================================
+   EYEBROW LABEL
+   Small label displayed above section headings.
+   Usage: <span class="eyebrow">Category</span>
+   ============================================================ */
+.eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-transform: var(--eyebrow-transform, uppercase);
+  letter-spacing: var(--eyebrow-spacing, 0.08em);
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+
+/* Eyebrow on dark backgrounds */
+.section--bg-dark .eyebrow,
+.bg-dark .eyebrow {
+  color: var(--color-accent);
+}
+
+/* ============================================================
+   BLOCKQUOTE
+   ============================================================ */
+blockquote,
+.blockquote {
+  position: relative;
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-left: 3px solid var(--blockquote-border-color, var(--color-primary));
+  font-style: var(--blockquote-font-style, italic);
+  color: var(--color-text-body);
+}
+
+blockquote p,
+.blockquote p {
+  font-size: var(--text-lg);
+  margin-bottom: 0;
+}
+
+blockquote cite,
+.blockquote cite {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: var(--text-sm);
+  font-style: normal;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   INLINE CODE
+   ============================================================ */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background-color: var(--color-bg-alt);
+  color: var(--color-primary);
+  padding: 0.1em 0.35em;
+  border-radius: calc(var(--border-radius) / 2);
+  border: 1px solid var(--color-border);
+}
+
+/* ============================================================
+   CODE BLOCK
+   ============================================================ */
+pre {
+  background-color: var(--color-bg-dark);
+  color: #e8e8e8;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--border-radius-card);
+  overflow-x: auto;
+  font-size: var(--text-sm);
+  line-height: 1.65;
+  margin: 1.5rem 0;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* ============================================================
+   SMALL / CAPTION
+   ============================================================ */
+small,
+.text-caption {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+/* ============================================================
+   MARK / HIGHLIGHT
+   ============================================================ */
+mark {
+  background-color: var(--color-highlight);
+  color: var(--color-text-heading);
+  padding: 0.05em 0.2em;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   HORIZONTAL DIVIDER WITH TEXT
+   Usage: <div class="divider-text"><span>or</span></div>
+   ============================================================ */
+.divider-text {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.divider-text::before,
+.divider-text::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+/* ============================================================
+   PROSE CONTEXT CLASS
+   Apply .prose to any container wrapping rich text output
+   (blog posts, rich-text modules, FAQ answers, etc.).
+   Adds spacing, styled lists, and readable line lengths.
+   ============================================================ */
+.prose {
+  max-width: 72ch;
+  color: var(--color-text-body);
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin-top: 1.75em;
+  margin-bottom: 0.5em;
+}
+
+.prose h1:first-child,
+.prose h2:first-child,
+.prose h3:first-child {
+  margin-top: 0;
+}
+
+.prose p {
+  margin-bottom: 1.25em;
+  line-height: var(--line-height-body);
+}
+
+.prose ul,
+.prose ol {
+  margin-bottom: 1.25em;
+  padding-left: 1.5rem;
+}
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose li {
+  margin-bottom: 0.4em;
+  padding-left: 0.25rem;
+}
+
+.prose li::marker {
+  color: var(--color-primary);
+}
+
+.prose a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 500;
+}
+
+.prose a:hover {
+  color: var(--color-link-hover);
+}
+
+.prose strong {
+  font-weight: 700;
+  color: var(--color-text-heading);
+}
+
+.prose em {
+  font-style: italic;
+}
+
+.prose img {
+  border-radius: var(--border-radius-img);
+  margin: 1.5em 0;
+}
+
+.prose table {
+  width: 100%;
+  margin: 1.5em 0;
+  font-size: var(--text-sm);
+}
+
+.prose th {
+  font-weight: 600;
+  text-align: left;
+  padding: 0.625rem 0.875rem;
+  background-color: var(--color-bg-alt);
+  border-bottom: 2px solid var(--color-border);
+  color: var(--color-text-heading);
+}
+
+.prose td {
+  padding: 0.625rem 0.875rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.prose tr:last-child td {
+  border-bottom: none;
+}
+
+/* Full-width prose — remove max-width constraint */
+.prose--full {
+  max-width: none;
+}
+
+/* Dark section prose */
+.section--bg-dark .prose,
+.bg-dark .prose {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.section--bg-dark .prose h1,
+.section--bg-dark .prose h2,
+.section--bg-dark .prose h3,
+.section--bg-dark .prose h4,
+.section--bg-dark .prose h5,
+.section--bg-dark .prose h6,
+.bg-dark .prose h1,
+.bg-dark .prose h2,
+.bg-dark .prose h3,
+.bg-dark .prose h4,
+.bg-dark .prose h5,
+.bg-dark .prose h6 {
+  color: #ffffff;
+}

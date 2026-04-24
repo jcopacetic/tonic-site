@@ -1,0 +1,34 @@
+{% load wagtailimages_tags %}
+<section class="module-video-embed section section--bg-{{ value.background.background_type|default:'light' }}">
+  <div class="{{ value.container_width|default:'container-lg' }}" style="text-align: center;">
+    {% if value.eyebrow or value.heading %}
+      <div class="video-embed__header mb-8">
+        {% if value.eyebrow %}<span class="eyebrow">{{ value.eyebrow }}</span>{% endif %}
+        {% if value.heading %}<h2 class="video-embed__heading">{{ value.heading }}</h2>{% endif %}
+      </div>
+    {% endif %}
+    <div class="video-embed__player-wrapper" style="border-radius: var(--border-radius-card); overflow: hidden;">
+      <div class="video-embed__ratio-box" style="position:relative; width:100%; padding-bottom:{% if value.aspect_ratio == '4-3' %}75%{% elif value.aspect_ratio == '1-1' %}100%{% else %}56.25%{% endif %}; height:0;">
+        {% if value.custom_thumbnail %}
+          {% image value.custom_thumbnail fill-1280x720 as thumb %}
+          <div class="video-embed__thumbnail-play" data-video-url="{{ value.video_url }}"
+               style="background-image: url('{{ thumb.url }}'); position:absolute;top:0;left:0;width:100%;height:100%;cursor:pointer;">
+            <div class="video-embed__play-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+        {% else %}
+          <iframe class="video-embed__iframe"
+            src="{% if value.autoplay %}{{ value.video_url }}?autoplay=1{% else %}{{ value.video_url }}{% endif %}"
+            title="{{ value.heading|default:'Video' }}"
+            allowfullscreen
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;">
+          </iframe>
+        {% endif %}
+      </div>
+    </div>
+    {% if value.caption %}
+      <p class="video-embed__caption mt-3">{{ value.caption }}</p>
+    {% endif %}
+  </div>
+</section>

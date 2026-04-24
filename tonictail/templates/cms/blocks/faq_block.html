@@ -1,0 +1,44 @@
+{% load wagtailcore_tags %}
+<section class="module-accordion-faq faq--{{ value.item_style|default:'minimal' }} section section--bg-{{ value.background.background_type|default:'light' }}">
+  <div class="faq__bg-overlay" aria-hidden="true"></div>
+  <div class="container container-lg faq__inner">
+    {% if value.eyebrow or value.heading or value.subtext %}
+      <header class="faq__header">
+        {% if value.eyebrow %}<span class="faq__eyebrow eyebrow">{{ value.eyebrow }}</span>{% endif %}
+        {% if value.heading %}<h2 class="faq__heading">{{ value.heading }}</h2>{% endif %}
+        {% if value.subtext %}<div class="faq__subtext">{{ value.subtext|richtext }}</div>{% endif %}
+      </header>
+    {% endif %}
+    <div class="faq__list" role="list">
+      {% for item in value.items %}
+        <div class="faq__item{% if item.open_by_default %} is-open{% endif %}" role="listitem" data-faq-item>
+          <button class="faq__question faq__question--md"
+            aria-expanded="{% if item.open_by_default %}true{% else %}false{% endif %}"
+            aria-controls="faq-panel-{{ forloop.counter }}"
+            data-faq-trigger>
+            <span class="faq__question-text">{{ item.question }}</span>
+            <span class="faq__icon" aria-hidden="true">
+              {% if value.icon_type == "plus_minus" %}
+                <svg class="faq__icon-plus" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4V16M4 10H16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                <svg class="faq__icon-minus" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+              {% else %}
+                <svg class="faq__icon-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              {% endif %}
+            </span>
+          </button>
+          <div id="faq-panel-{{ forloop.counter }}" class="faq__answer" role="region"
+            aria-labelledby="faq-btn-{{ forloop.counter }}"
+            {% if not item.open_by_default %}hidden{% endif %}
+            data-faq-panel>
+            <div class="faq__answer-inner">{{ item.answer|richtext }}</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% if value.enable_faq_schema %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{% for item in value.items %}{"@type":"Question","name":"{{ item.question|escapejs }}","acceptedAnswer":{"@type":"Answer","text":"{{ item.answer|striptags|escapejs }}"}}{% if not forloop.last %},{% endif %}{% endfor %}]}
+</script>
+{% endif %}

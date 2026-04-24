@@ -1,0 +1,27 @@
+<div class="module-breadcrumbs">
+  <nav class="breadcrumbs__nav container" aria-label="Breadcrumb">
+    <ol class="breadcrumbs__list breadcrumbs--{{ value.text_size|default:'sm' }}" role="list">
+      {% if value.show_home %}
+        <li class="breadcrumbs__item">
+          <a href="/" class="breadcrumbs__link">{{ value.home_label|default:'Home' }}</a>
+          <span class="breadcrumbs__separator" aria-hidden="true">{% if value.separator == 'chevron' %}>{% elif value.separator == 'dot' %}·{% elif value.separator == 'arrow' %}→{% else %}/{% endif %}</span>
+        </li>
+      {% endif %}
+      {% for crumb in value.crumbs %}
+        <li class="breadcrumbs__item">
+          {% if crumb.url %}
+            <a href="{{ crumb.url }}" class="breadcrumbs__link"><span>{{ crumb.label }}</span></a>
+          {% else %}
+            <span class="breadcrumbs__link">{{ crumb.label }}</span>
+          {% endif %}
+          <span class="breadcrumbs__separator" aria-hidden="true">{% if value.separator == 'chevron' %}>{% elif value.separator == 'dot' %}·{% elif value.separator == 'arrow' %}→{% else %}/{% endif %}</span>
+        </li>
+      {% endfor %}
+      {% if value.current_page_label %}
+        <li class="breadcrumbs__item breadcrumbs__item--current">
+          <span class="breadcrumbs__current" aria-current="page">{{ value.current_page_label }}</span>
+        </li>
+      {% endif %}
+    </ol>
+  </nav>
+</div>
