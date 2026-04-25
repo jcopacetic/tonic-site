@@ -5,23 +5,23 @@
 
 {% block content %}
 
-  <div class="container" style="padding-top: var(--space-8); padding-bottom: var(--space-16); display: flex; gap: var(--space-12); align-items: flex-start;">
+  <div class="container" style="padding-top: 80px; padding-bottom: 120px; display: flex; gap: 60px; align-items: flex-start;">
 
     {# Sidebar — siblings for nav context #}
     {% with siblings=self.get_siblings.live %}
       {% if siblings %}
-        <aside style="width: 220px; flex-shrink: 0; position: sticky; top: var(--space-8);">
+        <aside style="width: 220px; flex-shrink: 0; position: sticky; top: 80px;">
           <nav aria-label="Docs navigation">
             {% with parent=self.get_parent %}
-              <a href="{{ parent.url }}" style="display: flex; align-items: center; gap: var(--space-2); font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-muted); text-decoration: none; margin-bottom: var(--space-3);">
+              <a href="{{ parent.url }}" style="display: flex; align-items: center; gap: 20px; font-size: 16px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-muted); text-decoration: none; margin-bottom: 30px;">
                 ← {{ parent.title }}
               </a>
             {% endwith %}
-            <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-1);">
+            <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">
               {% for sibling in siblings %}
                 <li>
                   <a href="{{ sibling.url }}"
-                     style="display: block; padding: var(--space-2) var(--space-3); font-size: var(--text-sm); border-radius: var(--border-radius); text-decoration: none; transition: background var(--transition-fast);
+                     style="display: block; padding: 20px 30px; font-size: 18px; border-radius: 30px; text-decoration: none; transition: background .2s ease;
                      {% if sibling.pk == self.pk %}
                        background: var(--color-bg-alt); color: var(--color-primary); font-weight: 500;
                      {% else %}
@@ -50,7 +50,7 @@
 
       {# Prev / Next navigation #}
       {% with prev=self.get_prev_sibling prev_live=self.get_prev_sibling.live next=self.get_next_sibling %}
-        <div style="display: flex; justify-content: space-between; gap: var(--space-4); margin-top: var(--space-12); padding-top: var(--space-6); border-top: 1px solid var(--color-border);">
+        <div style="display: flex; justify-content: space-between; gap: 40px; margin-top: 120px; padding-top: 60px; border-top: 1px solid var(--color-border);">
           <div>
             {% with prev_page=self.get_prev_sibling %}
               {% if prev_page and prev_page.live %}
