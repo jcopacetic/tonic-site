@@ -21,7 +21,7 @@
               {% for sibling in siblings %}
                 <li>
                   <a href="{{ sibling.url }}"
-                     style="display: block; padding: 20px 30px; font-size: 18px; border-radius: 30px; text-decoration: none; transition: background .2s ease;
+                     style="display: block; padding: 8px 30px; font-size: 18px; border-radius: 30px; text-decoration: none; transition: background .2s ease;
                      {% if sibling.pk == self.pk %}
                        background: var(--color-bg-alt); color: var(--color-primary); font-weight: 500;
                      {% else %}
