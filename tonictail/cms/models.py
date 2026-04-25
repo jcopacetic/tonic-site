@@ -11,7 +11,6 @@ from django.db import models
 from wagtail.models import Page
 from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel, InlinePanel
-from wagtail.blocks import RichTextBlock
 from wagtail.images.models import AbstractImage, AbstractRendition, Image
 from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from wagtail.search import index
@@ -23,7 +22,22 @@ from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
 
 
-from .blocks import CONTENT_BLOCKS
+from .blocks import (
+    CONTENT_BLOCKS,
+    RichTextSectionBlock,
+    SectionHeaderModuleBlock,
+    ImageFigureBlock,
+    ImageTextBlock,
+    CodeBlock,
+    DataTableBlock,
+    FAQBlock,
+    TabsPanelsBlock,
+    ButtonGroupBlock,
+    BreadcrumbsBlock,
+    EmbedSectionBlock,
+    VideoEmbedBlock,
+    ProcessStepsBlock,
+)
 
 from django.db import models
 
@@ -359,12 +373,23 @@ class DocsPage(Page):
     to keep docs focused on content rather than full marketing modules.
     """
 
+    # Documentation-focused block set. Includes structured content and utility
+    # blocks useful for writing module docs, guides, and reference pages, while
+    # intentionally excluding full marketing/hero blocks.
     DOCS_BLOCKS = [
-        ("rich_text", RichTextBlock(
-            features=["h2", "h3", "h4", "bold", "italic", "link",
-                      "ol", "ul", "blockquote", "image", "code"],
-            label="Rich text",
-        )),
+        ("rich_text",      RichTextSectionBlock()),
+        ("section_header", SectionHeaderModuleBlock()),
+        ("image_figure",   ImageFigureBlock()),
+        ("image_text",     ImageTextBlock()),
+        ("code_block",     CodeBlock()),
+        ("data_table",     DataTableBlock()),
+        ("faq",            FAQBlock()),
+        ("tabs_panels",    TabsPanelsBlock()),
+        ("button_group",   ButtonGroupBlock()),
+        ("breadcrumbs",    BreadcrumbsBlock()),
+        ("embed",          EmbedSectionBlock()),
+        ("video",          VideoEmbedBlock()),
+        ("process_steps",  ProcessStepsBlock()),
     ]
 
     body = StreamField(
