@@ -8919,7 +8919,7 @@
   font-family: var(--font-heading, sans-serif);
   font-size: 32px;
   font-weight: var(--font-weight-heading, 700);
-  color: #fff;
+  color: #000;
   margin: 0 0 1.5rem;
   line-height: 1.2;
   letter-spacing: -0.04em;
@@ -11770,4 +11770,13 @@
   gap: 60px; 
   align-items: flex-start;
   justify-content: space-between;
+}
+
+.doc-footer-nav {
+  display: flex; 
+  justify-content: space-between; 
+  gap: 40px; 
+  margin-top: 60px; 
+  padding-top: 60px; 
+  border-top: 1px solid var(--color-border);
 }
