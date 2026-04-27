@@ -304,7 +304,6 @@
     
   }
 
-  {# ── Context header (author / tag pages) ── #}
   .tonic-blog-listing__context-header {
     background-color: rgba(0, 0);
     padding: 3rem var(--container-gutter, 1.5rem);
@@ -338,7 +337,6 @@
     margin: 0;
   }
 
-  {# ── Listing title ── #}
   .tonic-blog-listing__title {
     font-size: clamp(1.5rem, 3vw, 2.25rem);
     font-weight: var(--font-weight-heading, 700);
@@ -347,7 +345,6 @@
     line-height: 1.2;
   }
 
-  {# ── Featured post ── #}
   .tonic-blog-listing__featured {
     margin-bottom: 2.5rem;
   }
@@ -404,7 +401,6 @@
     justify-content: center;
   }
 
-  {# ── Post grid ── #}
   .tonic-blog-listing__grid {
     display: grid;
     gap: 1.5rem;
@@ -424,7 +420,6 @@
     }
   }
 
-  {# ── Post card ── #}
   .tonic-blog-listing__card {
     display: flex;
     flex-direction: column;
@@ -482,7 +477,6 @@
     flex: 1;
   }
 
-  {# ── List layout ── #}
   .tonic-blog-listing__grid--list .tonic-blog-listing__card {
     flex-direction: row;
     align-items: stretch;
@@ -509,7 +503,7 @@
     }
   }
 
-  {# ── Shared card typography ── #}
+
   .tonic-blog-listing__tag {
     display: inline-block;
     font-size: 0.75rem;
@@ -581,7 +575,7 @@
     opacity: 0.75;
   }
 
-  {# ── Simple list ── #}
+
   .tonic-blog-listing__simple-list {
     list-style: none;
     padding: 0;
@@ -663,7 +657,7 @@
     
   }
 
-  {# ── Shared link styles ── #}
+
   .tonic-blog-pagination__link {
     display: inline-flex;
     align-items: center;
@@ -698,7 +692,7 @@
     cursor: default;
   }
 
-  {# ── Minimal / Simple styles ── #}
+
   .tonic-blog-pagination__link--prev,
   .tonic-blog-pagination__link--next {
     padding: 0 1rem;
@@ -715,7 +709,7 @@
     color: rgba(0, 0);
   }
 
-  {# ── Minimal style overrides ── #}
+
   .tonic-blog-pagination--minimal .tonic-blog-pagination__link {
     background: transparent;
     font-size: var(--font-size-body, 1rem);
@@ -779,7 +773,7 @@
     
   }
 
-  {# ── Prose typography ── #}
+
   .tonic-post-body__content {
     color: rgba(0, 0);
     font-size: var(--font-size-body, 1rem);
@@ -935,7 +929,6 @@
     
   }
 
-  {# ── Stacked layout ── #}
   .tonic-post-header__stacked {
     padding-top: 64px;
     padding-bottom: 48px;
@@ -958,7 +951,7 @@
     
   }
 
-  {# ── Featured image — stacked ── #}
+
   .tonic-post-header__image-wrap {
     width: 100%;
     overflow: hidden;
@@ -982,7 +975,6 @@
     display: block;
   }
 
-  {# ── Hero layout ── #}
   .tonic-post-header__hero {
     position: relative;
     width: 100%;
@@ -1028,7 +1020,6 @@
     text-align: 0;
   }
 
-  {# ── Tags / topic pills ── #}
   .tonic-post-header__tags {
     display: flex;
     flex-wrap: wrap;
@@ -1070,7 +1061,6 @@
     text-decoration: none;
   }
 
-  {# ── Title ── #}
   .tonic-post-header__title {
     margin: 0 0 1rem;
     font-size: clamp(1.75rem, 4vw, 3rem);
@@ -1087,7 +1077,6 @@
     color: rgba(0, 0);
   }
 
-  {# ── Metadata bar ── #}
   .tonic-post-header__meta {
     display: flex;
     flex-wrap: wrap;
@@ -1369,7 +1358,6 @@
     
   }
 
-  {# ── Header ── #}
   .tonic-toc__header {
     display: flex;
     align-items: center;
@@ -1399,7 +1387,6 @@
     transform: rotate(180deg);
   }
 
-  {# ── Nav ── #}
   .tonic-toc__nav {
     padding: 0 1.25rem 1.25rem;
   }
@@ -1444,7 +1431,6 @@
     background-color: rgba(0, 0.06);
   }
 
-  {# ── Mobile: collapsible ── #}
   @media (max-width: 767px) {
     .tonic-toc__nav {
       display: none;
@@ -1459,7 +1445,6 @@
     }
   }
 
-  {# ── Desktop: always open, hide toggle icon ── #}
   @media (min-width: 768px) {
     .tonic-toc__toggle-icon {
       display: none;
@@ -2792,12 +2777,6 @@
   }
   
 
-  {# ── Per-button custom color overrides ────────────────────────────────────
-     Because repeaters are runtime constructs, we can't scope these in the
-     STYLE tab. Instead each custom-colored button gets a data attribute
-     (data-btn-index) and we inject rules here per-item via a for loop.
-  #}
-  
     
       .module-button-group__wrapper .btn[data-btn-index="/* [dynamic value] */"] {
         background-color: rgba(/* [dynamic value] */, /* [dynamic value] */);
@@ -3033,7 +3012,6 @@
 }
 
 /* --- inline styles (require_css) --- */
-{# ── Section wrapper ─────────────────────────────────────── #}
   .module-cards-repeater {
     
       background-color: rgba(0, 0);
@@ -3054,21 +3032,18 @@
     position: relative;
   }
 
-  {# Background image overlay #}
   
   .module-cards-repeater__overlay {
     background-color: rgba(0, 0);
   }
   
 
-  {# ── Cards row ───────────────────────────────────────────── #}
   .module-cards-repeater__grid {
     gap: 0px;
     justify-content: 0;
     align-items: 0;
   }
 
-  {# ── Card base ───────────────────────────────────────────── #}
   .module-cards-repeater__card {
     background-color: rgba(0, 0);
     border-radius: 0px;
@@ -3085,7 +3060,6 @@
     
   }
 
-  {# ── Typography ──────────────────────────────────────────── #}
   .module-cards-repeater__eyebrow {
     color: rgba(0, 0);
   }
@@ -3098,7 +3072,6 @@
     color: rgba(0, 0);
   }
 
-  {# ── Media ───────────────────────────────────────────────── #}
   .module-cards-repeater__image {
     border-radius: 0px;
   }
@@ -3114,7 +3087,6 @@
     flex-shrink: 0;
   }
 
-  {# ── Mobile spacing ──────────────────────────────────────── #}
   @media (max-width: 767px) {
     .module-cards-repeater {
       padding-top: 0px;
@@ -3286,7 +3258,6 @@
     
   }
 
-  {# ── Section header ── #}
   .tonic-contact-info__header {
     text-align: 0;
     margin-bottom: 2.5rem;
@@ -3317,7 +3288,6 @@
     margin: 0;
   }
 
-  {# ── Grid ── #}
   .tonic-contact-info__grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -3346,7 +3316,6 @@
     }
   }
 
-  {# ── Item ── #}
   .tonic-contact-info__item {
     
       display: flex;
@@ -3360,7 +3329,6 @@
     
   }
 
-  {# ── Icon ── #}
   .tonic-contact-info__icon-wrap {
     flex-shrink: 0;
 
@@ -3386,7 +3354,6 @@
     color: rgba(0, 0);
   }
 
-  {# ── Item content ── #}
   .tonic-contact-info__item-body {
     min-width: 0;
     flex: 1;
@@ -3819,8 +3786,6 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-
-    {# ── Background ── #}
     
       background-color: rgba(0, 0);
     
@@ -3849,7 +3814,6 @@
     }
   }
 
-  {# ── Overlay ── #}
   .tonic-cta-banner__overlay {
     position: absolute;
     inset: 0;
@@ -3858,7 +3822,6 @@
     pointer-events: none;
   }
 
-  {# ── Inner ── #}
   .tonic-cta-banner__inner {
     position: relative;
     z-index: 2;
@@ -3901,7 +3864,6 @@
     }
   }
 
-  {# ── Text block ── #}
   .tonic-cta-banner__text {
     
       flex: 1 1 0%;
@@ -3911,7 +3873,6 @@
     
   }
 
-  {# ── Eyebrow ── #}
   .tonic-cta-banner__eyebrow {
     display: inline-block;
     font-size: var(--font-size-small, 13px);
@@ -3923,7 +3884,6 @@
     line-height: 1;
   }
 
-  {# ── Heading ── #}
   .tonic-cta-banner__heading {
     font-family: var(--font-heading, sans-serif);
     font-weight: 700;
@@ -3934,7 +3894,6 @@
     margin: 0 0 1rem;
   }
 
-  {# ── Subheading ── #}
   .tonic-cta-banner__subheading {
     font-size: var(--text-lg, 1.125rem);
     line-height: 1.65;
@@ -3948,7 +3907,6 @@
     
   }
 
-  {# ── CTA group ── #}
   .tonic-cta-banner__ctas {
     display: flex;
     flex-wrap: wrap;
@@ -3972,7 +3930,6 @@
     }
   }
 
-  {# ── Button base ── #}
   .tonic-cta-banner__btn {
     display: inline-flex;
     align-items: center;
@@ -3989,12 +3946,10 @@
     transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
   }
 
-  {# ── Button sizes ── #}
   .tonic-cta-banner__btn--sm  { padding: 0.5rem 1.125rem;  font-size: var(--text-sm, 0.875rem); }
   .tonic-cta-banner__btn--md  { padding: 0.75rem 1.5rem; }
   .tonic-cta-banner__btn--lg  { padding: 1rem 2rem;        font-size: var(--text-lg, 1.125rem); }
 
-  {# ── Button styles ── #}
   .tonic-cta-banner__btn--primary {
     background-color: var(--btn-primary-bg, #0057B8);
     color: var(--btn-primary-text, #FFFFFF);
@@ -4929,7 +4884,6 @@
     }
   }
 
-  {# ── Inner container ── #}
   .tonic-form__inner {
     width: 100%;
     margin: 0 auto;
@@ -4948,13 +4902,11 @@
     
   }
 
-  {# ── Stacked layout ── #}
   .tonic-form__stacked-header {
     text-align: 0;
     margin-bottom: 2.5rem;
   }
 
-  {# ── Split layout ── #}
   .tonic-form__split {
     display: flex;
     flex-wrap: wrap;
@@ -5000,7 +4952,6 @@
     }
   }
 
-  {# ── Shared header text styles ── #}
   .tonic-form__eyebrow {
     display: block;
     font-size: var(--font-size-small, 0.8125rem);
@@ -5030,7 +4981,6 @@
     margin-bottom: 0;
   }
 
-  {# ── Form card ── #}
   .tonic-form__card {
     
       background-color: rgba(0, 0);
@@ -5051,7 +5001,6 @@
     
   }
 
-  {# ── Privacy note ── #}
   .tonic-form__privacy {
     margin-top: 0.875rem;
     font-size: var(--font-size-small, 0.8125rem);
@@ -5470,7 +5419,6 @@
 }
 
 /* --- inline styles (require_css) --- */
-{# ── Section wrapper ─────────────────────────────────────── #}
   .module-icon-feature-grid {
     
       background-color: rgba(0, 0);
@@ -5491,14 +5439,12 @@
     position: relative;
   }
 
-  {# Background overlay #}
   
   .module-icon-feature-grid__overlay {
     background-color: rgba(0, 0);
   }
   
 
-  {# ── Section header ──────────────────────────────────────── #}
   .module-icon-feature-grid__section-header {
     text-align: 0;
   }
@@ -5515,7 +5461,6 @@
     color: rgba(0, 0);
   }
 
-  {# ── Grid ────────────────────────────────────────────────── #}
   .module-icon-feature-grid__grid {
     display: grid;
     grid-template-columns: repeat(0, 1fr);
@@ -5523,7 +5468,6 @@
     row-gap: 0px;
   }
 
-  {# ── Feature item ────────────────────────────────────────── #}
   .module-icon-feature-grid__item {
     text-align: 0;
     
@@ -5544,7 +5488,6 @@
     
   }
 
-  {# ── Icon ────────────────────────────────────────────────── #}
   .module-icon-feature-grid__icon-wrap {
     
     display: inline-flex;
@@ -5569,7 +5512,6 @@
     line-height: 1;
   }
 
-  {# ── Item text ───────────────────────────────────────────── #}
   .module-icon-feature-grid__item-title {
     color: rgba(0, 0);
   }
@@ -5578,7 +5520,6 @@
     color: rgba(0, 0);
   }
 
-  {# ── Mobile ──────────────────────────────────────────────── #}
   @media (max-width: 767px) {
     .module-icon-feature-grid {
       padding-top: 0px;
@@ -6010,8 +5951,6 @@
     color: rgba(0, 0);
   }
 
-  {# ── Grid layout ── #}
-  
     .module-image-gallery__grid {
       display: grid;
       grid-template-columns: repeat(0, minmax(0, 1fr));
@@ -6022,8 +5961,6 @@
       aspect-ratio: 0;
     }
   
-
-  {# ── Masonry layout ── #}
   
     .module-image-gallery__grid {
       columns: 0;
@@ -6036,13 +5973,11 @@
     }
   
 
-  {# ── Image corner radius ── #}
   .module-image-gallery__item-inner,
   .module-image-gallery__img {
     border-radius: 0px;
   }
 
-  {# ── Caption overlay ── #}
   
     .module-image-gallery__caption-overlay {
       background-color: rgba(0, 0);
@@ -6054,8 +5989,6 @@
     }
   
 
-  {# ── Lightbox backdrop ── #}
-  
     .module-image-gallery__lightbox {
       background-color: rgba(0, 0);
     }
@@ -6201,7 +6134,6 @@
       gap: 3rem;
     
 
-    {# Desktop: image right = row-reverse so image comes second in DOM order #}
     
       flex-direction: row-reverse;
     
@@ -6209,7 +6141,6 @@
     
   }
 
-  {# Column widths based on split setting #}
   .tonic-image-text__image-col,
   .tonic-image-text__text-col {
     flex: 1 1 300px;
@@ -6227,7 +6158,6 @@
     .tonic-image-text__text-col  { flex: 1 1 300px; }
   
 
-  {# Mobile stack order — controlled independently of desktop layout #}
   @media (max-width: 767px) {
     .tonic-image-text__grid {
       
@@ -6244,7 +6174,6 @@
     }
   }
 
-  {# Image styles #}
   .tonic-image-text__img {
     width: 100%;
     height: auto;
@@ -6269,7 +6198,6 @@
     text-align: center;
   }
 
-  {# Text column styles #}
   .tonic-image-text__eyebrow {
     display: block;
     font-size: var(--font-size-small, 0.8125rem);
@@ -6532,7 +6460,6 @@
     }
   }
 
-  {# Logo sizing and treatment #}
   .module-logo-grid .logo-item__image {
     max-height: /* [dynamic value] */px;
     opacity: /* [dynamic value] */;
@@ -6552,8 +6479,6 @@
       opacity: 1;
     }
   
-
-  {# ── Grid mode ── #}
   
     .module-logo-grid .logo-grid-static {
       grid-template-columns: repeat(/* [dynamic value] */, minmax(0, 1fr));
@@ -6567,10 +6492,7 @@
       .module-logo-grid .logo-item {
         border: 1px solid var(--color-border, #DEDDD8);
       }
-    
-  
 
-  {# ── Marquee mode ── #}
   
     .module-logo-grid .logo-marquee-track {
       animation-duration: /* [dynamic value] */s;
@@ -7155,7 +7077,6 @@
 }
 
 /* --- inline styles (require_css) --- */
-{# ── Section wrapper ─────────────────────────────────────── #}
   .module-process-steps {
     
       background-color: rgba(0, 0);
@@ -7176,14 +7097,12 @@
     position: relative;
   }
 
-  {# Background overlay #}
-  
+
   .module-process-steps__overlay {
     background-color: rgba(0, 0);
   }
   
 
-  {# ── Section header ──────────────────────────────────────── #}
   .module-process-steps__section-header {
     text-align: 0;
   }
@@ -7200,7 +7119,6 @@
     color: rgba(0, 0);
   }
 
-  {# ── Steps list ──────────────────────────────────────────── #}
   
   .module-process-steps__list {
     display: grid;
@@ -7215,7 +7133,6 @@
   }
   
 
-  {# ── Step item ───────────────────────────────────────────── #}
   .module-process-steps__step {
     text-align: 0;
     
@@ -7226,7 +7143,6 @@
     
   }
 
-  {# ── Node + connector column (vertical) ──────────────────── #}
   .module-process-steps__node-col {
     display: flex;
     flex-direction: column;
@@ -7234,7 +7150,6 @@
     flex-shrink: 0;
   }
 
-  {# ── Step marker (number or icon circle) ─────────────────── #}
   .module-process-steps__node {
     width: 0px;
     height: 0px;
@@ -7254,13 +7169,10 @@
     font-size: 0px;
   }
 
-  {# ── Connector line ──────────────────────────────────────── #}
-  
-  {# Horizontal: pseudo-element drawn after the node in each step except last #}
   .module-process-steps__list--horizontal .module-process-steps__step:not(:last-child) .module-process-steps__connector {
     display: block;
   }
-  {# Vertical: connector grows to fill space between nodes #}
+
   .module-process-steps__list--vertical .module-process-steps__connector {
     flex: 1;
     width: 0px;
@@ -7288,7 +7200,6 @@
     margin-top: 8px;
   }
 
-  {# Horizontal connector: line drawn from center of node to next #}
   .module-process-steps__list--horizontal .module-process-steps__node-wrap {
     position: relative;
   }
@@ -7322,8 +7233,6 @@
     
   }
   
-
-  {# ── Step text ────────────────────────────────────────────── #}
   .module-process-steps__step-title {
     color: rgba(0, 0);
   }
@@ -7342,7 +7251,6 @@
     text-decoration: underline;
   }
 
-  {# ── Mobile ──────────────────────────────────────────────── #}
   @media (max-width: 767px) {
     .module-process-steps {
       padding-top: 0px;
@@ -7357,7 +7265,6 @@
       text-align: left;
     }
 
-    {# On mobile, suppress horizontal connectors when wrapping to 1 col #}
     
     .module-process-steps__list--horizontal .module-process-steps__connector {
       display: none;
@@ -7515,8 +7422,6 @@
       column-gap: 0; /* gap handled by gap utility class below */
     
   }
-
-  {# ── Text / link color overrides (only when opacity > 0) ── #}
   
     .module-rich-text__content,
     .module-rich-text__content p,
@@ -7534,8 +7439,6 @@
     }
   
 
-  {# ── Drop cap ── #}
-  
     .module-rich-text__content > p:first-of-type::first-letter {
       float: left;
       font-family: var(--font-heading);
@@ -8097,8 +8000,7 @@
       padding-bottom: 0px;
     }
   }
-
-  {# ── Overlay ── #}
+  
   .tonic-cta-split__overlay {
     position: absolute;
     inset: 0;
@@ -8107,7 +8009,6 @@
     pointer-events: none;
   }
 
-  {# ── Inner container ── #}
   .tonic-cta-split__inner {
     position: relative;
     z-index: 1;
@@ -8124,8 +8025,6 @@
       align-items: center;
     
 
-    {# Reverse flex direction when copy is on the right #}
-    
       flex-direction: row-reverse;
     
       flex-direction: row;
@@ -8148,7 +8047,6 @@
     }
   }
 
-  {# ── Column sizing ── #}
   .tonic-cta-split__copy,
   .tonic-cta-split__form {
     min-width: 0;
@@ -8173,7 +8071,6 @@
     }
   }
 
-  {# ── Copy column ── #}
   .tonic-cta-split__eyebrow {
     display: block;
     font-size: var(--font-size-small, 0.8125rem);
@@ -8202,7 +8099,6 @@
     margin-bottom: 0;
   }
 
-  {# ── Trust points ── #}
   .tonic-cta-split__trust {
     list-style: none;
     margin: 0 0 1.5rem;
@@ -8227,7 +8123,6 @@
     line-height: 1;
   }
 
-  {# ── Optional link ── #}
   .tonic-cta-split__link {
     display: inline-block;
     color: rgba(0, 0);
@@ -8243,7 +8138,6 @@
     border-bottom-color: rgba(0, 0.8);
   }
 
-  {# ── Form card ── #}
   .tonic-cta-split__form-card {
     background-color: rgba(0, 0);
     border-radius: 0px;
@@ -9894,7 +9788,6 @@
 }
 
 /* --- inline styles (require_css) --- */
-{# ── Section wrapper ─────────────────────────────────────── #}
   .module-team-grid {
     
       background-color: rgba(0, 0);
@@ -9915,14 +9808,12 @@
     position: relative;
   }
 
-  {# Background image overlay #}
-  
+
   .module-team-grid__overlay {
     background-color: rgba(0, 0);
   }
   
 
-  {# ── Section header ──────────────────────────────────────── #}
   .module-team-grid__eyebrow {
     color: rgba(0, 0);
   }
@@ -9935,14 +9826,12 @@
     color: rgba(0, 0);
   }
 
-  {# ── Grid ────────────────────────────────────────────────── #}
   .module-team-grid__grid {
     display: grid;
     grid-template-columns: repeat(0, 1fr);
     gap: 0px;
   }
 
-  {# ── Card ────────────────────────────────────────────────── #}
   .module-team-grid__card {
     text-align: 0;
     background-color: rgba(0, 0);
@@ -9960,7 +9849,6 @@
     
   }
 
-  {# ── Photo ───────────────────────────────────────────────── #}
   .module-team-grid__photo-wrap {
     
     display: flex;
@@ -9989,22 +9877,18 @@
     
   }
 
-  {# ── Member name ─────────────────────────────────────────── #}
   .module-team-grid__name {
     color: rgba(0, 0);
   }
 
-  {# ── Job title ───────────────────────────────────────────── #}
   .module-team-grid__job-title {
     color: rgba(0, 0);
   }
 
-  {# ── Bio ─────────────────────────────────────────────────── #}
   .module-team-grid__bio {
     color: rgba(0, 0);
   }
 
-  {# ── Social icons ────────────────────────────────────────── #}
   .module-team-grid__social-link {
     color: rgba(0, 0);
   }
@@ -10014,7 +9898,6 @@
     color: rgba(0, 0);
   }
 
-  {# ── Mobile ──────────────────────────────────────────────── #}
   @media (max-width: 767px) {
     .module-team-grid {
       padding-top: 0px;
@@ -10712,7 +10595,6 @@
     color: rgba(0, 0);
   }
 
-  {# Slide width is driven by --slides-to-show, set as an inline CSS var on the track wrapper #}
   .module-testimonials-slider__slide {
     flex: 0 0 calc(100% / 0);
     max-width: calc(100% / 0);
@@ -10770,7 +10652,6 @@
     color: rgba(0, 0);
   }
 
-  {# Arrow buttons #}
   .module-testimonials-slider__arrow {
     color: rgba(0, 0);
     background-color: rgba(0, 0);
@@ -10781,7 +10662,6 @@
     background-color: rgba(0, 0.08);
   }
 
-  {# Dot indicators #}
   .module-testimonials-slider__dot {
     background-color: rgba(0, 0);
   }
@@ -10797,7 +10677,6 @@
       padding-bottom: 0px;
     }
 
-    {# Always 1 slide on mobile regardless of desktop setting #}
     .module-testimonials-slider__slide {
       flex: 0 0 100%;
       max-width: 100%;
@@ -11513,7 +11392,6 @@
 }
 
 /* --- inline styles (require_css) --- */
-{# ── Banner wrapper ──────────────────────────────────────── #}
   .module-video-background {
     position: relative;
     overflow: hidden;
@@ -11533,7 +11411,6 @@
     
   }
 
-  {# ── Video element ───────────────────────────────────────── #}
   .module-video-background__video {
     position: absolute;
     inset: 0;
@@ -11544,7 +11421,6 @@
     z-index: 0;
   }
 
-  {# ── Fallback image (shown when video not playing) ───────── #}
   .module-video-background__fallback {
     position: absolute;
     inset: 0;
@@ -11555,7 +11431,6 @@
     z-index: 0;
   }
 
-  {# ── Iframe embed (YouTube / Vimeo) ──────────────────────── #}
   .module-video-background__iframe-wrap {
     position: absolute;
     inset: -10%;
@@ -11569,7 +11444,6 @@
     border: none;
   }
 
-  {# ── Overlay ─────────────────────────────────────────────── #}
   .module-video-background__overlay {
     position: absolute;
     inset: 0;
@@ -11597,7 +11471,6 @@
     
   }
 
-  {# ── Content layer ───────────────────────────────────────── #}
   .module-video-background__content {
     position: relative;
     z-index: 2;
@@ -11605,27 +11478,22 @@
     text-align: 0;
   }
 
-  {# ── Eyebrow ─────────────────────────────────────────────── #}
   .module-video-background__eyebrow {
     color: rgba(0, 0);
   }
 
-  {# ── Headline ────────────────────────────────────────────── #}
   .module-video-background__headline {
     color: rgba(0, 0);
   }
 
-  {# ── Subheadline ─────────────────────────────────────────── #}
   .module-video-background__subheadline {
     color: rgba(0, 0);
   }
 
-  {# ── Social proof badge ──────────────────────────────────── #}
   .module-video-background__badge {
     color: rgba(0, 0);
   }
 
-  {# ── Play button ─────────────────────────────────────────── #}
   .module-video-background__play-btn {
     width: 0px;
     height: 0px;
@@ -11638,7 +11506,6 @@
     height: calc(0px * 0.35);
   }
 
-  {# ── Mobile ──────────────────────────────────────────────── #}
   @media (max-width: 767px) {
     .module-video-background {
       
@@ -11651,7 +11518,6 @@
       
     }
 
-    {# Always show fallback on mobile — video autplay is unreliable #}
     .module-video-background__video,
     .module-video-background__iframe-wrap {
       display: none;
