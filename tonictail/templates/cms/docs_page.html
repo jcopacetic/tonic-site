@@ -5,7 +5,7 @@
 
 {% block content %}
 
-  <div id="docs-page" class="container" style="padding-top: 80px; padding-bottom: 120px; display: flex; gap: 60px; align-items: flex-start;">
+  <div id="docs-page" class="container">
 
     {# Sidebar — siblings for nav context #}
     {% with siblings=self.get_siblings.live %}
@@ -36,9 +36,9 @@
 
     {# Main content #}
     <main style="flex: 1; min-width: 0;">
+      <div class="container"><h1>{{ self.title }}</h1></div>
 
-      <h1>{{ self.title }}</h1>
-
+      
       <div class="prose">
         {% for block in self.body %}
           {% include_block block %}
@@ -47,7 +47,7 @@
 
       {# Prev / Next navigation #}
       {% with prev=self.get_prev_sibling prev_live=self.get_prev_sibling.live next=self.get_next_sibling %}
-        <div style="display: flex; justify-content: space-between; gap: 40px; margin-top: 120px; padding-top: 60px; border-top: 1px solid var(--color-border);">
+        <div class="doc-footer-nav">
           <div>
             {% with prev_page=self.get_prev_sibling %}
               {% if prev_page and prev_page.live %}

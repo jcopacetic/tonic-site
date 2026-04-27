@@ -8824,6 +8824,7 @@
   font-family: var(--font-body, sans-serif);
   font-size: var(--font-size-body, 1rem);
   line-height: var(--line-height-body, 1.6);
+  margin: 0 !important;
 }
 
 /* ── Header ───────────────────────────────────────────────────────────── */
@@ -8916,11 +8917,12 @@
 
 .module-data-table .dt-heading {
   font-family: var(--font-heading, sans-serif);
-  font-size: var(--text-3xl, clamp(1.875rem, 1.5rem + 1.5vw, 2.5rem));
+  font-size: 32px;
   font-weight: var(--font-weight-heading, 700);
-  color: var(--color-text-heading, #1A1A1A);
-  margin: 0 0 0.5rem;
+  color: #fff;
+  margin: 0 0 1.5rem;
   line-height: 1.2;
+  letter-spacing: -0.04em;
 }
 
 .module-data-table .dt-intro {
@@ -8974,7 +8976,7 @@
 .module-data-table {
     padding-top: 0px;
     padding-bottom: 0px;
-    padding: 40px 0;
+    padding: 30px 0;
   }
 
   @media (max-width: 767px) {
