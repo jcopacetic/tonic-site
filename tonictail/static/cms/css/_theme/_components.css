@@ -8972,11 +8972,9 @@
 
 /* --- inline styles (require_css) --- */
 .module-data-table {
-    
-      background-color: rgba(0,0,0,1);
-    
     padding-top: 0px;
     padding-bottom: 0px;
+    padding: 40px 0;
   }
 
   @media (max-width: 767px) {
@@ -8988,7 +8986,6 @@
 
   /* Header row */
   .module-data-table .dt-header th {
-    background-color: rgba(0,0,0,1);
     color: rgba(0,0,0,1);
     
       position: sticky;
@@ -8999,7 +8996,6 @@
 
   /* Featured column */
   .module-data-table .dt-col--featured {
-    background-color: rgba(0,0,0,1);
   }
 
   /* Featured badge */
@@ -11752,7 +11748,7 @@
   padding: 0; 
   display: flex; 
   flex-direction: column; 
-  gap: 10px;
+  gap: 4px;
 }
 
 .docs-sidebar aside nav ul li a {
@@ -11763,4 +11759,13 @@
   text-decoration: none; 
   transition: background .2s ease;
   color: var(--color-text-body);
+}
+
+#docs-page.container {
+  padding-top: 80px; 
+  padding-bottom: 120px; 
+  display: flex; 
+  gap: 60px; 
+  align-items: flex-start;
+  justify-content: space-between;
 }
