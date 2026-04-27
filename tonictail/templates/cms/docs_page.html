@@ -9,32 +9,29 @@
 
     {# Sidebar — siblings for nav context #}
     {% with siblings=self.get_siblings.live %}
-      {% if siblings %}
-        <aside style="width: 220px; flex-shrink: 0; position: sticky; top: 80px;">
-          <nav aria-label="Docs navigation">
-            {% with parent=self.get_parent %}
-              <a href="{{ parent.url }}" style="display: flex; align-items: center; gap: 20px; font-size: 16px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-muted); text-decoration: none; margin-bottom: 30px;">
-                ← {{ parent.title }}
-              </a>
-            {% endwith %}
-            <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">
-              {% for sibling in siblings %}
-                <li>
-                  <a href="{{ sibling.url }}"
-                     style="display: block; padding: 8px 30px; font-size: 18px; border-radius: 30px; text-decoration: none; transition: background .2s ease;
-                     {% if sibling.pk == self.pk %}
-                       background: var(--color-bg-alt); color: var(--color-primary); font-weight: 500;
-                     {% else %}
-                       color: var(--color-text-body);
-                     {% endif %}">
-                    {{ sibling.title }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          </nav>
-        </aside>
-      {% endif %}
+      <div class="docs-sidebar">
+        {% if siblings %}
+          <aside>
+            <nav aria-label="Docs navigation">
+              {% with parent=self.get_parent %}
+                <a href="{{ parent.url }}">
+                  ← {{ parent.title }}
+                </a>
+              {% endwith %}
+              <ul>
+                {% for sibling in siblings %}
+                  <li>
+                    <a href="{{ sibling.url }}"
+                      style="{% if sibling.pk == self.pk %}background: var(--color-bg-alt); color: var(--color-primary); font-weight: 500;{% endif %}">
+                      {{ sibling.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </nav>
+          </aside>
+        {% endif %}
+      </div>
     {% endwith %}
 
     {# Main content #}

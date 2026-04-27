@@ -11724,3 +11724,43 @@
 }
 
 .tonic-cta-banner { background: #1a1a1a !important;}
+
+
+.docs-sidebar aside {
+  width: 220px; 
+  flex-shrink: 0; 
+  position: sticky; 
+  top: 80px;
+}
+
+.docs-sidebar aside nav > a {
+  display: flex; 
+  align-items: center; 
+  gap: 20px; 
+  font-size: 16px; 
+  font-weight: 700; 
+  letter-spacing: 0.08em; 
+  text-transform: uppercase; 
+  color: var(--color-text-muted); 
+  text-decoration: none; 
+  margin-bottom: 30px;
+}
+
+.docs-sidebar aside nav ul {
+  list-style: none; 
+  margin: 0; 
+  padding: 0; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px;
+}
+
+.docs-sidebar aside nav ul li a {
+  display: block; 
+  padding: 5px 30px; 
+  font-size: 14px; 
+  border-radius: 30px; 
+  text-decoration: none; 
+  transition: background .2s ease;
+  color: var(--color-text-body);
+}
