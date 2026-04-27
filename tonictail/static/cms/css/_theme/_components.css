@@ -11780,3 +11780,8 @@
   padding-top: 60px; 
   border-top: 1px solid var(--color-border);
 }
+
+.prose .section {
+  padding-top: 30px !important; 
+  padding-bottom: 30px !important;
+}
