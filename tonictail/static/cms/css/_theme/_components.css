@@ -9008,7 +9008,7 @@
 
   /* Section break rows */
   .module-data-table .dt-row--section-break td {
-    background-color: rgba(0,0,0,1);
+    background-color: #ededed;
   }
 
   /* Striped rows */
