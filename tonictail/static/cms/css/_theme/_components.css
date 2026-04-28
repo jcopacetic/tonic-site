@@ -3014,20 +3014,10 @@
 
 /* --- inline styles (require_css) --- */
   .module-cards-repeater {
-    
-      background-color: rgba(0,0,0,1);
-    
-      background: linear-gradient(
-        0,
-        var(--color-primary, #06B6D4),
-        var(--color-primary, #06B6D4)
-      );
-    
-      background-image: none;
-      background-size: 0;
-      background-position: 0;
-      background-repeat: no-repeat;
-    
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
     padding-top: 0px;
     padding-bottom: 0px;
     position: relative;
@@ -3217,19 +3207,10 @@
 .tonic-contact-info {
     width: 100%;
     position: relative;
-
-    
-      background-color: rgba(0,0,0,1);
-    
-      background: linear-gradient(
-        0,
-        var(--color-primary, #06B6D4),
-        var(--color-primary, #06B6D4)
-      );
-    
-      background: transparent;
-    
-
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
     padding-top: 0px;
     padding-bottom: 0px;
   }
@@ -3678,25 +3659,18 @@
 .module-countdown-timer {
     position: relative;
     
-      background-color: rgba(/* [dynamic value] */, /* [dynamic value] */);
-    
-      background: linear-gradient(/* [dynamic value] */, /* [dynamic value] */, /* [dynamic value] */);
-    
-      background-image: none;
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-    
-      background: transparent;
-    
-    padding-top: /* [dynamic value] */px;
-    padding-bottom: /* [dynamic value] */px;
+     background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
   @media (max-width: 767px) {
     .module-countdown-timer {
-      padding-top: /* [dynamic value] */px;
-      padding-bottom: /* [dynamic value] */px;
+      padding-top: 60px;
+      padding-bottom: 60px;
     }
   }
 
@@ -4113,20 +4087,10 @@
 /* --- inline styles (require_css) --- */
 /* Section wrapper */
   .module-embed-block {
-    
-      background-color: rgba(0,0,0,1);
-    
-      background: linear-gradient(
-        0,
-        0,
-        0
-      );
-    
-      background-image: none;
-      background-size: 0;
-      background-position: 0;
-      background-repeat: no-repeat;
-    
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
     padding-top:    0px;
     padding-bottom: 0px;
   }
@@ -4435,21 +4399,12 @@
 /* ── Section wrapper ──────────────────────────────────────────────────── */
   .module-accordion-faq {
     
-      background-color: rgba(/* [dynamic value] */, /* [dynamic value] */);
-    
-      background: linear-gradient(
-        /* [dynamic value] */,
-        /* [dynamic value] */,
-        /* [dynamic value] */
-      );
-    
-      background-image: url('/* [dynamic value] */');
-      background-size: /* [dynamic value] */;
-      background-position: /* [dynamic value] */;
-      background-repeat: no-repeat;
-    
-    padding-top: /* [dynamic value] */px;
-    padding-bottom: /* [dynamic value] */px;
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
   
@@ -4460,8 +4415,8 @@
 
   @media (max-width: 767px) {
     .module-accordion-faq {
-      padding-top: /* [dynamic value] */px;
-      padding-bottom: /* [dynamic value] */px;
+      padding-top: 60px;
+      padding-bottom: 60px;
     }
   }
 
@@ -4590,21 +4545,13 @@
 /* --- inline styles (require_css) --- */
 .module-feature-list {
     
-      background-color: rgba(0,0,0,1);
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
     
-      background: linear-gradient(
-        0,
-        var(--color-primary, #06B6D4),
-        var(--color-primary, #06B6D4)
-      );
-    
-      background-image: none;
-      background-size: 0;
-      background-position: 0;
-      background-repeat: no-repeat;
-    
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding-top: 60px;
+    padding-bottom: 60px;
     position: relative;
     overflow: hidden;
   }
@@ -4861,21 +4808,12 @@
 .tonic-form {
     width: 100%;
     position: relative;
-
-    
-      background-color: rgba(0,0,0,1);
-    
-      background: linear-gradient(
-        0,
-        var(--color-primary, #06B6D4),
-        var(--color-primary, #06B6D4)
-      );
-    
-      background: transparent;
-    
-
-    padding-top: 0px;
-    padding-bottom: 0px;
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
   @media (max-width: 767px) {
@@ -5069,24 +5007,10 @@
     align-items: 0;
     width: 100%;
     overflow: hidden;
-    
-      background: linear-gradient(
-        0,
-        var(--color-primary, #06B6D4),
-        var(--color-primary, #06B6D4)
-      );
-    
-      background-image: none;
-      background-size: cover;
-      background-position: 0;
-      background-repeat: no-repeat;
-    
-      background-image: none;
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-    
-      background-color: #1A1A1A;
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
 
     padding-top: 120px;
     padding-bottom: 120px;
@@ -5421,15 +5345,12 @@
 
 /* --- inline styles (require_css) --- */
   .module-icon-feature-grid {
-    
-      background-color: rgba(0,0,0,1);
-    
-      background: linear-gradient(
-        var(--color-primary, #06B6D4) 0%,
-        var(--color-primary, #06B6D4) 100%
-      );
-    padding-top: 0px;
-    padding-bottom: 0px;
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
+    padding-top: 60px;
+    padding-bottom: 60px;
     position: relative;
   }
 
@@ -5909,22 +5830,10 @@
 .module-image-gallery {
     position: relative;
     overflow: hidden;
-
-    
-      background-color: rgba(0,0,0,1);
-    
-      background: linear-gradient(
-        0,
-        var(--color-primary, #06B6D4),
-        var(--color-primary, #06B6D4)
-      );
-    
-      background-image: none;
-      background-size: 0;
-      background-position: 0;
-      background-repeat: no-repeat;
-    
-
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
     padding-top: 0px;
     padding-bottom: 0px;
   }
@@ -6063,21 +5972,12 @@
 /* --- inline styles (require_css) --- */
 .tonic-image-text {
     width: 100%;
-
-    
-      background-color: rgba(0,0,0,1);
-    
-      background: linear-gradient(
-        0,
-        var(--color-primary, #06B6D4),
-        var(--color-primary, #06B6D4)
-      );
-    
-      background: transparent;
-    
-
-    padding-top: 0px;
-    padding-bottom: 0px;
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
   @media (max-width: 767px) {
@@ -7072,22 +6972,12 @@
 
 /* --- inline styles (require_css) --- */
   .module-process-steps {
-    
-      background-color: rgba(0,0,0,1);
-    
-      background: linear-gradient(
-        0,
-        var(--color-primary, #06B6D4),
-        var(--color-primary, #06B6D4)
-      );
-    
-      background-image: none;
-      background-size: 0;
-      background-position: 0;
-      background-repeat: no-repeat;
-    
-    padding-top: 0px;
-    padding-bottom: 0px;
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
+    padding-top: 60px;
+    padding-bottom: 60px;
     position: relative;
   }
 
@@ -7944,19 +7834,10 @@
     overflow: hidden;
 
     
-      background-color: rgba(0,0,0,1);
-    
-      background: linear-gradient(
-        0,
-        var(--color-primary, #06B6D4),
-        var(--color-primary, #06B6D4)
-      );
-    
-      background-image: none;
-      background-size: cover;
-      background-position: 0;
-      background-repeat: no-repeat;
-    
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
       background: transparent;
     
 
@@ -8191,14 +8072,10 @@
     width: 100%;
     overflow: hidden;
 
-    
-      background: linear-gradient(
-        0,
-        var(--color-primary, #06B6D4),
-        var(--color-primary, #06B6D4)
-      );
-    
-      background-color: rgba(0,0,0,1);
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
     
   }
 
@@ -8694,24 +8571,12 @@
 .module-stats-numbers {
     position: relative;
     overflow: hidden;
-
-    
-      background-color: rgba(0,0,0,1);
-    
-      background: linear-gradient(
-        0,
-        var(--color-primary, #06B6D4),
-        var(--color-primary, #06B6D4)
-      );
-    
-      background-image: none;
-      background-size: 0;
-      background-position: 0;
-      background-repeat: no-repeat;
-    
-
-    padding-top: 0px;
-    padding-bottom: 0px;
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
   .module-stats-numbers__header {
@@ -9758,21 +9623,12 @@
 /* --- inline styles (require_css) --- */
   .module-team-grid {
     
-      background-color: rgba(0,0,0,1);
-    
-      background: linear-gradient(
-        0,
-        var(--color-primary, #06B6D4),
-        var(--color-primary, #06B6D4)
-      );
-    
-      background-image: none;
-      background-size: 0;
-      background-position: 0;
-      background-repeat: no-repeat;
-    
-    padding-top: 0px;
-    padding-bottom: 0px;
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
+    padding-top: 60px;
+    padding-bottom: 60px;
     position: relative;
   }
 
@@ -10094,24 +9950,12 @@
 .module-testimonials-grid {
     position: relative;
     overflow: hidden;
-
-    
-      background-color: rgba(0,0,0,1);
-    
-      background: linear-gradient(
-        0,
-        var(--color-primary, #06B6D4),
-        var(--color-primary, #06B6D4)
-      );
-    
-      background-image: none;
-      background-size: 0;
-      background-position: 0;
-      background-repeat: no-repeat;
-    
-
-    padding-top: 0px;
-    padding-bottom: 0px;
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
   .module-testimonials-grid__header {
@@ -10527,24 +10371,12 @@
 .module-testimonials-slider {
     position: relative;
     overflow: hidden;
-
-    
-      background-color: rgba(0,0,0,1);
-    
-      background: linear-gradient(
-        0,
-        var(--color-primary, #06B6D4),
-        var(--color-primary, #06B6D4)
-      );
-    
-      background-image: none;
-      background-size: 0;
-      background-position: 0;
-      background-repeat: no-repeat;
-    
-
-    padding-top: 0px;
-    padding-bottom: 0px;
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
   .module-testimonials-slider__header {
@@ -11060,17 +10892,12 @@
 
 /* --- inline styles (require_css) --- */
 .module-timeline {
-    
-      background-color: var(--color-primary, #06B6D4);
-    
-      background: linear-gradient(
-        0,
-        var(--color-primary, #06B6D4),
-        var(--color-primary, #06B6D4)
-      );
-    
-    padding-top: 0px;
-    padding-bottom: 0px;
+  background: linear-gradient(
+    var(--color-primary, #63c1d1) 0%,
+    var(--color-primary, #06B6D4) 100%
+  );
+    padding-top: 60px;
+    padding-bottom: 60px;
   }
 
   @media (max-width: 767px) {
