@@ -5428,12 +5428,6 @@
         var(--color-primary, #06B6D4) 0%,
         var(--color-primary, #06B6D4) 100%
       );
-    
-      background-image: none;
-      background-size: 0;
-      background-position: 0;
-      background-repeat: no-repeat;
-    
     padding-top: 0px;
     padding-bottom: 0px;
     position: relative;
