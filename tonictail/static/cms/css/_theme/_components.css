@@ -11781,7 +11781,7 @@
 }
 
 .module-cards-repeater .module-cards-repeater__card {
-   min-width: 260px; 
+   min-width: 302px; 
    background: var(--color-bg-light); 
    border: var(--border-width) solid var(--color-border); 
    border-radius: var(--border-radius-card); 

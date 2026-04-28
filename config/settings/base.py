@@ -374,3 +374,5 @@ SPECTACULAR_SETTINGS = {
 WAGTAIL_SITE_NAME = "Tonictail"
 WAGTAILADMIN_BASE_URL = "http://localhost:8000"
 WAGTAILIMAGES_IMAGE_MODEL = "cms.CustomImage"  # we'll create this
+
+WAGTAILIMAGES_EXTENSIONS = ["gif", "jpg", "jpeg", "png", "webp", "svg"]
