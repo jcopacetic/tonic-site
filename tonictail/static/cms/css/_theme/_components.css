@@ -5008,9 +5008,9 @@
     width: 100%;
     overflow: hidden;
   background: linear-gradient(
-    var(--color-primary, #63c1d1) 0%,
-    var(--color-primary, #06B6D4) 100%
-  );
+    var(--color-primary, #000) 0%,
+    var(--color-primary, #00171b) 100%
+  ) !important;
 
     padding-top: 120px;
     padding-bottom: 120px;
@@ -8601,7 +8601,7 @@
     text-align: 0;
 
     
-      background-color: rgba(0,0,0,1);
+      background-color: #fff;
       
         border: 1px solid rgba(0,0,0,1);
       
