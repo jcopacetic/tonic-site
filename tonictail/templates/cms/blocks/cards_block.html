@@ -1,21 +1,21 @@
 {% load wagtailimages_tags wagtailcore_tags %}
 <section class="module-cards-repeater section section--bg-{{ value.background.background_type|default:'light' }}">
   <div class="container">
-    <div class="module-cards-repeater__grid d-flex flex-wrap" style="gap: var(--grid-gutter);">
+    <div class="module-cards-repeater__grid d-flex flex-wrap">
       {% for card in value.cards %}
         <div class="module-cards-repeater__card module-cards-repeater__card--media-{{ value.media_position|default:'top' }}"
-             style="flex: 0 0 calc({{ value.columns_desktop|default:'3' }} / 100 * 33.333% - var(--grid-gutter)); min-width: 260px; background: var(--color-bg-light); border: var(--border-width) solid var(--color-border); border-radius: var(--border-radius-card); box-shadow: var(--shadow-card); overflow: hidden;">
+             style="flex: 0 0 calc({{ value.columns_desktop|default:'3' }} / 100 * 33.333% - var(--grid-gutter));">
           {% if card.media_type == "image" and card.image %}
             <div class="module-cards-repeater__media module-cards-repeater__media--{{ value.media_position|default:'top' }}">
               {% image card.image fill-720x480 as img %}
               <img class="module-cards-repeater__image" src="{{ img.url }}" alt="{{ card.image.alt_text|default:card.title }}">
             </div>
           {% elif card.media_type == "icon" and card.icon %}
-            <div class="module-cards-repeater__media module-cards-repeater__media--top" style="padding: var(--space-6) var(--space-6) 0;">
+            <div class="module-cards-repeater__media module-cards-repeater__media--top">
               <span class="module-cards-repeater__icon" style="font-size: 2.5rem;">{{ card.icon }}</span>
             </div>
           {% endif %}
-          <div class="module-cards-repeater__body" style="padding: var(--space-6);">
+          <div class="module-cards-repeater__body">
             {% if card.eyebrow %}<span class="module-cards-repeater__eyebrow eyebrow">{{ card.eyebrow }}</span>{% endif %}
             <h3 class="module-cards-repeater__title">{{ card.title }}</h3>
             {% if card.description %}
