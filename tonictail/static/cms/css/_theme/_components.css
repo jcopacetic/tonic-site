@@ -5007,10 +5007,7 @@
     align-items: 0;
     width: 100%;
     overflow: hidden;
-  background: linear-gradient(
-    var(--color-primary, #000) 0%,
-    var(--color-primary, #00171b) 100%
-  ) !important;
+  background: linear-gradient(#000 0%, #00171b 100%) !important;
 
     padding-top: 120px;
     padding-bottom: 120px;
@@ -5345,10 +5342,7 @@
 
 /* --- inline styles (require_css) --- */
   .module-icon-feature-grid {
-  background: linear-gradient(
-    var(--color-primary, #63c1d1) 0%,
-    var(--color-primary, #06B6D4) 100%
-  );
+  background: #fff;
     padding-top: 0px;
     padding-bottom: 0px;
     position: relative;
@@ -5386,7 +5380,7 @@
     flex-direction: row;
     gap: 16px;
     text-align: left;
-    background-color: #fff;
+    background-color: #fff !important;
     border-radius: 0px;
     padding: 30px;
     
@@ -8430,8 +8424,7 @@
 }
 
 .module-stats-numbers__grid--dividers .module-stats-numbers__stat {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 2rem;
   position: relative;
 }
 
@@ -8446,13 +8439,13 @@
   background-color: var(--stats-divider-color, var(--color-border, #DEDDD8));
 }
 
-.module-stats-numbers__grid--dividers .module-stats-numbers__stat:first-child {
+/* .module-stats-numbers__grid--dividers .module-stats-numbers__stat:first-child {
   padding-left: 0;
 }
 
 .module-stats-numbers__grid--dividers .module-stats-numbers__stat:last-child {
   padding-right: 0;
-}
+} */
 
 /* ── Card variant ── */
 
